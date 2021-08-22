@@ -12,9 +12,9 @@ public class GameSettings : MonoBehaviour
 
 
     [Header("Letter Colors: Decided by random chance")]
-    [SerializeField] private Color32 red;
-    [SerializeField] private Color32 blue;
-    [SerializeField] private Color32 green;
+    [SerializeField] public Color32 red;
+    [SerializeField] public Color32 blue;
+    [SerializeField] public Color32 green;
 
     private void Awake()
     {
