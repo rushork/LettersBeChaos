@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Letter_1st
   m_EditorClassIdentifier: 
   nameString: First Class Letter
-  chanceToSpawnSealed: 0.95
+  isTracked: 0
+  chanceToSpawnSealed: 0.7
+  chanceToSpawnFlipped: 0.2
   chanceToBeCorrectlyStamped: 75
   chanceGreen: 0.25
   chanceRed: 0.45
-  chanceBlue: 0.5
+  chanceBlue: 0.3
