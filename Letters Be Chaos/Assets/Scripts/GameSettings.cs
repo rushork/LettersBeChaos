@@ -16,6 +16,12 @@ public class GameSettings : MonoBehaviour
     [SerializeField] public Color32 blue;
     [SerializeField] public Color32 green;
 
+    [Header("Letter color chances")]
+    [Range(0,1)] public float redChance;
+    [Range(0, 1)] public float greenChance;
+    [Range(0, 1)] public float blueChance;
+
+
     private void Awake()
     {
         //now you can use "GameSettings.Instance.(insert method name)" anywhere. 

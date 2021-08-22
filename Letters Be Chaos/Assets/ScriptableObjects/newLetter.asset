@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a62eb35c01c2e4848a5011aaf972cd61, type: 3}
-  m_Name: Letter_1st
+  m_Name: newLetter
   m_EditorClassIdentifier: 
-  nameString: First Class Letter
+  nameString: 
   isTracked: 0
-  chanceToSpawnSealed: 0.95
-  chanceToSpawnStampFlipped: 0.1
-  chanceToBeCorrectlyStamped: 0.95
-  chanceGreen: 0.25
-  chanceRed: 0.45
-  chanceBlue: 0.3
+  chanceToSpawnSealed: 0
+  chanceToSpawnStampFlipped: 0
+  chanceToBeCorrectlyStamped: 0
+  chanceGreen: 0
+  chanceRed: 0
+  chanceBlue: 0

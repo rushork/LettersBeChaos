@@ -9,6 +9,7 @@ public class InteractableLetter : MonoBehaviour
     [Tooltip("The location for 'trash' stamps")] [SerializeField] private Transform rightStampLocation;
     private SpriteRenderer mySpriteRenderer;
     private SpriteRenderer sealRenderer;
+    private SpriteRenderer stampRenderer;
     private Color32 sealColor;
     private string trackingNumber; //this is a string because it contains letters and numbers.
 
@@ -18,12 +19,14 @@ public class InteractableLetter : MonoBehaviour
     private bool isUpsideDown;
     private bool isCorrectColor;
     private bool isSealed;
+    private bool isPostageStamped;
 
 
 
     private void Awake()
     {
         sealRenderer = transform.Find("Seal").GetComponent<SpriteRenderer>();
+        stampRenderer = transform.Find("PostageStamp").GetComponent<SpriteRenderer>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
 
     }
@@ -38,32 +41,23 @@ public class InteractableLetter : MonoBehaviour
     /// </summary>
     private void HandleRandomVariations()
     {
-        //the total is equal to 100% chance, so we dont have to make sure they all add to 100 as 20 + 2434 + 1 is still 100% of the chance
-        //doubt that makes sense but trust the maths bro
-        float randomTotal = letterScriptable.chanceBlue + letterScriptable.chanceGreen + letterScriptable.chanceRed;
-
-        float chanceBlue = letterScriptable.chanceBlue / randomTotal;
-        float chanceRed = letterScriptable.chanceRed / randomTotal;
-        float chanceGreen = letterScriptable.chanceGreen / randomTotal;
+     
 
         //get the random value 
-        float randomVal = Random.Range(0, 1);
-        Debug.Log(randomVal);
-        Debug.Log(chanceBlue);
-        Debug.Log(chanceGreen);
-        Debug.Log(chanceRed);
+        float randomVal = Random.Range(0f, 1f);
+ 
 
-        if (randomVal <= chanceBlue)
+        if (randomVal <= GameSettings.Instance.redChance)
         {
-            sealColor = GameSettings.Instance.blue;
+            sealColor = GameSettings.Instance.red;
         }
-        else if (randomVal <= chanceGreen)
+        else if (randomVal > GameSettings.Instance.redChance && randomVal <= GameSettings.Instance.greenChance)
         {
             sealColor = GameSettings.Instance.green;
         }
-        else if (randomVal <= chanceRed)
+        else
         {
-            sealColor = GameSettings.Instance.red;
+            sealColor = GameSettings.Instance.blue;
         }
 
         sealRenderer.color = sealColor;
@@ -71,9 +65,9 @@ public class InteractableLetter : MonoBehaviour
 
 
         //chance to flip
-        if(randomVal <= letterScriptable.chanceToSpawnFlipped)
+        if(randomVal <= letterScriptable.chanceToSpawnStampFlipped)
         {
-            sealRenderer.flipY = true;
+            stampRenderer.flipY = true;
             isUpsideDown = true;
         }
 
@@ -83,6 +77,13 @@ public class InteractableLetter : MonoBehaviour
             //set the seal to visible if it's sealed.
             sealRenderer.gameObject.SetActive(true);
             isSealed = true;
+        }
+
+        if(randomVal <= letterScriptable.chanceToBeCorrectlyStamped)
+        {
+            //set the seal to visible if it's sealed.
+            stampRenderer.gameObject.SetActive(true);
+            isPostageStamped = true;
         }
 
     }
