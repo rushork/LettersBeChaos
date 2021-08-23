@@ -17,6 +17,7 @@ public class ScoreManager : MonoBehaviour
     {
         score += amount;
         Debug.Log(score);
+        PlayerPrefs.SetInt("Score", score);
     }
 
     public void RemovePoints()

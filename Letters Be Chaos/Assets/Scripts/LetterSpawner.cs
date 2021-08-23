@@ -14,7 +14,7 @@ public class LetterSpawner : MonoBehaviour
     private BoxCollider2D areaToSpawn;
     private float currentZ = 0f;
 
-    private float timerValue = 0.2f;
+    private float timerValue = 0.8f;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class LetterSpawner : MonoBehaviour
         timerValue -= Time.deltaTime;
         if(timerValue <= 0)
         {
-            timerValue = 0.2f;
+            timerValue = 0.8f;
             SpawnLetter();
         }
     }
@@ -38,6 +38,10 @@ public class LetterSpawner : MonoBehaviour
         
         InteractableLetter.CreateLetter(GetRandomSpawn(), GetRandomTarget(), currentZ);
         currentZ -= 0.5f;
+        if(currentZ >= 500)
+        {
+            currentZ = 0;
+        }
     }
 
     private Transform GetRandomSpawn()
