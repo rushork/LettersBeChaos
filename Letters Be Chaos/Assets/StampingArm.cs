@@ -39,7 +39,8 @@ public class StampingArm : MonoBehaviour
         colourModes.Add(GameSettings.Instance.blue);
         colourModes.Add(GameSettings.Instance.green);
         colourModes.Add(GameSettings.Instance.red);
-        
+        colourModes.Add(GameSettings.Instance.delete);
+
         currentSelectedStampColor = colourModes[0];
         overlay.color = currentSelectedStampColor;
     }

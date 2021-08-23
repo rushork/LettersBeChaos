@@ -153,7 +153,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arm: {fileID: 837519898}
+  CPU: {fileID: 1526337318}
+  RAM: {fileID: 581406066}
+  HYDRAULIC: {fileID: 655983742}
   letterPrefab_FirstClass: {fileID: 2170503785109212156, guid: 37e0c4e1ca71edb4399e5d009418de91, type: 3}
+  pfPointsText: {fileID: 0}
   red:
     serializedVersion: 2
     rgba: 4282269360
@@ -165,7 +169,7 @@ MonoBehaviour:
     rgba: 4281247281
   delete:
     serializedVersion: 2
-    rgba: 0
+    rgba: 4278872826
   redLocation: {fileID: 1494050577}
   greenLocation: {fileID: 1706760272}
   blueLocation: {fileID: 1367516889}
