@@ -43,6 +43,7 @@ public class InteractableLetter : MonoBehaviour
     public bool isCorrectColor;
     public bool isSealed;
     public bool isPostageStamped;
+    public bool isValid; // letters are only valid if they have an upright stamp, a valid coloured seal and no defects
     
 
     //for spawning
@@ -154,6 +155,17 @@ public class InteractableLetter : MonoBehaviour
             isPostageStamped = true;
         }
 
+
+
+        if(isSealed && !isUpsideDown && isPostageStamped)
+        {
+            isValid = true;
+        }
+        else
+        {
+            isValid = false;
+        }
+
     }
 
     public void StampWithColor(Color32 colorStamped)
@@ -168,6 +180,12 @@ public class InteractableLetter : MonoBehaviour
         else
         {
             isCorrectColor = false;
+        }
+
+        //if not valid and marked with orange, its the correct color.
+        if(!isValid && colorStamped.Equals(GameSettings.Instance.delete))
+        {
+            isCorrectColor = true;
         }
     }
 

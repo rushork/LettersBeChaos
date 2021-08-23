@@ -34,6 +34,12 @@ public class StampCollisionCheck : MonoBehaviour
                     
 
                 }
+                else if (arm.GetColor().Equals(GameSettings.Instance.delete))
+                {
+                    letter.SetTarget(GameSettings.Instance.deleteLocation);
+
+
+                }
 
 
 

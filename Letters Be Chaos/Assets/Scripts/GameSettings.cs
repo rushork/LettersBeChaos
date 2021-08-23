@@ -54,7 +54,14 @@ public class GameSettings : MonoBehaviour
     {
         int points = 0;
 
-        
+        //if orange stamp is applied to invalid letter
+        if (!letter.isValid)
+        {
+            if (letter.isCorrectColor)
+            {
+                points += 5;
+            }
+        }
 
         if (!letter.isPostageStamped)
         {
@@ -69,7 +76,7 @@ public class GameSettings : MonoBehaviour
             points -= 1;
         }
 
-        if (letter.isCorrectColor)
+        if (letter.isCorrectColor && letter.isValid)
         {
             FindObjectOfType<AudioManager>().Play("Point");
             if (letter.GetSealColor().Equals(red))
