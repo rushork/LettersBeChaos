@@ -31,7 +31,7 @@ public class StampCollisionCheck : MonoBehaviour
                 else if (arm.GetColor().Equals(GameSettings.Instance.green))
                 {
                     letter.SetTarget(GameSettings.Instance.greenLocation);
-
+                    
 
                 }
 

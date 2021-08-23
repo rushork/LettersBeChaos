@@ -23,8 +23,8 @@ public class InteractableLetter : MonoBehaviour
 
 
     [Tooltip("The scriptable object assigned to this letter.")] [SerializeField] private LetterSO letterScriptable;
-    [Tooltip("The location for any generic stamp")] [SerializeField] private Transform leftStampLocation;
-    [Tooltip("The location for 'trash' stamps")] [SerializeField] private Transform rightStampLocation;
+    [Tooltip("The location for any generic stamp")] [SerializeField] private SpriteRenderer mechanicalStampZoneRenderer;
+
     private SpriteRenderer mySpriteRenderer;
     private SpriteRenderer sealRenderer;
     private SpriteRenderer stampRenderer;
@@ -158,6 +158,9 @@ public class InteractableLetter : MonoBehaviour
 
     public void StampWithColor(Color32 colorStamped)
     {
+
+        mechanicalStampZoneRenderer.color = colorStamped;
+        mechanicalStampZoneRenderer.gameObject.SetActive(true);
         if (colorStamped.Equals(sealColor))
         {
             isCorrectColor = true;

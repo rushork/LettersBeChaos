@@ -97,7 +97,27 @@ public class StampingArm : MonoBehaviour
             overlay.color = currentSelectedStampColor;
         }
 
-        
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentSelectedStampColor = colourModes[2];
+            overlay.color = currentSelectedStampColor;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentSelectedStampColor = colourModes[1];
+            overlay.color = currentSelectedStampColor;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentSelectedStampColor = colourModes[0];
+            overlay.color = currentSelectedStampColor;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            currentSelectedStampColor = colourModes[3];
+            overlay.color = currentSelectedStampColor;
+        }
+
     }
 
     public Color32 GetColor()
