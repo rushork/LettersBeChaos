@@ -63,7 +63,7 @@ public class GameSettings : MonoBehaviour
 
         if (letter.isCorrectColor)
         {
-
+            FindObjectOfType<AudioManager>().Play("Point");
             if (letter.GetSealColor().Equals(red))
             {
                 points += 5;
@@ -80,7 +80,6 @@ public class GameSettings : MonoBehaviour
         }
 
         ScoreManager.Instance.AddPoints(points);
-        FindObjectOfType<AudioManager>().Play("Point");
         Destroy(letter.gameObject);
     }
 }
