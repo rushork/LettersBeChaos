@@ -216,7 +216,6 @@ RectTransform:
   m_Children:
   - {fileID: 674099819}
   - {fileID: 1701035804}
-  - {fileID: 1920616777}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -235,6 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 674099819}
   - component: {fileID: 674099820}
+  - component: {fileID: 674099821}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -256,6 +256,7 @@ RectTransform:
   - {fileID: 694940107}
   - {fileID: 1320803182}
   - {fileID: 1298673153}
+  - {fileID: 1920616777}
   m_Father: {fileID: 87339536}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -276,6 +277,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90cfed9a748f564a8c3f2119d3b451d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &674099821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674099818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8afd14ab4826f479e5d87ebaf0f556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmp: {fileID: 1920616778}
 --- !u!1 &694940106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,7 +1079,7 @@ GameObject:
   - component: {fileID: 1920616779}
   - component: {fileID: 1920616778}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1082,8 +1096,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 87339536}
-  m_RootOrder: 2
+  m_Father: {fileID: 674099819}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
