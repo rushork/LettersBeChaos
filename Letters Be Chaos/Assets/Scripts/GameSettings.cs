@@ -80,6 +80,7 @@ public class GameSettings : MonoBehaviour
         }
 
         ScoreManager.Instance.AddPoints(points);
+        FindObjectOfType<AudioManager>().Play("Point");
         Destroy(letter.gameObject);
     }
 }
