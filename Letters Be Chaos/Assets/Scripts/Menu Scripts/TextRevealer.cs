@@ -6,6 +6,7 @@ using TMPro;
 public class TextRevealer : MonoBehaviour
 {
 
+    public AudioSource sound;
     private TextMeshProUGUI tmp;
 
     IEnumerator Start() {
@@ -17,6 +18,7 @@ public class TextRevealer : MonoBehaviour
         int visibleCount = 0;
 
         while (visibleCount != totalVisibleChars) { // Loop till the entire story is visible
+            
             visibleCount = counter % (totalVisibleChars+1); 
             tmp.maxVisibleCharacters = visibleCount;
 
@@ -28,5 +30,6 @@ public class TextRevealer : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
     }
+
 }
 
