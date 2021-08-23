@@ -9,5 +9,6 @@ public class MuteAudio : MonoBehaviour
 
     public void Skipped() {
         sound.Stop();
+        Destroy(this.gameObject);
     }
 }
