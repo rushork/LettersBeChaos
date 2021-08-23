@@ -512,8 +512,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start Work
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 537cb09d8ee05fd49b1efb095c1629c8, type: 2}
-  m_sharedMaterial: {fileID: -6438240723900063387, guid: 537cb09d8ee05fd49b1efb095c1629c8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 004c40540fc65a8459a1609617fe6048, type: 2}
+  m_sharedMaterial: {fileID: 7898051951576004044, guid: 004c40540fc65a8459a1609617fe6048, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -646,8 +646,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Letters Be Chaos
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 537cb09d8ee05fd49b1efb095c1629c8, type: 2}
-  m_sharedMaterial: {fileID: -6438240723900063387, guid: 537cb09d8ee05fd49b1efb095c1629c8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 004c40540fc65a8459a1609617fe6048, type: 2}
+  m_sharedMaterial: {fileID: 7898051951576004044, guid: 004c40540fc65a8459a1609617fe6048, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
