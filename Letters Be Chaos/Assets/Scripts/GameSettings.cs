@@ -20,6 +20,7 @@ public class GameSettings : MonoBehaviour
     [SerializeField] public Color32 red;
     [SerializeField] public Color32 blue;
     [SerializeField] public Color32 green;
+    [SerializeField] public Color32 delete;
 
     [Header("Areas letters are sent during processing")]
     [SerializeField] public Transform redLocation;
