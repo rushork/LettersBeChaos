@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
+    public Transform pointsPopupPrefab;
     private int score = 0;
 
     private void Awake()

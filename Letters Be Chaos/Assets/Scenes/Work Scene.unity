@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7f2faf60c601d48b26601ebf31f726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsPopupPrefab: {fileID: 8587110188881031238, guid: 142a8a998b646284b831ec974945d302, type: 3}
 --- !u!4 &355191995
 Transform:
   m_ObjectHideFlags: 0
