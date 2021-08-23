@@ -50,11 +50,11 @@ public class GameSettings : MonoBehaviour
 
         if (!letter.isPostageStamped)
         {
-            points -= 2;
+            points -= 3;
         }
         if (!letter.isSealed)
         {
-            points -= 5;
+            points -= 7;
         }
         if (!letter.isUpsideDown)
         {

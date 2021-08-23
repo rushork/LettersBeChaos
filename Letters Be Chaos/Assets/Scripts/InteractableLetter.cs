@@ -129,7 +129,7 @@ public class InteractableLetter : MonoBehaviour
         }
 
         sealRenderer.color = sealColor;
-        isCorrectColor = true; // this is temporary
+        
 
 
         //chance to flip
