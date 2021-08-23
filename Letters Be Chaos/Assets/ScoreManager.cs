@@ -20,8 +20,5 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("Score", score);
     }
 
-    public void RemovePoints()
-    {
-
-    }
+   
 }

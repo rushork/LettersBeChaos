@@ -14,7 +14,7 @@ public class LetterSpawner : MonoBehaviour
     private BoxCollider2D areaToSpawn;
     private float currentZ = 0f;
 
-    private float timerValue = 0.8f;
+    private float timerValue = 1f;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class LetterSpawner : MonoBehaviour
         timerValue -= Time.deltaTime;
         if(timerValue <= 0)
         {
-            timerValue = 0.8f;
+            timerValue = 1f;
             SpawnLetter();
         }
     }

@@ -14,26 +14,32 @@ public class StampCollisionCheck : MonoBehaviour
         if (letter != null)
         {
             
-            if (letter.GetHighlightedStatus())
+            if (letter.hasBeenSelected)
             {
-                
-                if(letter.CompareSealColor(arm.GetColor()))
+
+
+                if (arm.GetColor().Equals(GameSettings.Instance.red))
                 {
-                    if (letter.GetSealColor().Equals(GameSettings.Instance.red))
-                    {
-                        ScoreManager.Instance.AddPoints(5);
-                    }
-                    else if (letter.GetSealColor().Equals(GameSettings.Instance.blue))
-                    {
-                        ScoreManager.Instance.AddPoints(2);
-                    }
-                    else if (letter.GetSealColor().Equals(GameSettings.Instance.green))
-                    {
-                        ScoreManager.Instance.AddPoints(1);
-                    }
+                    letter.SetTarget(GameSettings.Instance.redLocation);
+
+                }
+                else if (arm.GetColor().Equals(GameSettings.Instance.blue))
+                {
+                    letter.SetTarget(GameSettings.Instance.blueLocation);
+
+                }
+                else if (arm.GetColor().Equals(GameSettings.Instance.green))
+                {
+                    letter.SetTarget(GameSettings.Instance.greenLocation);
+
+
                 }
 
-                Destroy(letter.gameObject);
+
+
+                letter.StampWithColor(arm.GetColor());
+                letter.SendForProcessing();
+
             }
         }
     }

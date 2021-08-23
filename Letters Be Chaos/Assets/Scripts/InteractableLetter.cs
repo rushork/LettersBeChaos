@@ -30,16 +30,20 @@ public class InteractableLetter : MonoBehaviour
     private SpriteRenderer stampRenderer;
     private GameObject highlightObject;
     private Color32 sealColor;
+    private Color32 colorStampedWith; // this is the colour that it has been stamped with by the player
     private string trackingNumber; //this is a string because it contains letters and numbers.
     private bool highlightable; //can this be highlighted?
+    private bool isBeingProcessed;
+    private bool isHighlighted;
+    [HideInInspector] public bool hasBeenSelected;
 
     //these values are decided after spawning
-    private bool hasTrackingInfo;
-    private bool isUpsideDown;
-    private bool isCorrectColor;
-    private bool isSealed;
-    private bool isPostageStamped;
-    private bool isHighlighted;
+    public bool hasTrackingInfo;
+    public bool isUpsideDown;
+    public bool isCorrectColor;
+    public bool isSealed;
+    public bool isPostageStamped;
+    
 
     //for spawning
     private Vector3 targetLocationToMoveTo;
@@ -61,15 +65,42 @@ public class InteractableLetter : MonoBehaviour
 
     private void Update()
     {
-        if (isMoving)
+        if (isMoving && !isBeingProcessed)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetLocationToMoveTo, 5 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetLocationToMoveTo, 5f * Time.deltaTime);
             if(Vector2.Distance(transform.position,targetLocationToMoveTo) <= 0.1)
             {
                 isMoving = false;
+
                 highlightable = true;
+
+
                 gameObject.layer = LayerMask.NameToLayer("Letters");
             }
+        }
+        if (isBeingProcessed)
+        {
+
+            if(transform.rotation.z != 0)
+            {
+
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, 0f), 4.0f * Time.deltaTime);
+            }
+
+            if (isMoving)
+            {
+                transform.position = Vector3.Lerp(transform.position, targetLocationToMoveTo, 8f * Time.deltaTime);
+                if (Vector2.Distance(transform.position, targetLocationToMoveTo) <= 0.1)
+                {
+                    gameObject.layer = LayerMask.NameToLayer("Letters");
+                    isMoving = false;
+                }
+            }
+            else
+            {
+                GameSettings.Instance.ProcessLetter(this);
+            }
+            
         }
     }
 
@@ -125,6 +156,35 @@ public class InteractableLetter : MonoBehaviour
 
     }
 
+    public void StampWithColor(Color32 colorStamped)
+    {
+        if (colorStamped.Equals(sealColor))
+        {
+            isCorrectColor = true;
+        }
+        else
+        {
+            isCorrectColor = false;
+        }
+    }
+
+    public void SetTarget(Transform pos)
+    {
+        targetLocationToMoveTo = pos.position;
+    }
+
+    public void SendForProcessing()
+    {
+        highlightable = false;
+        highlightObject.SetActive(false);
+        isHighlighted = false;
+        
+
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        isMoving = true;
+        isBeingProcessed = true; //now it will not become highlightable again
+    }
+
     private void OnMouseEnter()
     {
         if (highlightable)
@@ -143,6 +203,14 @@ public class InteractableLetter : MonoBehaviour
             highlightObject.SetActive(false);
         }
    
+    }
+
+    private void OnMouseDown()
+    {
+        if (isHighlighted && GameSettings.Instance.arm.IsIdle())
+        {
+            hasBeenSelected = true;
+        }
     }
 
 

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2170503784162115183
 Transform:
   m_ObjectHideFlags: 0
@@ -151,6 +151,12 @@ MonoBehaviour:
   letterScriptable: {fileID: 11400000, guid: 9f4ea2daad556ee49ac7e492a3b45176, type: 2}
   leftStampLocation: {fileID: 2170503785145343171}
   rightStampLocation: {fileID: 2170503785759151742}
+  hasBeenSelected: 0
+  hasTrackingInfo: 0
+  isUpsideDown: 0
+  isCorrectColor: 0
+  isSealed: 0
+  isPostageStamped: 0
 --- !u!61 &1580239222048810763
 BoxCollider2D:
   m_ObjectHideFlags: 0

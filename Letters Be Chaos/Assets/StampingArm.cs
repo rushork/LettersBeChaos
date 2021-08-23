@@ -105,5 +105,15 @@ public class StampingArm : MonoBehaviour
         return currentSelectedStampColor;
     }
 
-    
+    public bool IsIdle()
+    {
+        if(armStatus == ArmStatus.idle)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
