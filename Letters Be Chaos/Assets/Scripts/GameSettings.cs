@@ -12,9 +12,16 @@ public class GameSettings : MonoBehaviour
 
     public StampingArm arm;
 
+
+    [Header("Usage Stats")]
+    public StatControllerScript CPU;
+    public StatControllerScript RAM;
+    public StatControllerScript HYDRAULIC;
+
+
     [Header("Letter Type Prefabs")]
     public Transform letterPrefab_FirstClass;
-
+    public Transform pfPointsText;
 
     [Header("Letter Colors: Decided by random chance")]
     [SerializeField] public Color32 red;
