@@ -163,6 +163,9 @@ MonoBehaviour:
   green:
     serializedVersion: 2
     rgba: 4281247281
+  delete:
+    serializedVersion: 2
+    rgba: 0
   redLocation: {fileID: 1494050577}
   greenLocation: {fileID: 1706760272}
   blueLocation: {fileID: 1367516889}
@@ -517,6 +520,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 581406065}
+  - component: {fileID: 581406066}
   m_Layer: 0
   m_Name: RAM
   m_TagString: Untagged
@@ -541,6 +545,26 @@ Transform:
   m_Father: {fileID: 1552935157}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &581406066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581406064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edf9350117b68dc478773a9d12ec26fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usage: 0
+  barsActive: 0
+  bars:
+  - {fileID: 1139768033}
+  - {fileID: 1671006451}
+  - {fileID: 414986986}
+  barSprite: {fileID: 21300000, guid: d32dffb71c560124392c3664f30c0d14, type: 3}
+  emptyBarSprite: {fileID: 0}
 --- !u!1 &636957151
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 655983741}
+  - component: {fileID: 655983742}
   m_Layer: 0
   m_Name: HYDRAULICS
   m_TagString: Untagged
@@ -708,6 +733,26 @@ Transform:
   m_Father: {fileID: 1552935157}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &655983742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655983740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edf9350117b68dc478773a9d12ec26fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usage: 0
+  barsActive: 0
+  bars:
+  - {fileID: 1476748160}
+  - {fileID: 773313858}
+  - {fileID: 1329427793}
+  barSprite: {fileID: 21300000, guid: d32dffb71c560124392c3664f30c0d14, type: 3}
+  emptyBarSprite: {fileID: 0}
 --- !u!1 &728486748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,6 +1766,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1526337317}
+  - component: {fileID: 1526337318}
   m_Layer: 0
   m_Name: CPU
   m_TagString: Untagged
@@ -1745,6 +1791,26 @@ Transform:
   m_Father: {fileID: 1552935157}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1526337318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526337316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edf9350117b68dc478773a9d12ec26fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usage: 0
+  barsActive: 0
+  bars:
+  - {fileID: 1381861809}
+  - {fileID: 1749163729}
+  - {fileID: 1231553888}
+  barSprite: {fileID: 21300000, guid: d32dffb71c560124392c3664f30c0d14, type: 3}
+  emptyBarSprite: {fileID: 0}
 --- !u!1 &1552935156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,7 +1820,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1552935157}
-  - component: {fileID: 1552935158}
   m_Layer: 0
   m_Name: Stats
   m_TagString: Untagged
@@ -1779,18 +1844,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1552935158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552935156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edf9350117b68dc478773a9d12ec26fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1610091869
 GameObject:
   m_ObjectHideFlags: 0
