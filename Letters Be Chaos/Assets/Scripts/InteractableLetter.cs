@@ -4,12 +4,31 @@ using UnityEngine;
 
 public class InteractableLetter : MonoBehaviour
 {
+
+
+    public static InteractableLetter CreateLetter(Transform origin,Vector3 targetLocation, float zPos)
+    {
+        
+        Transform interactableLetterTransform = Instantiate(GameSettings.Instance.letterPrefab_FirstClass, new Vector3(origin.position.x, origin.position.y, zPos), Quaternion.AngleAxis(Random.Range(-20,20), Vector3.forward));
+        InteractableLetter letter = interactableLetterTransform.GetComponent<InteractableLetter>();
+        letter.targetLocationToMoveTo = new Vector3(targetLocation.x, targetLocation.y, zPos);
+       
+
+
+        return letter;
+    }
+
+
+
+
+
     [Tooltip("The scriptable object assigned to this letter.")] [SerializeField] private LetterSO letterScriptable;
     [Tooltip("The location for any generic stamp")] [SerializeField] private Transform leftStampLocation;
     [Tooltip("The location for 'trash' stamps")] [SerializeField] private Transform rightStampLocation;
     private SpriteRenderer mySpriteRenderer;
     private SpriteRenderer sealRenderer;
     private SpriteRenderer stampRenderer;
+    private GameObject highlightObject;
     private Color32 sealColor;
     private string trackingNumber; //this is a string because it contains letters and numbers.
 
@@ -21,19 +40,34 @@ public class InteractableLetter : MonoBehaviour
     private bool isSealed;
     private bool isPostageStamped;
 
-
+    //for spawning
+    private Vector3 targetLocationToMoveTo;
+    private bool isMoving = true;
 
     private void Awake()
     {
         sealRenderer = transform.Find("Seal").GetComponent<SpriteRenderer>();
         stampRenderer = transform.Find("PostageStamp").GetComponent<SpriteRenderer>();
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        mySpriteRenderer = transform.Find("Letter").GetComponent<SpriteRenderer>();
+        highlightObject = transform.Find("Highlight").gameObject;
 
     }
 
     private void Start()
     {
         HandleRandomVariations();
+    }
+
+    private void Update()
+    {
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetLocationToMoveTo, 5 * Time.deltaTime);
+            if(Vector2.Distance(transform.position,targetLocationToMoveTo) <= 0.1)
+            {
+                isMoving = false;
+            }
+        }
     }
 
     /// <summary>
@@ -87,4 +121,15 @@ public class InteractableLetter : MonoBehaviour
         }
 
     }
+
+    private void OnMouseEnter()
+    {
+        highlightObject.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        highlightObject.SetActive(false);
+    }
+
 }

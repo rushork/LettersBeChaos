@@ -10,6 +10,9 @@ public class GameSettings : MonoBehaviour
 
     public static GameSettings Instance { get; private set; }
 
+    [Header("Letter Type Prefabs")]
+    public Transform letterPrefab_FirstClass;
+
 
     [Header("Letter Colors: Decided by random chance")]
     [SerializeField] public Color32 red;
@@ -21,9 +24,10 @@ public class GameSettings : MonoBehaviour
     [Range(0, 1)] public float greenChance;
     [Range(0, 1)] public float blueChance;
 
-
+    
     private void Awake()
     {
+        //this
         //now you can use "GameSettings.Instance.(insert method name)" anywhere. 
         //Why use this instead of static classes? static classes are a pain in the ass.
         Instance = this;
