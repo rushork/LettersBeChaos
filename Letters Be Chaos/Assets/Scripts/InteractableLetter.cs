@@ -31,7 +31,7 @@ public class InteractableLetter : MonoBehaviour
     private GameObject highlightObject;
     private Color32 sealColor;
     private string trackingNumber; //this is a string because it contains letters and numbers.
-
+    private bool highlightable; //can this be highlighted?
 
     //these values are decided after spawning
     private bool hasTrackingInfo;
@@ -39,6 +39,7 @@ public class InteractableLetter : MonoBehaviour
     private bool isCorrectColor;
     private bool isSealed;
     private bool isPostageStamped;
+    private bool isHighlighted;
 
     //for spawning
     private Vector3 targetLocationToMoveTo;
@@ -50,7 +51,7 @@ public class InteractableLetter : MonoBehaviour
         stampRenderer = transform.Find("PostageStamp").GetComponent<SpriteRenderer>();
         mySpriteRenderer = transform.Find("Letter").GetComponent<SpriteRenderer>();
         highlightObject = transform.Find("Highlight").gameObject;
-
+        
     }
 
     private void Start()
@@ -66,6 +67,8 @@ public class InteractableLetter : MonoBehaviour
             if(Vector2.Distance(transform.position,targetLocationToMoveTo) <= 0.1)
             {
                 isMoving = false;
+                highlightable = true;
+                gameObject.layer = LayerMask.NameToLayer("Letters");
             }
         }
     }
@@ -124,12 +127,52 @@ public class InteractableLetter : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        highlightObject.SetActive(true);
+        if (highlightable)
+        {
+            isHighlighted = true;
+            highlightObject.SetActive(true);
+        }
+        
     }
 
     private void OnMouseExit()
     {
-        highlightObject.SetActive(false);
+        if (highlightable)
+        {
+            isHighlighted = false;
+            highlightObject.SetActive(false);
+        }
+   
+    }
+
+
+    public bool GetHighlightedStatus()
+    {
+        return isHighlighted;
+    }
+
+    public bool CompareSealColor(Color32 otherColor)
+    {
+        if (isSealed)
+        {
+            if(otherColor.Equals(sealColor))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public Color32 GetSealColor()
+    {
+        return sealColor;
     }
 
 }
