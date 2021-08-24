@@ -46,9 +46,17 @@ public class AudioManager : MonoBehaviour
     public string returnIncorrect(int top) {
         int random = Random.Range (0, top) + 1;
         if (random == top) {
-            return "Incorrect";
+            Play("IncorrectBeep");
+            StartCoroutine(soundWaiter(1, "Incorrect"));
+            return null;
         } else {
             return "IncorrectBeep";
         }
     }
+
+    IEnumerator soundWaiter(int time, string name) {
+        yield return new WaitForSeconds(time);
+        Play(name);
+    }
+
 }
