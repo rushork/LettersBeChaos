@@ -158,6 +158,7 @@ MonoBehaviour:
   HYDRAULIC: {fileID: 655983742}
   letterPrefab_FirstClass: {fileID: 2170503785109212156, guid: 37e0c4e1ca71edb4399e5d009418de91, type: 3}
   pfPointsText: {fileID: 2371508049884400680, guid: 40b2f094fff6a1341b7a3ca1d8f469bf, type: 3}
+  pfComboPoints: {fileID: 2371508049884400680, guid: 30b6cefe5a216614298e325498a1ab43, type: 3}
   red:
     serializedVersion: 2
     rgba: 4282269360
