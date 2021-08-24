@@ -19,7 +19,6 @@ public class StampingArm : MonoBehaviour
     private Vector2 mouseTarget;
     [Space]
     public Transform target;
-    private StampCollisionCheck collision;
 
     [Header("Coloured overlay")]
     [SerializeField] private SpriteRenderer overlay;
@@ -42,7 +41,7 @@ public class StampingArm : MonoBehaviour
     {
         art = transform.Find("art").gameObject;
         armStatus = ArmStatus.idle;
-        collision = transform.Find("art").GetComponent<StampCollisionCheck>();
+        
     }
 
     private void Start()
@@ -91,13 +90,6 @@ public class StampingArm : MonoBehaviour
             {
                 mouseTarget = originalPos;
                 armStatus = ArmStatus.retracting;
-
-                //if we havent hit a letter properly, play the miss noise.
-                if (!collision.hasHitLetter)
-                {
-                    AudioManager.Instance.Play("MissThud");
-                    
-                }
                 
             }
         }
@@ -160,6 +152,7 @@ public class StampingArm : MonoBehaviour
     //Draw zones on the table
     private void SetTableHighlight(int value)
     {
+        AudioManager.Instance.Play("TickHiss");
         foreach(GameObject object_i in highlightZones)
         {
             if(object_i != highlightZones[value])
