@@ -8,6 +8,8 @@ public class ScoreScript : MonoBehaviour
 
     public TextMeshProUGUI tmp;
 
+
+    // Self explanatory
     void Start() {
         tmp.SetText("Score: " + PlayerPrefs.GetInt("Score"));
         PlayerPrefs.SetInt("Score", 0);

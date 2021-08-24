@@ -17,6 +17,7 @@ public class StatControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update() {
 
+        // Updates the status bars
         if (usage <= 25) {
             barsActive = 0;
         } else if (usage > 75) {
@@ -27,6 +28,7 @@ public class StatControllerScript : MonoBehaviour
             barsActive = 1;
         }
 
+        // Renders either no sprite or a full bar sprite depending on how many bars are active
         for (int i = 0; i < numOfBars; i++) {
             if (i < barsActive) {
                 bars[i].GetComponent<SpriteRenderer>().sprite = barSprite;
@@ -40,13 +42,16 @@ public class StatControllerScript : MonoBehaviour
         return usage;    
     }
 
+
+    // Sets usage of the current instance of stat.
     public void setUsage(int u) {
         usage = u;
 
+        // Checks whether to load a victory/failure scene if the usage is >= 100
         if (usage >= 100 && PlayerPrefs.GetInt("Score") > 0) {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(2); // Victory
         } else if (usage >= 100 && PlayerPrefs.GetInt("Score") < 0) {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(3); // Failure
         }
 
     }
