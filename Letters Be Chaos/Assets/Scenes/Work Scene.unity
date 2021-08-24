@@ -2277,6 +2277,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 12e4c2b2257810c4c94df073039c8751, type: 3}
     volume: 1
     source: {fileID: 0}
+  - name: MissThud
+    clip: {fileID: 8300000, guid: cc4389427842a0b42bc1c1b3c9b44a5c, type: 3}
+    volume: 1
+    source: {fileID: 0}
 --- !u!82 &1415757791
 AudioSource:
   m_ObjectHideFlags: 0
