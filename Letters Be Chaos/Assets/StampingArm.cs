@@ -15,6 +15,7 @@ public class StampingArm : MonoBehaviour
     [SerializeField] private SpriteRenderer overlay;
     private List<Color32> colourModes;
     private Color32 currentSelectedStampColor;
+    public bool isOverUI;
 
     public enum ArmStatus
     {
@@ -55,7 +56,7 @@ public class StampingArm : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, mouseY, 10 * Time.deltaTime);
         }
 
-        if (Input.GetMouseButtonDown(0) && armStatus == ArmStatus.idle)
+        if (Input.GetMouseButtonDown(0) && armStatus == ArmStatus.idle && !isOverUI)
         {
 
             mouseTarget = new Vector2(art.transform.position.x, target.position.y - 0.7f);

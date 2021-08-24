@@ -8,17 +8,26 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager Instance { get; private set; }
 
-
+    [HideInInspector]public float masterVolume = 1f;
     public Sound[] sounds; 
 
     void Awake()
     {
+        
         Instance = this;
 
         foreach (Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            s.source.volume = s.volume;
+            s.source.volume = s.volume * masterVolume;
+        }
+    }
+
+    public void SetSoundLevel()
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source.volume = s.volume * masterVolume;
         }
     }
 
