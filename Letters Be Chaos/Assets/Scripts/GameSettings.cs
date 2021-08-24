@@ -154,6 +154,7 @@ public class GameSettings : MonoBehaviour
             if (letter.colorStampedWith.Equals(delete))
             {
                 AudioManager.Instance.Play("Point");
+                ComboManager.Instance.SetLastCorrectlyStamped(letter.colorStampedWith);
                 points += 100; //100 points for correctly discarding the letter
             }
             //if it wasnt orange, and it was invalid, take these.
@@ -262,7 +263,7 @@ public class GameSettings : MonoBehaviour
         }
 
         debugMessage += " [Points at the end: " + points + "]";
-        ScoreManager.Instance.AddPoints(points);
+        
 
         bool isNegative = false;
         if(points < 0)
@@ -275,6 +276,7 @@ public class GameSettings : MonoBehaviour
             points = Mathf.RoundToInt(points * ComboManager.Instance.GetMultiplier());
         }
 
+        ScoreManager.Instance.AddPoints(points);
         PointsText.Create(letter.transform.position, points, isNegative, iconSet);
         letterCount--;
         Destroy(letter.gameObject);

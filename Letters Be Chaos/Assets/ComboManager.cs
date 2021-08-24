@@ -31,6 +31,14 @@ public class ComboManager : MonoBehaviour
     private int correctSequentialStampsWithSameColor = 0;
     private bool checkingForSequentialIdenticalStampCombo = true;
 
+    //Stamp 4 different colors
+
+    private bool hasStampedRed;
+    private bool hasStampedBlue;
+    private bool hasStampedGreen;
+    private bool hasStampedOrange;
+    private bool allColoursStamped;
+
     private void Awake()
     {
         Instance = this;
@@ -62,7 +70,21 @@ public class ComboManager : MonoBehaviour
             }
         }
 
-        if(comboMultiplier > 0)
+
+        if (allColoursStamped)
+        {
+            allColoursStamped = false;
+            hasStampedBlue = false;
+            hasStampedGreen = false;
+            hasStampedOrange = false;
+            hasStampedRed = false;
+            AddMultiplier(10f);
+            //slightly longer to play with it.
+            comboExpireTimer += 5f;
+        }
+
+
+        if (comboMultiplier > 0)
         {
             comboActive = true;
         }
@@ -84,7 +106,7 @@ public class ComboManager : MonoBehaviour
             }
         }
 
-        Debug.Log((comboActive) + " " + comboMultiplier + " " + correctSequentialStamps);
+      
         
     }
 
@@ -95,6 +117,7 @@ public class ComboManager : MonoBehaviour
         comboTextDebug.text = "1x";
         //reset all booleans
         checkingForSequentialStampCombo = true;
+        ResetUniqueStamping();
     }
 
     public void AddCorrectStamp()
@@ -111,6 +134,7 @@ public class ComboManager : MonoBehaviour
         lastCorrectlyStampedColor = Color.black;
     }
 
+
     public void AddMultiplier(float value)
     {
         comboMultiplier += value;
@@ -123,6 +147,8 @@ public class ComboManager : MonoBehaviour
     {
         return comboMultiplier;
     }
+
+    
 
 
     public void SetLastCorrectlyStamped(Color32 colorStamped)
@@ -143,6 +169,74 @@ public class ComboManager : MonoBehaviour
                 correctSequentialStampsWithSameColor = 0;
             }
         }
-        
+
+
+        //check to see unique stamping
+        if (colorStamped.Equals(GameSettings.Instance.red))
+        {
+           
+            if(!hasStampedRed)
+            {
+                Debug.Log("red");
+                hasStampedRed = true;
+            }
+            else
+            {
+                ResetUniqueStamping();
+            }
+        }
+        else if (colorStamped.Equals(GameSettings.Instance.blue))
+        {
+            if (!hasStampedBlue)
+            {
+                Debug.Log("blue");
+                hasStampedBlue = true;
+            }
+            else
+            {
+                ResetUniqueStamping();
+            }
+        }
+        else if (colorStamped.Equals(GameSettings.Instance.green))
+        {
+            if (!hasStampedGreen)
+            {
+                Debug.Log("green");
+                hasStampedGreen = true;
+            }
+            else
+            {
+                ResetUniqueStamping();
+            }
+        }
+        else if (colorStamped.Equals(GameSettings.Instance.delete))
+        {
+            if (!hasStampedOrange)
+            {
+                Debug.Log("orange");
+                hasStampedOrange = true;
+            }
+            else
+            {
+                ResetUniqueStamping();
+            }
+        }
+
+        Debug.Log(hasStampedBlue + " " + hasStampedGreen + " " + hasStampedOrange + " " + hasStampedRed);
+
+        if(hasStampedBlue && hasStampedGreen && hasStampedOrange && hasStampedRed)
+        {
+            allColoursStamped = true;
+        }
+
+    }
+
+    private void ResetUniqueStamping()
+    {
+        allColoursStamped = false;
+        hasStampedBlue = false;
+        hasStampedGreen = false;
+        hasStampedOrange = false;
+        hasStampedRed = false;
     }
 }

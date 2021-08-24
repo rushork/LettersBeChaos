@@ -175,8 +175,8 @@ MonoBehaviour:
   greenLocation: {fileID: 1706760272}
   blueLocation: {fileID: 1367516889}
   deleteLocation: {fileID: 1214396101}
-  redChance: 0.2
-  greenChance: 0.3
+  redChance: 0.1
+  greenChance: 0.4
   blueChance: 0.5
   icon_WrongColor: {fileID: 21300000, guid: bc5a107e59feae14789a747b6a42301c, type: 3}
   icon_NoStamp: {fileID: 21300000, guid: 3d6c197ea46645e48ab6c60a0a5f286e, type: 3}
