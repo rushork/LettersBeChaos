@@ -44,6 +44,7 @@ public class StampCollisionCheck : MonoBehaviour
 
 
                 letter.StampWithColor(arm.GetColor());
+                AudioManager.Instance.Play("InkyThud");
                 letter.SendForProcessing();
 
             }

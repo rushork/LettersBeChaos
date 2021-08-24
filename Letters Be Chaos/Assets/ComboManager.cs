@@ -15,12 +15,13 @@ public class ComboManager : MonoBehaviour
 
 
     private float comboMultiplier = 1f;
-    private float comboExpireTimer = 10;
-    private float comboExpireTimerMax;
+    private float comboExpireTimer;
+    private float comboExpireTimerMax = 10;
 
     //Basic "10 or more correct" Combo.
     //Players must stamp 10 letters in a row, without error.
     private int correctSequentialStamps = 0;
+    private bool checkingForSequentialStampCombo = true;
 
 
     private Color32 lastCorrectlyStampedColor;
@@ -36,9 +37,17 @@ public class ComboManager : MonoBehaviour
     private void Update()
     {
         //Only fires once, and thats if 10 were stamped.
-        if(correctSequentialStamps == 10)
+        if(checkingForSequentialStampCombo)
         {
-            AddMultiplier(1.5f);
+            checkingForSequentialStampCombo = false;
+            if (correctSequentialStamps == 10)
+            {
+                AddMultiplier(1.5f);
+            }
+            
+            
+            
+            
         }
         
 
@@ -52,9 +61,13 @@ public class ComboManager : MonoBehaviour
         }
     }
 
+
     private void ResetMultiplier()
     {
         comboMultiplier = 0f;
+
+        //reset all booleans
+        checkingForSequentialStampCombo = true;
     }
 
     public void AddCorrectStamp()

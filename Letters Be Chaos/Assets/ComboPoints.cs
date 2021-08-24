@@ -35,16 +35,12 @@ public class ComboPoints : MonoBehaviour
         originalTextColor = text.color;
         //assign an error icon.
 
-            text.fontSize = originalFontSize;
-            textColor = originalTextColor;
+        text.fontSize = originalFontSize;
+        textColor = originalTextColor;
 
 
 
-            text.SetText(pointsValue.ToString() + "x");
-      
-
-
-
+        text.SetText(pointsValue.ToString() + "x");
 
         text.color = textColor;
         disappearTimer = DISAPPEAR_TIMER_MAX;
@@ -53,7 +49,7 @@ public class ComboPoints : MonoBehaviour
 
     private void Update()
     {
-        float moveYSpeed = 0.4f;
+        float moveYSpeed = 0.2f;
         transform.position += new Vector3(0, moveYSpeed) * Time.deltaTime;
 
         if (disappearTimer > DISAPPEAR_TIMER_MAX * 0.5f)
