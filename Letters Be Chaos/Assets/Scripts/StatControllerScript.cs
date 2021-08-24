@@ -35,11 +35,14 @@ public class StatControllerScript : MonoBehaviour
         }  
     }
 
-    int getUsage() {
+    public int getUsage() {
         return usage;    
     }
 
-    void setUsage(int u) {
+    public void setUsage(int u) {
         usage = u;
     }
+
+
+
 }
