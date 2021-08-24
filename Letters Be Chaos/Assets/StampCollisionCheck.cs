@@ -5,6 +5,7 @@ using UnityEngine;
 public class StampCollisionCheck : MonoBehaviour
 {
     [SerializeField] StampingArm arm;
+    [HideInInspector] public bool hasHitLetter;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -13,7 +14,8 @@ public class StampCollisionCheck : MonoBehaviour
         
         if (letter != null)
         {
-            
+            hasHitLetter = true;
+
             if (letter.hasBeenSelected)
             {
 
@@ -49,5 +51,15 @@ public class StampCollisionCheck : MonoBehaviour
 
             }
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        hasHitLetter = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        hasHitLetter = false;
     }
 }

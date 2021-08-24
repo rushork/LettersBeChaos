@@ -270,7 +270,7 @@ public class GameSettings : MonoBehaviour
             ComboManager.Instance.MarkIncorrectStamp();
             isNegative = true;
         }
-        else if (points > 0)
+        else if (points > 0 && ComboManager.Instance.comboActive)
         {
             points = Mathf.RoundToInt(points * ComboManager.Instance.GetMultiplier());
         }
