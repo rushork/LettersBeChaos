@@ -13,6 +13,7 @@ public class ComboManager : MonoBehaviour
 
     public Transform comboSpawn;
 
+    [HideInInspector]public bool comboActive;
 
     private float comboMultiplier = 1f;
     private float comboExpireTimer;
@@ -49,16 +50,31 @@ public class ComboManager : MonoBehaviour
             
             
         }
-        
+
+        if(comboMultiplier > 0)
+        {
+            comboActive = true;
+        }
+        else
+        {
+            comboActive = false;
+        }
+
 
         //disappear over time
-        comboExpireTimer -= Time.deltaTime;
-        if(comboExpireTimer <= 0)
+        if (comboActive)
         {
-            //to stop this, just comboExpireTimer = comboExpireTimerMax.
-            ResetMultiplier();
-            comboExpireTimer = comboExpireTimerMax;
+            comboExpireTimer -= Time.deltaTime;
+            if (comboExpireTimer <= 0)
+            {
+                //to stop this, just comboExpireTimer = comboExpireTimerMax.
+                ResetMultiplier();
+                comboExpireTimer = comboExpireTimerMax;
+            }
         }
+
+        Debug.Log((comboActive) + " " + comboMultiplier + " " + correctSequentialStamps);
+        
     }
 
 
