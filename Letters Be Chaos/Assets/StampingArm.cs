@@ -61,9 +61,9 @@ public class StampingArm : MonoBehaviour
         highlightZones.Add(highlightRed);
         highlightZones.Add(highlightOrange);
 
-        currentSelectedStampColor = colourModes[0];
+        currentSelectedStampColor = colourModes[2];
         overlay.color = currentSelectedStampColor;
-        SetTableHighlight(0);
+        //SetTableHighlight(0);
     }
 
     // Update is called once per frame

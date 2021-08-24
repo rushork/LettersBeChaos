@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arm: {fileID: 837519898}
+  hasHitLetter: 0
 --- !u!58 &280473304
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1257,7 +1258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &856824209
 Transform:
   m_ObjectHideFlags: 0
@@ -3656,6 +3657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboSpawn: {fileID: 1082494710}
+  comboActive: 0
 --- !u!4 &2084036354
 Transform:
   m_ObjectHideFlags: 0
