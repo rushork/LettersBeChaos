@@ -2281,6 +2281,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cc4389427842a0b42bc1c1b3c9b44a5c, type: 3}
     volume: 1
     source: {fileID: 0}
+  - name: TickHiss
+    clip: {fileID: 8300000, guid: 6b7255aaa74ee1c479c99063305825ba, type: 3}
+    volume: 1
+    source: {fileID: 0}
 --- !u!82 &1415757791
 AudioSource:
   m_ObjectHideFlags: 0
