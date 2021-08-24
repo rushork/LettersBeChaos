@@ -30,7 +30,7 @@ public class InteractableLetter : MonoBehaviour
     private SpriteRenderer stampRenderer;
     private GameObject highlightObject;
     private Color32 sealColor;
-    private Color32 colorStampedWith; // this is the colour that it has been stamped with by the player
+    [HideInInspector]public Color32 colorStampedWith; // this is the colour that it has been stamped with by the player
     private string trackingNumber; //this is a string because it contains letters and numbers.
     private bool highlightable; //can this be highlighted?
     private bool isBeingProcessed;
@@ -174,8 +174,8 @@ public class InteractableLetter : MonoBehaviour
 
     public void StampWithColor(Color32 colorStamped)
     {
-
-        mechanicalStampZoneRenderer.color = colorStamped;
+        colorStampedWith = colorStamped;
+        mechanicalStampZoneRenderer.color = colorStampedWith;
         mechanicalStampZoneRenderer.gameObject.SetActive(true);
         if (colorStamped.Equals(sealColor))
         {
@@ -187,7 +187,7 @@ public class InteractableLetter : MonoBehaviour
         }
 
         //if not valid and marked with orange, its the correct color.
-        if(!isValidOnArrival && colorStamped.Equals(GameSettings.Instance.delete))
+        if(!isValidOnArrival && colorStampedWith.Equals(GameSettings.Instance.delete))
         {
             isCorrectColor = true;
         }

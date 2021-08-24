@@ -129,35 +129,46 @@ public class GameSettings : MonoBehaviour
         else
         {
             //if the letter was invalid on arrival, deduct points depending on what you stamp it with.
-            //if the seal is red:
-            if (letter.GetSealColor().Equals(red))
-            {
-                //sending a high priority letter which is invalid loses more points than a low priority letter.
-                points -= 60;
-            }
-            //if the seal is blue:
-            else if (letter.GetSealColor().Equals(blue))
-            {
-               
-                points -= 45;
-            }
-            //if the seal is green:
-            else if (letter.GetSealColor().Equals(green))
-            {
-              
-                points -= 35;
-
-            }
-            //if the seal is orange, you're deleting an invalid letter 
-            else if (letter.GetSealColor().Equals(delete))
+            //if the letter is the correct color (orange)
+            if (letter.colorStampedWith.Equals(delete))
             {
                 FindObjectOfType<AudioManager>().Play("Point");
                 points += 100; //100 points for correctly discarding the letter
             }
+            //if it wasnt orange, and it was invalid, take these.
             else
             {
-                debugMessage += " Unknown Error, no color.";
+                //if the seal is red:
+                if (letter.GetSealColor().Equals(red))
+                {
+                    //sending a high priority letter which is invalid loses more points than a low priority letter.
+                    points -= 60;
+                }
+                //if the seal is blue:
+                else if (letter.GetSealColor().Equals(blue))
+                {
+
+                    points -= 45;
+                }
+                //if the seal is green:
+                else if (letter.GetSealColor().Equals(green))
+                {
+
+                    points -= 35;
+
+                }
+                //if the seal is orange, you're deleting an invalid letter 
+                else if (letter.GetSealColor().Equals(delete))
+                {
+
+                }
+                else
+                {
+                    debugMessage += " Unknown Error, no color.";
+                }
             }
+        
+            
         }
 
 
