@@ -177,6 +177,14 @@ MonoBehaviour:
   redChance: 0.1
   greenChance: 0.3
   blueChance: 0.6
+  icon_WrongColor: {fileID: 21300000, guid: bc5a107e59feae14789a747b6a42301c, type: 3}
+  icon_NoStamp: {fileID: 21300000, guid: 3d6c197ea46645e48ab6c60a0a5f286e, type: 3}
+  icon_UpsideStamp: {fileID: 21300000, guid: 1a5885f5ea3d53e4eb2fb50742b0ca77, type: 3}
+  icon_NoSeal: {fileID: 21300000, guid: 3227a377157dab04fb5bc734acde9cbf, type: 3}
+  icon_NoSeal_NoStamp: {fileID: 21300000, guid: 13d96f5b1be7a024e90cca8d7c30231f, type: 3}
+  icon_NoSeal_UpsideStamp: {fileID: 21300000, guid: 15d08ee3750b7a34580f3acd3814e6a8, type: 3}
+  icon_WrongColor_NoStamp: {fileID: 21300000, guid: 28b523d32e29f4849acd54f039f2c391, type: 3}
+  icon_WrongColor_UpsideStamp: {fileID: 21300000, guid: ea3e4ca7b95ce63439003770eca710ca, type: 3}
 --- !u!4 &106508872
 Transform:
   m_ObjectHideFlags: 0
@@ -388,7 +396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7f2faf60c601d48b26601ebf31f726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPopupPrefab: {fileID: 8587110188881031238, guid: 142a8a998b646284b831ec974945d302, type: 3}
+  textTemp: {fileID: 636957153}
+  pointsPopupPrefab: {fileID: 2371508049884400680, guid: 40b2f094fff6a1341b7a3ca1d8f469bf, type: 3}
 --- !u!4 &355191995
 Transform:
   m_ObjectHideFlags: 0
@@ -603,7 +612,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -860, y: -515}
+  m_AnchoredPosition: {x: -834, y: -502.3}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &636957153
@@ -626,7 +635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100%
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 004c40540fc65a8459a1609617fe6048, type: 2}
   m_sharedMaterial: {fileID: 7898051951576004044, guid: 004c40540fc65a8459a1609617fe6048, type: 2}

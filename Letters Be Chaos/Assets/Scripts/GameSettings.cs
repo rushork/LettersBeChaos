@@ -40,7 +40,17 @@ public class GameSettings : MonoBehaviour
     [Range(0, 1)] public float greenChance;
     [Range(0, 1)] public float blueChance;
 
-    
+    [Header("Letter Icons")] //all icons for all possible things wrong with letters.
+    public Sprite icon_WrongColor;
+    public Sprite icon_NoStamp;
+    public Sprite icon_UpsideStamp;
+    public Sprite icon_NoSeal;
+    public Sprite icon_NoSeal_NoStamp;
+    public Sprite icon_NoSeal_UpsideStamp;
+    public Sprite icon_WrongColor_NoStamp;
+    public Sprite icon_WrongColor_UpsideStamp;
+
+
     private void Awake()
     {
         Application.targetFrameRate = 165;
@@ -56,6 +66,7 @@ public class GameSettings : MonoBehaviour
     /// <param name="letter"></param>
     public void ProcessLetter(InteractableLetter letter)
     {
+        Sprite iconSet = null; //this is the icon we will use for errors
         int points = 0;
         string debugMessage = "";
 
@@ -164,11 +175,78 @@ public class GameSettings : MonoBehaviour
                     debugMessage += " Unknown Error, no color.";
                 }
             }
+
+            
         
             
         }
 
+        if (!letter.isSealed)
+        {
+            //if it has a stamp:
+            if (letter.isPostageStamped)
+            {
+                //is it upside down?
+                if (letter.isUpsideDown)
+                {
+                    //it has no seal, but has an upsidedown stamp
+                    iconSet = icon_NoSeal_UpsideStamp;
+                }
+                else
+                {
+                    //it has no seal, but the stamp is correct.
 
+                }
+            }
+            else
+            {
+                //it doesnt have a seal or a stamp.
+                iconSet = icon_NoSeal_NoStamp;
+            }
+
+
+        }
+        else
+        {
+            //it has a seal BUT
+            if (!letter.isCorrectColor)
+            {
+                //its not the right color
+                iconSet = icon_WrongColor;
+                Debug.Log("set color");
+                if (!letter.isPostageStamped)
+                {
+                    //it has the wrong color, and it isnt stamped
+                    iconSet = icon_WrongColor_NoStamp;
+                }
+                else
+                {
+                    if (letter.isUpsideDown)
+                    {
+                        //it has a stamp, but its the wrong way up
+                        iconSet = icon_WrongColor_UpsideStamp;
+                    }
+                }
+            }
+            else
+            {
+                //its the correct color BUT:
+                if (!letter.isPostageStamped)
+                {
+                    //it isnt stamped:
+                    iconSet = icon_NoStamp;
+                }
+                else
+                {
+                    //it is stamped, but its the wrong way up.
+                    if (letter.isUpsideDown)
+                    {
+                        iconSet = icon_UpsideStamp;
+                    }
+                }
+            }
+
+        }
 
 
 
@@ -182,8 +260,10 @@ public class GameSettings : MonoBehaviour
             isNegative = true;
         }
 
-        Debug.Log(debugMessage);
-        PointsText.Create(letter.transform.position, points, isNegative);
+        PointsText.Create(letter.transform.position, points, isNegative, iconSet);
         Destroy(letter.gameObject);
     }
+
+
+   
 }

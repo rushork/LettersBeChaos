@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
+    [SerializeField] TextMeshProUGUI textTemp;
     public Transform pointsPopupPrefab;
     private int score = 0;
 
@@ -17,7 +19,7 @@ public class ScoreManager : MonoBehaviour
     public void AddPoints(int amount)
     {
         score += amount;
-        Debug.Log(score);
+        textTemp.text = score.ToString();
         PlayerPrefs.SetInt("Score", score);
     }
 
