@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 /// <summary>
 /// This script tracks all things to do with combos. 
@@ -12,6 +13,7 @@ public class ComboManager : MonoBehaviour
     public static ComboManager Instance { get; private set; }
 
     public Transform comboSpawn;
+    public TextMeshProUGUI comboTextDebug;
 
     [HideInInspector]public bool comboActive;
 
@@ -40,9 +42,10 @@ public class ComboManager : MonoBehaviour
         //Only fires once, and thats if 10 were stamped.
         if(checkingForSequentialStampCombo)
         {
-            checkingForSequentialStampCombo = false;
+            
             if (correctSequentialStamps == 10)
             {
+                checkingForSequentialStampCombo = false;
                 AddMultiplier(1.5f);
             }
             
@@ -81,7 +84,7 @@ public class ComboManager : MonoBehaviour
     private void ResetMultiplier()
     {
         comboMultiplier = 0f;
-
+        comboTextDebug.text = "1x";
         //reset all booleans
         checkingForSequentialStampCombo = true;
     }
@@ -103,6 +106,7 @@ public class ComboManager : MonoBehaviour
     {
         comboMultiplier += value;
         ComboPoints.Create(comboSpawn.position, comboMultiplier);
+        comboTextDebug.text = comboMultiplier + "x";
     }
 
     public float GetMultiplier()
