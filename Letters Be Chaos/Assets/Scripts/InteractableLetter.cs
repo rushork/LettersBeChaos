@@ -43,7 +43,7 @@ public class InteractableLetter : MonoBehaviour
     public bool isCorrectColor;
     public bool isSealed;
     public bool isPostageStamped;
-    public bool isValid; // letters are only valid if they have an upright stamp, a valid coloured seal and no defects
+    public bool isValidOnArrival; // letters are only valid if they have an upright stamp, a valid coloured seal and no defects
     
 
     //for spawning
@@ -130,25 +130,29 @@ public class InteractableLetter : MonoBehaviour
         }
 
         sealRenderer.color = sealColor;
-        
 
+        randomVal = Random.Range(0f, 1f);
 
         //chance to flip
-        if(randomVal <= letterScriptable.chanceToSpawnStampFlipped)
+        if (randomVal <= letterScriptable.chanceToSpawnStampFlipped)
         {
             stampRenderer.flipY = true;
             isUpsideDown = true;
         }
 
+        randomVal = Random.Range(0f, 1f);
+
         //chance to spawn sealed
-        if(randomVal <= letterScriptable.chanceToSpawnSealed)
+        if (randomVal <= letterScriptable.chanceToSpawnSealed)
         {
             //set the seal to visible if it's sealed.
             sealRenderer.gameObject.SetActive(true);
             isSealed = true;
         }
 
-        if(randomVal <= letterScriptable.chanceToBeCorrectlyStamped)
+        randomVal = Random.Range(0f, 1f);
+
+        if (randomVal <= letterScriptable.chanceToBeCorrectlyStamped)
         {
             //set the seal to visible if it's sealed.
             stampRenderer.gameObject.SetActive(true);
@@ -159,11 +163,11 @@ public class InteractableLetter : MonoBehaviour
 
         if(isSealed && !isUpsideDown && isPostageStamped)
         {
-            isValid = true;
+            isValidOnArrival = true;
         }
         else
         {
-            isValid = false;
+            isValidOnArrival = false;
         }
 
     }
@@ -183,7 +187,7 @@ public class InteractableLetter : MonoBehaviour
         }
 
         //if not valid and marked with orange, its the correct color.
-        if(!isValid && colorStamped.Equals(GameSettings.Instance.delete))
+        if(!isValidOnArrival && colorStamped.Equals(GameSettings.Instance.delete))
         {
             isCorrectColor = true;
         }

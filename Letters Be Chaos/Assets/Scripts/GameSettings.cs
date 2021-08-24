@@ -50,51 +50,132 @@ public class GameSettings : MonoBehaviour
         Instance = this;
     }
 
+    /// <summary>
+    /// Sort the letter and assign points.
+    /// </summary>
+    /// <param name="letter"></param>
     public void ProcessLetter(InteractableLetter letter)
     {
         int points = 0;
+        string debugMessage = "";
 
-        //if orange stamp is applied to invalid letter
-        if (!letter.isValid)
+        //if the letter is upright, with a valid color seal (rgb) and has a stamp:
+        if (letter.isValidOnArrival)
         {
+            
+            //if the letter was correctly stamped by the player
             if (letter.isCorrectColor)
             {
-                points += 5;
+                //if the seal is red:
+                if (letter.GetSealColor().Equals(red))
+                {
+                    debugMessage += " Was correct color: red";
+                    points += 50;
+                }
+                //if the seal is blue:
+                else if (letter.GetSealColor().Equals(blue))
+                {
+                    debugMessage += " Was correct color: blue";
+                    points += 20;
+                }
+                //if the seal is green:
+                else if (letter.GetSealColor().Equals(green))
+                {
+                    debugMessage += " Was correct color: green";
+                    points += 10;
+
+                }
+                //if the seal is orange, i.e. marked for reprocessing
+                else if (letter.GetSealColor().Equals(delete))
+                {
+                    debugMessage += " Was correct color: Orange";
+                    //this would lose you points, but its impossible for the code to get here.
+                }
+                else
+                {
+                    debugMessage += " Unknown Error, no color.";
+                }
+
+                FindObjectOfType<AudioManager>().Play("Point");
+            }
+            else
+            {
+                //if it wasnt
+                if (letter.GetSealColor().Equals(red))
+                {
+                    debugMessage += " Was incorrect color: red";
+                    points -= 50;
+                }
+                else if (letter.GetSealColor().Equals(blue))
+                {
+                    debugMessage += " Was incorrect color: blue";
+                    points -= 20;
+                }
+                else if (letter.GetSealColor().Equals(green))
+                {
+                    debugMessage += " Was incorrect color: green";
+                    points -= 10;
+
+                }
+                else if (letter.GetSealColor().Equals(delete))
+                {
+                    //if the player marks a valid letter for deletion
+                    debugMessage += " Was incorrectly marked for deletion.";
+                    points -= 20; //lose a lot of points
+
+                }
             }
         }
-
-        if (!letter.isPostageStamped)
+        else
         {
-            points -= 3;
-        }
-        if (!letter.isSealed)
-        {
-            points -= 7;
-        }
-        if (!letter.isUpsideDown)
-        {
-            points -= 1;
-        }
-
-        if (letter.isCorrectColor && letter.isValid)
-        {
-            FindObjectOfType<AudioManager>().Play("Point");
+            //if the letter was invalid on arrival, deduct points depending on what you stamp it with.
+            //if the seal is red:
             if (letter.GetSealColor().Equals(red))
             {
-                points += 5;
+                //sending a high priority letter which is invalid loses more points than a low priority letter.
+                points -= 60;
             }
+            //if the seal is blue:
             else if (letter.GetSealColor().Equals(blue))
             {
-                points += 2;
+               
+                points -= 45;
             }
+            //if the seal is green:
             else if (letter.GetSealColor().Equals(green))
             {
-                points += 1;
+              
+                points -= 35;
 
+            }
+            //if the seal is orange, you're deleting an invalid letter 
+            else if (letter.GetSealColor().Equals(delete))
+            {
+                FindObjectOfType<AudioManager>().Play("Point");
+                points += 100; //100 points for correctly discarding the letter
+            }
+            else
+            {
+                debugMessage += " Unknown Error, no color.";
             }
         }
 
+
+
+
+
+
+        debugMessage += " [Points at the end: " + points + "]";
         ScoreManager.Instance.AddPoints(points);
+
+        bool isNegative = false;
+        if(points < 0)
+        {
+            isNegative = true;
+        }
+
+        Debug.Log(debugMessage);
+        PointsText.Create(letter.transform.position, points, isNegative);
         Destroy(letter.gameObject);
     }
 }

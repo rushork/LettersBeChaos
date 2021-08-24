@@ -157,7 +157,7 @@ MonoBehaviour:
   RAM: {fileID: 581406066}
   HYDRAULIC: {fileID: 655983742}
   letterPrefab_FirstClass: {fileID: 2170503785109212156, guid: 37e0c4e1ca71edb4399e5d009418de91, type: 3}
-  pfPointsText: {fileID: 0}
+  pfPointsText: {fileID: 2371508049884400680, guid: 142a8a998b646284b831ec974945d302, type: 3}
   red:
     serializedVersion: 2
     rgba: 4282269360
