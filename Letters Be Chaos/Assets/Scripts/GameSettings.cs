@@ -267,7 +267,12 @@ public class GameSettings : MonoBehaviour
         bool isNegative = false;
         if(points < 0)
         {
+            ComboManager.Instance.MarkIncorrectStamp();
             isNegative = true;
+        }
+        else
+        {
+            points *= (int)ComboManager.Instance.GetMultiplier();
         }
 
         PointsText.Create(letter.transform.position, points, isNegative, iconSet);
