@@ -78,7 +78,7 @@ public class PointsText : MonoBehaviour
             else
             {
                 //second half of popup
-                float decreaseScaleAmount = 0.5f;
+                float decreaseScaleAmount = 1f;
                 transform.localScale -= Vector3.one * decreaseScaleAmount * Time.deltaTime;
             }
         }

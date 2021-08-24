@@ -23,6 +23,7 @@ public class GameSettings : MonoBehaviour
     [Header("Letter Type Prefabs")]
     public Transform letterPrefab_FirstClass;
     public Transform pfPointsText;
+    public Transform pfComboPoints;
 
     [Header("Letter Colors: Decided by random chance")]
     [SerializeField] public Color32 red;
@@ -108,6 +109,8 @@ public class GameSettings : MonoBehaviour
                     debugMessage += " Unknown Error, no color.";
                 }
 
+                ComboManager.Instance.AddCorrectStamp();
+                ComboManager.Instance.SetLastCorrectlyStamped(letter.colorStampedWith);
                 AudioManager.Instance.Play("Point");
             }
             else
