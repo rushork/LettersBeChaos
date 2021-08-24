@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StatControllerScript : MonoBehaviour
 {
@@ -41,6 +42,13 @@ public class StatControllerScript : MonoBehaviour
 
     public void setUsage(int u) {
         usage = u;
+
+        if (usage >= 100 && PlayerPrefs.GetInt("Score") > 0) {
+            SceneManager.LoadScene(2);
+        } else if (usage >= 100 && PlayerPrefs.GetInt("Score") < 0) {
+            SceneManager.LoadScene(3);
+        }
+
     }
 
 
