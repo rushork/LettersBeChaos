@@ -107,11 +107,11 @@ public class GameSettings : MonoBehaviour
                     debugMessage += " Unknown Error, no color.";
                 }
 
-                FindObjectOfType<AudioManager>().Play("Point");
+                AudioManager.Instance.Play("Point");
             }
             else
             {
-                FindObjectOfType<AudioManager>().Play(FindObjectOfType<AudioManager>().returnIncorrect(5));
+                AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                 //if it wasnt
                 if (letter.GetSealColor().Equals(red))
                 {
@@ -144,13 +144,13 @@ public class GameSettings : MonoBehaviour
             //if the letter is the correct color (orange)
             if (letter.colorStampedWith.Equals(delete))
             {
-                FindObjectOfType<AudioManager>().Play("Point");
+                AudioManager.Instance.Play("Point");
                 points += 100; //100 points for correctly discarding the letter
             }
             //if it wasnt orange, and it was invalid, take these.
             else
             {
-                FindObjectOfType<AudioManager>().Play(FindObjectOfType<AudioManager>().returnIncorrect(3));
+                AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(3));
                 //if the seal is red:
                 if (letter.GetSealColor().Equals(red))
                 {
@@ -230,20 +230,24 @@ public class GameSettings : MonoBehaviour
             }
             else
             {
-                //its the correct color BUT:
-                if (!letter.isPostageStamped)
+                if (!letter.colorStampedWith.Equals(delete))
                 {
-                    //it isnt stamped:
-                    iconSet = icon_NoStamp;
-                }
-                else
-                {
-                    //it is stamped, but its the wrong way up.
-                    if (letter.isUpsideDown)
+                    //its the correct color BUT:
+                    if (!letter.isPostageStamped)
                     {
-                        iconSet = icon_UpsideStamp;
+                        //it isnt stamped:
+                        iconSet = icon_NoStamp;
+                    }
+                    else
+                    {
+                        //it is stamped, but its the wrong way up.
+                        if (letter.isUpsideDown)
+                        {
+                            iconSet = icon_UpsideStamp;
+                        }
                     }
                 }
+                
             }
 
         }

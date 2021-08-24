@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+
+    public static AudioManager Instance { get; private set; }
+
+
     public Sound[] sounds; 
 
     void Awake()
     {
+        Instance = this;
+
         foreach (Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
