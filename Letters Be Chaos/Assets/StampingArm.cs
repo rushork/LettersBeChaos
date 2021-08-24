@@ -90,6 +90,7 @@ public class StampingArm : MonoBehaviour
             {
                 mouseTarget = originalPos;
                 armStatus = ArmStatus.retracting;
+                AudioManager.Instance.Play("InkyThud");
             }
         }
         else if (armStatus == ArmStatus.retracting)
