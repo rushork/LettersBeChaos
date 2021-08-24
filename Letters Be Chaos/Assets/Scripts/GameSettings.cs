@@ -100,6 +100,7 @@ public class GameSettings : MonoBehaviour
             }
             else
             {
+                FindObjectOfType<AudioManager>().Play("Incorrect");
                 //if it wasnt
                 if (letter.GetSealColor().Equals(red))
                 {
@@ -138,6 +139,7 @@ public class GameSettings : MonoBehaviour
             //if it wasnt orange, and it was invalid, take these.
             else
             {
+                FindObjectOfType<AudioManager>().Play("Incorrect");
                 //if the seal is red:
                 if (letter.GetSealColor().Equals(red))
                 {
@@ -155,11 +157,6 @@ public class GameSettings : MonoBehaviour
                 {
 
                     points -= 35;
-
-                }
-                //if the seal is orange, you're deleting an invalid letter 
-                else if (letter.GetSealColor().Equals(delete))
-                {
 
                 }
                 else
