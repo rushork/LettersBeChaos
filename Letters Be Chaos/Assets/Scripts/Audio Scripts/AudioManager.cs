@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [HideInInspector]public float masterVolume = 1f;
+    private AudioSource backgroundTheme;
     public Sound[] sounds; 
 
     void Awake()
@@ -16,6 +17,8 @@ public class AudioManager : MonoBehaviour
         
         Instance = this;
 
+        backgroundTheme = GetComponent<AudioSource>();
+        backgroundTheme.volume = masterVolume;
         foreach (Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -29,6 +32,7 @@ public class AudioManager : MonoBehaviour
         {
             s.source.volume = s.volume * masterVolume;
         }
+        backgroundTheme.volume = masterVolume;
     }
 
     public void Play (string name) {

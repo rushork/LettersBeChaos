@@ -1853,7 +1853,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: IncorrectBeep
     clip: {fileID: 8300000, guid: 67efa7d3b7d8f1442a32966ec75a0d93, type: 3}
-    volume: 1
+    volume: 0.215
     source: {fileID: 0}
 --- !u!82 &1415757791
 AudioSource:
