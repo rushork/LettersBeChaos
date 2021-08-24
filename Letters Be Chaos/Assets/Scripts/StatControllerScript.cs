@@ -33,6 +33,13 @@ public class StatControllerScript : MonoBehaviour
                 bars[i].GetComponent<SpriteRenderer>().sprite = emptyBarSprite;
             }
         }  
+    }
 
+    int getUsage() {
+        return usage;    
+    }
+
+    void setUsage(int u) {
+        usage = u;
     }
 }
