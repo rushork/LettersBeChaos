@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 /*
  * This class will hold all information on the game settings, stuff that other scripts will need access to.
@@ -12,7 +13,17 @@ public class GameSettings : MonoBehaviour
 
     public StampingArm arm;
 
+    
     private int letterCount;
+    private float letterCountTotal;
+    private float letterCountCorrect;
+    private float letterCountIncorrect;
+    [Header("Letter UI")]
+    public TextMeshProUGUI letterCountText;
+    public TextMeshProUGUI letterCountCorrectText;
+    public TextMeshProUGUI letterCountIncorrectText;
+    public TextMeshProUGUI AccuracyText;
+    
 
     [Header("Usage Stats")]
     public StatControllerScript CPU;
@@ -60,6 +71,7 @@ public class GameSettings : MonoBehaviour
         //now you can use "GameSettings.Instance.(insert method name)" anywhere. 
         //Why use this instead of static classes? static classes are a pain in the ass.
         Instance = this;
+        AccuracyText.text = "Accuracy: --";
     }
 
     /// <summary>
@@ -68,6 +80,7 @@ public class GameSettings : MonoBehaviour
     /// <param name="letter"></param>
     public void ProcessLetter(InteractableLetter letter)
     {
+        letterCountTotal++;
         Sprite iconSet = null; //this is the icon we will use for errors
         int points = 0;
         string debugMessage = "";
@@ -83,18 +96,21 @@ public class GameSettings : MonoBehaviour
                 if (letter.GetSealColor().Equals(red))
                 {
                     debugMessage += " Was correct color: red";
+                    letterCountCorrect++;
                     points += 50;
                 }
                 //if the seal is blue:
                 else if (letter.GetSealColor().Equals(blue))
                 {
                     debugMessage += " Was correct color: blue";
+                    letterCountCorrect++;
                     points += 20;
                 }
                 //if the seal is green:
                 else if (letter.GetSealColor().Equals(green))
                 {
                     debugMessage += " Was correct color: green";
+                    letterCountCorrect++;
                     points += 10;
 
                 }
@@ -119,21 +135,24 @@ public class GameSettings : MonoBehaviour
                 if (letter.GetSealColor().Equals(red))
                 {
                     debugMessage += " Was incorrect color: red";
-                    points -= 50;
+                    points -= 150;
+                    letterCountIncorrect++;
                     increaseRandom(5);
                     AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                 }
                 else if (letter.GetSealColor().Equals(blue))
                 {
                     debugMessage += " Was incorrect color: blue";
-                    points -= 20;
+                    points -= 80;
+                    letterCountIncorrect++;
                     increaseRandom(5);
                     AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                 }
                 else if (letter.GetSealColor().Equals(green))
                 {
                     debugMessage += " Was incorrect color: green";
-                    points -= 10;
+                    points -= 50;
+                    letterCountIncorrect++;
                     increaseRandom(5);
                     AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                 }
@@ -142,8 +161,9 @@ public class GameSettings : MonoBehaviour
                     AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(3));
                     //if the player marks a valid letter for deletion
                     debugMessage += " Was incorrectly marked for deletion.";
-                    points -= 20; //lose a lot of points
-                    increaseRandom(15);
+                    letterCountIncorrect++;
+                    points -= 500; //lose a lot of points
+                    increaseRandom(25);
                 }
             }
         }
@@ -155,6 +175,7 @@ public class GameSettings : MonoBehaviour
             {
                 AudioManager.Instance.Play("Point");
                 ComboManager.Instance.SetLastCorrectlyStamped(letter.colorStampedWith);
+                letterCountCorrect++;
                 points += 100; //100 points for correctly discarding the letter
             }
             //if it wasnt orange, and it was invalid, take these.
@@ -165,19 +186,22 @@ public class GameSettings : MonoBehaviour
                 if (letter.GetSealColor().Equals(red))
                 {
                     //sending a high priority letter which is invalid loses more points than a low priority letter.
-                    points -= 60;
+                    points -= 150;
+                    letterCountIncorrect++;
                     increaseRandom(5);
                 }
                 //if the seal is blue:
                 else if (letter.GetSealColor().Equals(blue))
                 {
-                    points -= 45;
+                    points -= 80;
+                    letterCountIncorrect++;
                     increaseRandom(5);
                 }
                 //if the seal is green:
                 else if (letter.GetSealColor().Equals(green))
                 {
-                    points -= 35;
+                    points -= 50;
+                    letterCountIncorrect++;
                     increaseRandom(5);
                 }
                 else
@@ -262,7 +286,7 @@ public class GameSettings : MonoBehaviour
 
         }
 
-        debugMessage += " [Points at the end: " + points + "]";
+        
         
 
         bool isNegative = false;
@@ -279,14 +303,53 @@ public class GameSettings : MonoBehaviour
         ScoreManager.Instance.AddPoints(points);
         PointsText.Create(letter.transform.position, points, isNegative, iconSet);
         letterCount--;
+        letterCountText.text = "Letters: " + letterCount.ToString();
+
+        letterCountCorrectText.text = "Correct: " + "<color=#31A62E>" + letterCountCorrect.ToString() + "</color>";
+        letterCountIncorrectText.text = "Incorrect: " + "<color=#B03E3E>" + letterCountIncorrect.ToString() + "</color>";
+
+        if(letterCountTotal > 0)
+        {
+            AccuracyText.text = "Accuracy:<color=#" + GetHexColorFromFloat(letterCountCorrect / letterCountTotal) + ">" + ((letterCountCorrect / letterCountTotal) * 100).ToString("F0") + "%</color>";
+        }
+        else
+        {
+            AccuracyText.text = "Accuracy:<color=#" + GetHexColorFromFloat(letterCountCorrect / letterCountTotal) + ">" + "100%</color>";
+        }
+
+
         Destroy(letter.gameObject);
+    }
+
+    private string GetHexColorFromFloat(float value)
+    {
+
+
+        if (value >= 0.75f)
+        {
+            return "31A62E";
+        }
+        else if (value >= 0.5f)
+        {
+            return "FA6A0A";
+        }
+        else if (value < 0.5f)
+        {
+            return "B03E3E";
+        }
+        else
+        {
+            return "e3961b";
+        }
     }
 
     public void addLetter() {
         letterCount++;
+        
+        letterCountText.text = "Letters: " + letterCount.ToString();
         if (letterCount > 10) {
-            increaseRandom(10);
-            letterCount = 0;
+            increaseRandom(1);
+            //letterCount = 0;
         }
     }
 

@@ -14,6 +14,7 @@ public class ComboManager : MonoBehaviour
 
     public Transform comboSpawn;
     public TextMeshProUGUI comboTextDebug;
+    private Animator comboAnimator;
 
     [HideInInspector]public bool comboActive;
 
@@ -38,12 +39,14 @@ public class ComboManager : MonoBehaviour
     private bool hasStampedGreen;
     private bool hasStampedOrange;
     private bool allColoursStamped;
+    private bool textShrink;
 
     private void Awake()
     {
         Instance = this;
         lastCorrectlyStampedColor = Color.black;
         comboExpireTimer = comboExpireTimerMax;
+        comboAnimator = comboTextDebug.GetComponent<Animator>();
     }
 
     private void Update()
@@ -83,15 +86,25 @@ public class ComboManager : MonoBehaviour
             comboExpireTimer += 5f;
         }
 
-
-        if (comboMultiplier > 0)
+        if (comboMultiplier > 1)
         {
             comboActive = true;
+            
+
         }
         else
         {
             comboActive = false;
         }
+
+
+        comboAnimator.SetBool("Active", comboActive);
+
+
+
+
+
+
 
 
         //disappear over time
@@ -114,7 +127,7 @@ public class ComboManager : MonoBehaviour
     private void ResetMultiplier()
     {
         comboMultiplier = 0f;
-        comboTextDebug.text = "1x";
+        comboTextDebug.text = "1x Multiplier";
         //reset all booleans
         checkingForSequentialStampCombo = true;
         ResetUniqueStamping();
@@ -140,7 +153,8 @@ public class ComboManager : MonoBehaviour
         comboMultiplier += value;
         ComboPoints.Create(comboSpawn.position, comboMultiplier);
         comboExpireTimer = comboExpireTimerMax;
-        comboTextDebug.text = comboMultiplier + "x";
+        comboTextDebug.text = comboMultiplier + "x Multiplier";
+        comboAnimator.SetTrigger("MultiplierModified");
     }
 
     public float GetMultiplier()
@@ -201,7 +215,6 @@ public class ComboManager : MonoBehaviour
         {
             if (!hasStampedGreen)
             {
-                Debug.Log("green");
                 hasStampedGreen = true;
             }
             else
@@ -222,7 +235,6 @@ public class ComboManager : MonoBehaviour
             }
         }
 
-        Debug.Log(hasStampedBlue + " " + hasStampedGreen + " " + hasStampedOrange + " " + hasStampedRed);
 
         if(hasStampedBlue && hasStampedGreen && hasStampedOrange && hasStampedRed)
         {
