@@ -12,6 +12,7 @@ public class GameSettings : MonoBehaviour
 
     public StampingArm arm;
 
+    private int letterCount;
 
     [Header("Usage Stats")]
     public StatControllerScript CPU;
@@ -111,31 +112,35 @@ public class GameSettings : MonoBehaviour
             }
             else
             {
-                AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(3));
-                increaseRandom(10);
                 //if it wasnt
                 if (letter.GetSealColor().Equals(red))
                 {
                     debugMessage += " Was incorrect color: red";
                     points -= 50;
+                    increaseRandom(5);
+                    AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                 }
                 else if (letter.GetSealColor().Equals(blue))
                 {
                     debugMessage += " Was incorrect color: blue";
                     points -= 20;
+                    increaseRandom(5);
+                    AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                 }
                 else if (letter.GetSealColor().Equals(green))
                 {
                     debugMessage += " Was incorrect color: green";
                     points -= 10;
-
+                    increaseRandom(5);
+                    AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                 }
                 else if (letter.GetSealColor().Equals(delete))
                 {
+                    AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(3));
                     //if the player marks a valid letter for deletion
                     debugMessage += " Was incorrectly marked for deletion.";
                     points -= 20; //lose a lot of points
-
+                    increaseRandom(15);
                 }
             }
         }
@@ -152,25 +157,24 @@ public class GameSettings : MonoBehaviour
             else
             {
                 AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
-                increaseRandom(5);
                 //if the seal is red:
                 if (letter.GetSealColor().Equals(red))
                 {
                     //sending a high priority letter which is invalid loses more points than a low priority letter.
                     points -= 60;
+                    increaseRandom(5);
                 }
                 //if the seal is blue:
                 else if (letter.GetSealColor().Equals(blue))
                 {
-
                     points -= 45;
+                    increaseRandom(5);
                 }
                 //if the seal is green:
                 else if (letter.GetSealColor().Equals(green))
                 {
-
                     points -= 35;
-
+                    increaseRandom(5);
                 }
                 else
                 {
@@ -254,9 +258,6 @@ public class GameSettings : MonoBehaviour
 
         }
 
-
-
-
         debugMessage += " [Points at the end: " + points + "]";
         ScoreManager.Instance.AddPoints(points);
 
@@ -267,9 +268,19 @@ public class GameSettings : MonoBehaviour
         }
 
         PointsText.Create(letter.transform.position, points, isNegative, iconSet);
+        letterCount--;
         Destroy(letter.gameObject);
     }
 
+    public void addLetter() {
+        letterCount++;
+        if (letterCount > 10) {
+            increaseRandom(10);
+            letterCount = 0;
+        }
+    }
+
+    // Increases a random stat.
     void increaseRandom(int usageIncrease) {
         int r = Random.Range(0, 3);
 

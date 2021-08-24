@@ -42,6 +42,7 @@ public class LetterSpawner : MonoBehaviour
         {
             currentZ = 0;
         }
+        GameSettings.Instance.addLetter(); // Adds letter to letter count.
     }
 
     private Transform GetRandomSpawn()

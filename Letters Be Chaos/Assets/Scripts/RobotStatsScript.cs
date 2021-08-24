@@ -21,7 +21,7 @@ public class RobotStatsScript : MonoBehaviour {
 
     IEnumerator decreaseHighest() {
         isRunning = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         CPU = GameSettings.Instance.CPU.getUsage();
         RAM = GameSettings.Instance.RAM.getUsage();
