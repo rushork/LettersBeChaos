@@ -100,7 +100,7 @@ public class GameSettings : MonoBehaviour
             }
             else
             {
-                FindObjectOfType<AudioManager>().Play("Incorrect");
+                FindObjectOfType<AudioManager>().Play(FindObjectOfType<AudioManager>().returnIncorrect(5));
                 //if it wasnt
                 if (letter.GetSealColor().Equals(red))
                 {
@@ -139,7 +139,7 @@ public class GameSettings : MonoBehaviour
             //if it wasnt orange, and it was invalid, take these.
             else
             {
-                FindObjectOfType<AudioManager>().Play("Incorrect");
+                FindObjectOfType<AudioManager>().Play(FindObjectOfType<AudioManager>().returnIncorrect(3));
                 //if the seal is red:
                 if (letter.GetSealColor().Equals(red))
                 {

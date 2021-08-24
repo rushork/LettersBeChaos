@@ -23,4 +23,13 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+    public string returnIncorrect(int top) {
+        int random = Random.Range (0, top) + 1;
+        if (random == top) {
+            return "Incorrect";
+        } else {
+            return "IncorrectBeep";
+        }
+    }
 }
