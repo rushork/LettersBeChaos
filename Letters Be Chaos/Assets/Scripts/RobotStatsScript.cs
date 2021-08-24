@@ -5,6 +5,7 @@ using UnityEngine;
 public class RobotStatsScript : MonoBehaviour {
 
 
+    // Usage stats
     private int CPU;
     private int RAM;
     private int HYDRAULIC;
@@ -17,6 +18,7 @@ public class RobotStatsScript : MonoBehaviour {
         }
     }
 
+
     IEnumerator decreaseHighest() {
         isRunning = true;
         yield return new WaitForSeconds(1f);
@@ -27,14 +29,29 @@ public class RobotStatsScript : MonoBehaviour {
 
         int[] usages = new int[] {CPU, RAM, HYDRAULIC};
 
-        int highestIndex;
+        int highestIndex = 0;
 
         if (RAM > CPU && RAM > HYDRAULIC) {
             highestIndex = 2;
         } else if ( HYDRAULIC > CPU && HYDRAULIC > RAM) {
             highestIndex = 3;
-        } else {
+        } else if (CPU > RAM && CPU > HYDRAULIC) {
             highestIndex = 1;
+        } else {
+            int r = Random.Range(0, 3);
+            switch (r) {
+                case 0:
+                    highestIndex = 1;
+                    break;
+                case 1:
+                    highestIndex = 2;
+                    break;
+                case 2:
+                    highestIndex = 3;
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (highestIndex == 1 && CPU > 0) {

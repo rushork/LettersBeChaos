@@ -111,7 +111,8 @@ public class GameSettings : MonoBehaviour
             }
             else
             {
-                AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
+                AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(3));
+                increaseRandom(10);
                 //if it wasnt
                 if (letter.GetSealColor().Equals(red))
                 {
@@ -150,7 +151,8 @@ public class GameSettings : MonoBehaviour
             //if it wasnt orange, and it was invalid, take these.
             else
             {
-                AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(3));
+                AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
+                increaseRandom(5);
                 //if the seal is red:
                 if (letter.GetSealColor().Equals(red))
                 {
@@ -268,6 +270,22 @@ public class GameSettings : MonoBehaviour
         Destroy(letter.gameObject);
     }
 
+    void increaseRandom(int usageIncrease) {
+        int r = Random.Range(0, 3);
 
+        switch (r) {
+            case 0:
+                GameSettings.Instance.CPU.setUsage(GameSettings.Instance.CPU.getUsage() + usageIncrease);
+                break;
+            case 1:
+                GameSettings.Instance.RAM.setUsage(GameSettings.Instance.HYDRAULIC.getUsage() + usageIncrease);
+                break;
+            case 2:
+                GameSettings.Instance.HYDRAULIC.setUsage(GameSettings.Instance.HYDRAULIC.getUsage() + usageIncrease);
+                break;
+            default:
+                break;
+        }
+    }
    
 }
