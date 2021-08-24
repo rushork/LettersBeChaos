@@ -6,14 +6,24 @@ using UnityEngine.SceneManagement;
 public class StampingArm : MonoBehaviour
 {
 
+    [Header("Table Highlighting Zones")]
+    public GameObject highlightRed;
+    public GameObject highlightBlue;
+    public GameObject highlightGreen;
+    public GameObject highlightOrange;
+
+   
+
     private GameObject art;
     private Vector2 originalPos;
     private Vector2 mouseTarget;
+    [Space]
     public Transform target;
 
     [Header("Coloured overlay")]
     [SerializeField] private SpriteRenderer overlay;
     private List<Color32> colourModes;
+    private List<GameObject> highlightZones;
     private Color32 currentSelectedStampColor;
     public bool isOverUI;
 
@@ -37,13 +47,21 @@ public class StampingArm : MonoBehaviour
     private void Start()
     {
         colourModes = new List<Color32>();
+        
         colourModes.Add(GameSettings.Instance.blue);
         colourModes.Add(GameSettings.Instance.green);
         colourModes.Add(GameSettings.Instance.red);
         colourModes.Add(GameSettings.Instance.delete);
 
+        highlightZones = new List<GameObject>();
+        highlightZones.Add(highlightBlue);
+        highlightZones.Add(highlightGreen);
+        highlightZones.Add(highlightRed);
+        highlightZones.Add(highlightOrange);
+
         currentSelectedStampColor = colourModes[0];
         overlay.color = currentSelectedStampColor;
+        SetTableHighlight(0);
     }
 
     // Update is called once per frame
@@ -89,11 +107,15 @@ public class StampingArm : MonoBehaviour
         {
             try
             {
-                currentSelectedStampColor = colourModes[colourModes.IndexOf(currentSelectedStampColor) + 1];
+                int index = colourModes.IndexOf(currentSelectedStampColor) + 1;
+                currentSelectedStampColor = colourModes[index];
+                SetTableHighlight(index);
+
             }
             catch
             {
                 currentSelectedStampColor = colourModes[0];
+                SetTableHighlight(0);
             }
 
             overlay.color = currentSelectedStampColor;
@@ -103,23 +125,43 @@ public class StampingArm : MonoBehaviour
         {
             currentSelectedStampColor = colourModes[2];
             overlay.color = currentSelectedStampColor;
+            SetTableHighlight(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentSelectedStampColor = colourModes[1];
             overlay.color = currentSelectedStampColor;
+            SetTableHighlight(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             currentSelectedStampColor = colourModes[0];
             overlay.color = currentSelectedStampColor;
+            SetTableHighlight(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             currentSelectedStampColor = colourModes[3];
             overlay.color = currentSelectedStampColor;
+            SetTableHighlight(3);
         }
 
+    }
+
+    //Draw zones on the table
+    private void SetTableHighlight(int value)
+    {
+        foreach(GameObject object_i in highlightZones)
+        {
+            if(object_i != highlightZones[value])
+            {
+                object_i.SetActive(false);
+            }
+            else
+            {
+                object_i.SetActive(true);
+            }
+        }
     }
 
     public Color32 GetColor()
