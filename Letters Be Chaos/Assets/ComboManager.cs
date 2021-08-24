@@ -26,9 +26,10 @@ public class ComboManager : MonoBehaviour
     private int correctSequentialStamps = 0;
     private bool checkingForSequentialStampCombo = true;
 
-
+    //10 or more with the same color
     private Color32 lastCorrectlyStampedColor;
     private int correctSequentialStampsWithSameColor = 0;
+    private bool checkingForSequentialIdenticalStampCombo = true;
 
     private void Awake()
     {
@@ -45,13 +46,20 @@ public class ComboManager : MonoBehaviour
             
             if (correctSequentialStamps == 10)
             {
+                correctSequentialStamps = 0;
                 checkingForSequentialStampCombo = false;
                 AddMultiplier(1.5f);
             }
-            
-            
-            
-            
+        }
+
+        if (checkingForSequentialIdenticalStampCombo)
+        {
+            if(correctSequentialStampsWithSameColor == 10)
+            {
+                correctSequentialStampsWithSameColor = 0;
+                checkingForSequentialIdenticalStampCombo = false;
+                AddMultiplier(2f);
+            }
         }
 
         if(comboMultiplier > 0)
@@ -96,6 +104,7 @@ public class ComboManager : MonoBehaviour
 
     public void MarkIncorrectStamp()
     {
+        ResetMultiplier();
         //If the player stamps something incorrectly, this is called.
         correctSequentialStamps = 0;
         correctSequentialStampsWithSameColor = 0;
@@ -106,6 +115,7 @@ public class ComboManager : MonoBehaviour
     {
         comboMultiplier += value;
         ComboPoints.Create(comboSpawn.position, comboMultiplier);
+        comboExpireTimer = comboExpireTimerMax;
         comboTextDebug.text = comboMultiplier + "x";
     }
 
