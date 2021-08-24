@@ -19,6 +19,7 @@ public class StampingArm : MonoBehaviour
     private Vector2 mouseTarget;
     [Space]
     public Transform target;
+    private StampCollisionCheck check;
 
     [Header("Coloured overlay")]
     [SerializeField] private SpriteRenderer overlay;
@@ -40,8 +41,9 @@ public class StampingArm : MonoBehaviour
     private void Awake()
     {
         art = transform.Find("art").gameObject;
+
         armStatus = ArmStatus.idle;
-        
+        check = transform.Find("art").GetComponent<StampCollisionCheck>();
     }
 
     private void Start()
@@ -90,7 +92,13 @@ public class StampingArm : MonoBehaviour
             {
                 mouseTarget = originalPos;
                 armStatus = ArmStatus.retracting;
-                
+
+                //if letter was stamped
+                if (!check.hasHitLetter)
+                {
+                    AudioManager.Instance.Play("MissThud");
+                }
+
             }
         }
         else if (armStatus == ArmStatus.retracting)
@@ -101,7 +109,11 @@ public class StampingArm : MonoBehaviour
             {
                 art.transform.position = originalPos;
                 armStatus = ArmStatus.idle;
+                check.hasHitLetter = false;
+
             }
+
+
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))

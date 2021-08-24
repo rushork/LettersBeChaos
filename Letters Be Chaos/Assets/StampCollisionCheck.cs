@@ -14,11 +14,11 @@ public class StampCollisionCheck : MonoBehaviour
         
         if (letter != null)
         {
-            hasHitLetter = true;
+            
 
             if (letter.hasBeenSelected)
             {
-
+                hasHitLetter = true;
 
                 if (arm.GetColor().Equals(GameSettings.Instance.red))
                 {
@@ -53,13 +53,4 @@ public class StampCollisionCheck : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        hasHitLetter = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        hasHitLetter = false;
-    }
 }
