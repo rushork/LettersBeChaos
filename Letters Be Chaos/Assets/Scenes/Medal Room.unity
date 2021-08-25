@@ -562,7 +562,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 413573093}
+        - m_Target: {fileID: 593893417}
           m_TargetAssemblyTypeName: Medal, Assembly-CSharp
           m_MethodName: onMouseHover
           m_Mode: 1
@@ -764,14 +764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efb4fd5a2da1734fb47c4c83cbef6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  medals:
-  - {fileID: 1845101249}
-  - {fileID: 1007274534}
-  - {fileID: 593893413}
-  - {fileID: 413573089}
-  - {fileID: 1583438163}
-  - {fileID: 1013376997}
-  - {fileID: 2121093513}
 --- !u!1 &1007274534
 GameObject:
   m_ObjectHideFlags: 0
