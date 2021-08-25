@@ -52,7 +52,8 @@ public class LetterSpawner : MonoBehaviour
     private void SpawnLetter()
     {
         
-        InteractableLetter.CreateLetter(RollForSpecialLetter(0.1f),GetRandomSpawn(), GetRandomTarget(), currentZ);
+        //5% chance of a special letter.
+        InteractableLetter.CreateLetter(RollForSpecialLetter(0.05f),GetRandomSpawn(), GetRandomTarget(), currentZ);
         currentZ -= 0.5f;
         if(currentZ >= 500)
         {

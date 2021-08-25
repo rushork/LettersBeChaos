@@ -15,16 +15,19 @@ public class StampCollisionCheck : MonoBehaviour
         if (letter != null)
         {
             
-            //for bombs
-            if(letter.letterScriptable.nameString == "Bomb")
-            {
-                Explode();
-            }
+            
 
 
 
             if (letter.hasBeenSelected)
             {
+
+                //for bombs
+                if (letter.letterScriptable.nameString == "Bomb")
+                {
+                    Explode();
+                }
+
                 hasHitLetter = true;
 
                 if (arm.GetColor().Equals(GameSettings.Instance.red))
