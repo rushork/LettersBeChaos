@@ -3371,6 +3371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterPrefab_Basic: {fileID: 2170503785109212156, guid: 37e0c4e1ca71edb4399e5d009418de91, type: 3}
+  letterPrefab_Bomb: {fileID: 2170503785109212156, guid: 756840a29879746449c3a787bbca8b5e, type: 3}
   spawnLocations:
   - {fileID: 1646808215}
   - {fileID: 445295115}

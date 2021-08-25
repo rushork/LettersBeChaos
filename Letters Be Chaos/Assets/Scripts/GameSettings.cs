@@ -86,211 +86,223 @@ public class GameSettings : MonoBehaviour
         int points = 0;
         string debugMessage = "";
 
-        //if the letter is upright, with a valid color seal (rgb) and has a stamp:
-        if (letter.isValidOnArrival)
+        if (!letter.letterScriptable.isSpecial)
         {
-            
-            //if the letter was correctly stamped by the player
-            if (letter.isCorrectColor)
-            {
-                //if the seal is red:
-                if (letter.GetSealColor().Equals(red))
-                {
-                    debugMessage += " Was correct color: red";
-                    letterCountCorrect++;
-                    points += 50;
-                    tempLetterCount--;
-                }
-                //if the seal is blue:
-                else if (letter.GetSealColor().Equals(blue))
-                {
-                    debugMessage += " Was correct color: blue";
-                    letterCountCorrect++;
-                    points += 20;
-                    tempLetterCount--;
-                }
-                //if the seal is green:
-                else if (letter.GetSealColor().Equals(green))
-                {
-                    debugMessage += " Was correct color: green";
-                    letterCountCorrect++;
-                    points += 10;
-                    tempLetterCount--;
-                }
-                //if the seal is orange, i.e. marked for reprocessing
-                else if (letter.GetSealColor().Equals(delete))
-                {
-                    debugMessage += " Was correct color: Orange";
-                    //this would lose you points, but its impossible for the code to get here.
-                }
-                else
-                {
-                    debugMessage += " Unknown Error, no color.";
-                }
-
-                ComboManager.Instance.AddCorrectStamp();
-                ComboManager.Instance.SetLastCorrectlyStamped(letter.colorStampedWith);
-                AudioManager.Instance.Play("Point");
-            }
-            else
-            {
-                //if it wasnt
-                if (letter.GetSealColor().Equals(red))
-                {
-                    debugMessage += " Was incorrect color: red";
-                    points -= 150;
-                    letterCountIncorrect++;
-                    increaseRandom(10);
-                    AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
-                }
-                else if (letter.GetSealColor().Equals(blue))
-                {
-                    debugMessage += " Was incorrect color: blue";
-                    points -= 80;
-                    letterCountIncorrect++;
-                    increaseRandom(10);
-                    AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
-                }
-                else if (letter.GetSealColor().Equals(green))
-                {
-                    debugMessage += " Was incorrect color: green";
-                    points -= 50;
-                    letterCountIncorrect++;
-                    increaseRandom(10);
-                    AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
-                }
-                else if (letter.GetSealColor().Equals(delete))
-                {
-                    AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(3));
-                    //if the player marks a valid letter for deletion
-                    debugMessage += " Was incorrectly marked for deletion.";
-                    letterCountIncorrect++;
-                    points -= 500; //lose a lot of points
-                    increaseRandom(26);
-                }
-            }
-        }
-        else
-        {
-            //if the letter was invalid on arrival, deduct points depending on what you stamp it with.
-            //if the letter is the correct color (orange)
-            if (letter.colorStampedWith.Equals(delete))
-            {
-                AudioManager.Instance.Play("Point");
-                ComboManager.Instance.SetLastCorrectlyStamped(letter.colorStampedWith);
-                letterCountCorrect++;
-                points += 100; //100 points for correctly discarding the letter
-                tempLetterCount--;
-            }
-            //if it wasnt orange, and it was invalid, take these.
-            else
-            {
-                AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
-                //if the seal is red:
-                if (letter.GetSealColor().Equals(red))
-                {
-                    //sending a high priority letter which is invalid loses more points than a low priority letter.
-                    points -= 150;
-                    letterCountIncorrect++;
-                    increaseRandom(15);
-                }
-                //if the seal is blue:
-                else if (letter.GetSealColor().Equals(blue))
-                {
-                    points -= 80;
-                    letterCountIncorrect++;
-                    increaseRandom(15);
-                }
-                //if the seal is green:
-                else if (letter.GetSealColor().Equals(green))
-                {
-                    points -= 50;
-                    letterCountIncorrect++;
-                    increaseRandom(15);
-                }
-                else
-                {
-                    debugMessage += " Unknown Error, no color.";
-                }
-            }
-
-            
-        
-            
-        }
-
-        if (!letter.isSealed)
-        {
-            //if it has a stamp:
-            if (letter.isPostageStamped)
-            {
-                //is it upside down?
-                if (letter.isUpsideDown)
-                {
-                    //it has no seal, but has an upsidedown stamp
-                    iconSet = icon_NoSeal_UpsideStamp;
-                }
-                else
-                {
-                    //it has no seal, but the stamp is correct.
-
-                }
-            }
-            else
-            {
-                //it doesnt have a seal or a stamp.
-                iconSet = icon_NoSeal_NoStamp;
-            }
 
 
-        }
-        else
-        {
-            //it has a seal BUT
-            if (!letter.isCorrectColor)
+            //if the letter is upright, with a valid color seal (rgb) and has a stamp:
+            if (letter.isValidOnArrival)
             {
-                //its not the right color
-                iconSet = icon_WrongColor;
-                Debug.Log("set color");
-                if (!letter.isPostageStamped)
+
+                //if the letter was correctly stamped by the player
+                if (letter.isCorrectColor)
                 {
-                    //it has the wrong color, and it isnt stamped
-                    iconSet = icon_WrongColor_NoStamp;
-                }
-                else
-                {
-                    if (letter.isUpsideDown)
+                    //if the seal is red:
+                    if (letter.GetSealColor().Equals(red))
                     {
-                        //it has a stamp, but its the wrong way up
-                        iconSet = icon_WrongColor_UpsideStamp;
+                        debugMessage += " Was correct color: red";
+                        letterCountCorrect++;
+                        points += 50;
+                        tempLetterCount--;
                     }
-                }
-            }
-            else
-            {
-                if (!letter.colorStampedWith.Equals(delete))
-                {
-                    //its the correct color BUT:
-                    if (!letter.isPostageStamped)
+                    //if the seal is blue:
+                    else if (letter.GetSealColor().Equals(blue))
                     {
-                        //it isnt stamped:
-                        iconSet = icon_NoStamp;
+                        debugMessage += " Was correct color: blue";
+                        letterCountCorrect++;
+                        points += 20;
+                        tempLetterCount--;
+                    }
+                    //if the seal is green:
+                    else if (letter.GetSealColor().Equals(green))
+                    {
+                        debugMessage += " Was correct color: green";
+                        letterCountCorrect++;
+                        points += 10;
+                        tempLetterCount--;
+                    }
+                    //if the seal is orange, i.e. marked for reprocessing
+                    else if (letter.GetSealColor().Equals(delete))
+                    {
+                        debugMessage += " Was correct color: Orange";
+                        //this would lose you points, but its impossible for the code to get here.
                     }
                     else
                     {
-                        //it is stamped, but its the wrong way up.
+                        debugMessage += " Unknown Error, no color.";
+                    }
+
+                    ComboManager.Instance.AddCorrectStamp();
+                    ComboManager.Instance.SetLastCorrectlyStamped(letter.colorStampedWith);
+                    AudioManager.Instance.Play("Point");
+                }
+                else
+                {
+                    //if it wasnt
+                    if (letter.GetSealColor().Equals(red))
+                    {
+                        debugMessage += " Was incorrect color: red";
+                        points -= 150;
+                        letterCountIncorrect++;
+                        increaseRandom(10);
+                        AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
+                    }
+                    else if (letter.GetSealColor().Equals(blue))
+                    {
+                        debugMessage += " Was incorrect color: blue";
+                        points -= 80;
+                        letterCountIncorrect++;
+                        increaseRandom(10);
+                        AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
+                    }
+                    else if (letter.GetSealColor().Equals(green))
+                    {
+                        debugMessage += " Was incorrect color: green";
+                        points -= 50;
+                        letterCountIncorrect++;
+                        increaseRandom(10);
+                        AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
+                    }
+                    else if (letter.GetSealColor().Equals(delete))
+                    {
+                        AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(3));
+                        //if the player marks a valid letter for deletion
+                        debugMessage += " Was incorrectly marked for deletion.";
+                        letterCountIncorrect++;
+                        points -= 500; //lose a lot of points
+                        increaseRandom(26);
+                    }
+                }
+            }
+            else
+            {
+                //if the letter was invalid on arrival, deduct points depending on what you stamp it with.
+                //if the letter is the correct color (orange)
+                if (letter.colorStampedWith.Equals(delete))
+                {
+                    AudioManager.Instance.Play("Point");
+                    ComboManager.Instance.SetLastCorrectlyStamped(letter.colorStampedWith);
+                    letterCountCorrect++;
+                    points += 100; //100 points for correctly discarding the letter
+                    tempLetterCount--;
+                }
+                //if it wasnt orange, and it was invalid, take these.
+                else
+                {
+                    AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
+                    //if the seal is red:
+                    if (letter.GetSealColor().Equals(red))
+                    {
+                        //sending a high priority letter which is invalid loses more points than a low priority letter.
+                        points -= 150;
+                        letterCountIncorrect++;
+                        increaseRandom(15);
+                    }
+                    //if the seal is blue:
+                    else if (letter.GetSealColor().Equals(blue))
+                    {
+                        points -= 80;
+                        letterCountIncorrect++;
+                        increaseRandom(15);
+                    }
+                    //if the seal is green:
+                    else if (letter.GetSealColor().Equals(green))
+                    {
+                        points -= 50;
+                        letterCountIncorrect++;
+                        increaseRandom(15);
+                    }
+                    else
+                    {
+                        debugMessage += " Unknown Error, no color.";
+                    }
+                }
+
+
+
+
+            }
+
+            if (!letter.isSealed)
+            {
+                //if it has a stamp:
+                if (letter.isPostageStamped)
+                {
+                    //is it upside down?
+                    if (letter.isUpsideDown)
+                    {
+                        //it has no seal, but has an upsidedown stamp
+                        iconSet = icon_NoSeal_UpsideStamp;
+                    }
+                    else
+                    {
+                        //it has no seal, but the stamp is correct.
+
+                    }
+                }
+                else
+                {
+                    //it doesnt have a seal or a stamp.
+                    iconSet = icon_NoSeal_NoStamp;
+                }
+
+
+            }
+            else
+            {
+                //it has a seal BUT
+                if (!letter.isCorrectColor)
+                {
+                    //its not the right color
+                    iconSet = icon_WrongColor;
+                    Debug.Log("set color");
+                    if (!letter.isPostageStamped)
+                    {
+                        //it has the wrong color, and it isnt stamped
+                        iconSet = icon_WrongColor_NoStamp;
+                    }
+                    else
+                    {
                         if (letter.isUpsideDown)
                         {
-                            iconSet = icon_UpsideStamp;
+                            //it has a stamp, but its the wrong way up
+                            iconSet = icon_WrongColor_UpsideStamp;
                         }
                     }
                 }
-                
+                else
+                {
+                    if (!letter.colorStampedWith.Equals(delete))
+                    {
+                        //its the correct color BUT:
+                        if (!letter.isPostageStamped)
+                        {
+                            //it isnt stamped:
+                            iconSet = icon_NoStamp;
+                        }
+                        else
+                        {
+                            //it is stamped, but its the wrong way up.
+                            if (letter.isUpsideDown)
+                            {
+                                iconSet = icon_UpsideStamp;
+                            }
+                        }
+                    }
+
+                }
+
             }
 
         }
-
-        
+        else
+        {
+            //the letter is special. Add points for a special letter.
+            if(letter.letterScriptable.nameString == "Bomb")
+            {
+                points += 1000;
+            }
+        }
         
 
         bool isNegative = false;

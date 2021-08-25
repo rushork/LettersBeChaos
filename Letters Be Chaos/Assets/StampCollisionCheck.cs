@@ -15,6 +15,13 @@ public class StampCollisionCheck : MonoBehaviour
         if (letter != null)
         {
             
+            //for bombs
+            if(letter.letterScriptable.nameString == "Bomb")
+            {
+                Explode();
+            }
+
+
 
             if (letter.hasBeenSelected)
             {
@@ -49,6 +56,54 @@ public class StampCollisionCheck : MonoBehaviour
                 AudioManager.Instance.Play("InkyThud");
                 letter.SendForProcessing();
 
+            }
+        }
+    }
+
+    private void Explode()
+    {
+        Collider2D[] letters = Physics2D.OverlapCircleAll(transform.position, 5f, 1 << LayerMask.NameToLayer("Letters"));
+
+        foreach(Collider2D letter in letters)
+        {
+            InteractableLetter letterScript = letter.GetComponent<InteractableLetter>();
+            if(letterScript != null)
+            {
+                if (letterScript.isValidOnArrival)
+                {
+                    if (letterScript.GetSealColor().Equals(GameSettings.Instance.red))
+                    {
+
+                        letterScript.SetTarget(GameSettings.Instance.redLocation);
+
+                    }
+                    else if (letterScript.GetSealColor().Equals(GameSettings.Instance.blue))
+                    {
+                        letterScript.SetTarget(GameSettings.Instance.blueLocation);
+
+                    }
+                    else if (letterScript.GetSealColor().Equals(GameSettings.Instance.green))
+                    {
+                        letterScript.SetTarget(GameSettings.Instance.greenLocation);
+
+
+                    }
+                    else if (letterScript.GetSealColor().Equals(GameSettings.Instance.delete))
+                    {
+                        letterScript.SetTarget(GameSettings.Instance.deleteLocation);
+
+
+                    }
+
+                    letterScript.StampWithColor(letterScript.GetSealColor());
+                }
+                else
+                {
+                    letterScript.SetTarget(GameSettings.Instance.deleteLocation);
+                    letterScript.StampWithColor(GameSettings.Instance.delete);
+                }
+
+                letterScript.SendForProcessing();
             }
         }
     }

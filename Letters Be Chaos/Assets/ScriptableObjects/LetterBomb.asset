@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a62eb35c01c2e4848a5011aaf972cd61, type: 3}
-  m_Name: Letter_1st_Tracked
+  m_Name: LetterBomb
   m_EditorClassIdentifier: 
-  nameString: Tracked First Class Letter
-  isTracked: 1
-  chanceToSpawnSealed: 0.95
-  chanceToBeCorrectlyStamped: 75
-  chanceGreen: 0.25
-  chanceRed: 0.45
-  chanceBlue: 0.5
+  nameString: Bomb
+  isTracked: 0
+  isSpecial: 1
+  chanceToSpawnSealed: 0
+  chanceToSpawnStampFlipped: 0
+  chanceToBeCorrectlyStamped: 0

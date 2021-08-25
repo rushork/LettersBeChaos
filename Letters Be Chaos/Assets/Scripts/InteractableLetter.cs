@@ -6,10 +6,10 @@ public class InteractableLetter : MonoBehaviour
 {
 
 
-    public static InteractableLetter CreateLetter(Transform origin,Vector3 targetLocation, float zPos)
+    public static InteractableLetter CreateLetter(Transform prefab,Transform origin,Vector3 targetLocation, float zPos)
     {
         
-        Transform interactableLetterTransform = Instantiate(GameSettings.Instance.letterPrefab_FirstClass, new Vector3(origin.position.x, origin.position.y, zPos), Quaternion.AngleAxis(Random.Range(-20,20), Vector3.forward));
+        Transform interactableLetterTransform = Instantiate(prefab, new Vector3(origin.position.x, origin.position.y, zPos), Quaternion.AngleAxis(Random.Range(-20,20), Vector3.forward));
         InteractableLetter letter = interactableLetterTransform.GetComponent<InteractableLetter>();
         letter.targetLocationToMoveTo = new Vector3(targetLocation.x, targetLocation.y, zPos);
        
@@ -22,7 +22,7 @@ public class InteractableLetter : MonoBehaviour
 
 
 
-    [Tooltip("The scriptable object assigned to this letter.")] [SerializeField] private LetterSO letterScriptable;
+    [Tooltip("The scriptable object assigned to this letter.")] public LetterSO letterScriptable;
     [Tooltip("The location for any generic stamp")] [SerializeField] private SpriteRenderer mechanicalStampZoneRenderer;
 
     private SpriteRenderer mySpriteRenderer;

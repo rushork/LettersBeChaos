@@ -8,6 +8,7 @@ public class LetterSO : ScriptableObject
     [Header("Unique Information")]
     public string nameString;
     [Tooltip("Does this letter need a tracking number?")]public bool isTracked;
+    [Tooltip("Does this letter ignore sorting?")]public bool isSpecial;
 
     [Header("Spawning Chances")]
     [Range(0, 1)] public float chanceToSpawnSealed;

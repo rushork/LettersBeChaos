@@ -9,6 +9,7 @@ using UnityEngine;
 public class LetterSpawner : MonoBehaviour
 {
     [SerializeField] Transform letterPrefab_Basic;
+    [SerializeField] Transform letterPrefab_Bomb;
 
     public List<Transform> spawnLocations;
     private BoxCollider2D areaToSpawn;
@@ -51,13 +52,29 @@ public class LetterSpawner : MonoBehaviour
     private void SpawnLetter()
     {
         
-        InteractableLetter.CreateLetter(GetRandomSpawn(), GetRandomTarget(), currentZ);
+        InteractableLetter.CreateLetter(RollForSpecialLetter(0.1f),GetRandomSpawn(), GetRandomTarget(), currentZ);
         currentZ -= 0.5f;
         if(currentZ >= 500)
         {
             currentZ = 0;
         }
         GameSettings.Instance.addLetter(); // Adds letter to letter count.
+    }
+
+    //sometimes a letter can roll as a special one instead of an ordinary one.
+    //chance is the chance of this letter changing
+    private Transform RollForSpecialLetter(float chance)
+    {
+        float random = Random.Range(0, 1f);
+        if(random <= chance)
+        {
+            //for now, theres only bombs.
+            return letterPrefab_Bomb;
+        }
+        else
+        {
+            return letterPrefab_Basic;
+        }
     }
 
     private Transform GetRandomSpawn()
