@@ -2935,6 +2935,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 6b7255aaa74ee1c479c99063305825ba, type: 3}
     volume: 1
     source: {fileID: 0}
+  - name: Thwoomp
+    clip: {fileID: 8300000, guid: ec0bfcd7cab714d4982ae30463d51ce4, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: PaperLand
+    clip: {fileID: 8300000, guid: 91b4b9910e168a843b05f1ee2ceaead3, type: 3}
+    volume: 1
+    source: {fileID: 0}
 --- !u!82 &1415757791
 AudioSource:
   m_ObjectHideFlags: 0
