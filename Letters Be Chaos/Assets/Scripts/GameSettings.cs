@@ -368,13 +368,20 @@ public class GameSettings : MonoBehaviour
         bool isNegative = false;
         if(points < 0)
         {
-            letterCountIncorrect++;
+            if (!letter.letterScriptable.isSpecial)
+            {
+                letterCountIncorrect++;
+            }
+            
             ComboManager.Instance.MarkIncorrectStamp();
             isNegative = true;
         }
         else
         {
-            letterCountCorrect++;
+            if (!letter.letterScriptable.isSpecial)
+            {
+                letterCountCorrect++;
+            }
         }
         if (points > 0 && ComboManager.Instance.comboActive)
         {
@@ -385,8 +392,11 @@ public class GameSettings : MonoBehaviour
         ScoreManager.Instance.AddPoints(points);
         PointsText.Create(letter.transform.position, points, isNegative, iconSet);
 
-       
-        letterCount--;
+        if (!letter.letterScriptable.isSpecial)
+        {
+            letterCount--;
+        }
+        
         letterCountText.text = "Letters: " + letterCount.ToString();
 
         letterCountCorrectText.text = "Correct: " + "<color=#31A62E>" + letterCountCorrect.ToString() + "</color>";
