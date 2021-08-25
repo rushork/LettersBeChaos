@@ -3021,10 +3021,22 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Thwoomp
     clip: {fileID: 8300000, guid: ec0bfcd7cab714d4982ae30463d51ce4, type: 3}
-    volume: 1
+    volume: 0.5
     source: {fileID: 0}
   - name: PaperLand
     clip: {fileID: 8300000, guid: 91b4b9910e168a843b05f1ee2ceaead3, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 8115d59690a60bd418285b190f11ffa4, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: TrackerOn
+    clip: {fileID: 8300000, guid: 9644d10df0471584a8453e1c297d6ad7, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: TrackerOff
+    clip: {fileID: 8300000, guid: c9484225036332c419aebee76f8e5e41, type: 3}
     volume: 1
     source: {fileID: 0}
 --- !u!82 &1415757791

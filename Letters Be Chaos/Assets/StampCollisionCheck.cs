@@ -25,6 +25,7 @@ public class StampCollisionCheck : MonoBehaviour
                 //for bombs
                 if (letter.letterScriptable.nameString == "Bomb")
                 {
+                    AudioManager.Instance.Play("Explosion");
                     Explode();
                 }
 

@@ -19,6 +19,7 @@ public class LetterSelfDestruct : MonoBehaviour
             //play an animation or something here.
             SpriteRenderer renderer = Instantiate(animPrefab, transform.position, transform.rotation).transform.Find("Letter").GetComponent<SpriteRenderer>();
             renderer.sprite = this.transform.Find("Letter").GetComponent<SpriteRenderer>().sprite;
+            AudioManager.Instance.Play("Explosion");
             Destroy(gameObject);
             
         }

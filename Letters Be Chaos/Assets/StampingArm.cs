@@ -13,7 +13,7 @@ public class StampingArm : MonoBehaviour
     public GameObject highlightOrange;
 
    
-
+    private bool trackerPlayed;
     private GameObject art;
     private Vector2 originalPos;
     private Vector2 mouseTarget;
@@ -74,14 +74,20 @@ public class StampingArm : MonoBehaviour
         
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            AudioManager.Instance.Play("TrackerOff");
             if(isStampingTracked == true)
             {
                 trackingIcon.SetActive(false);
             }
             isStampingTracked = false;
+            trackerPlayed = false;
         }
         if (Input.GetKey(KeyCode.Space))
         {
+            if(!trackerPlayed) {
+                AudioManager.Instance.Play("TrackerOn");
+                trackerPlayed = true;
+            }
             if (isStampingTracked == false)
             {
                 trackingIcon.SetActive(true);

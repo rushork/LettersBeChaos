@@ -9,10 +9,10 @@ public class InteractableLetter : MonoBehaviour
     public static InteractableLetter CreateLetter(Transform prefab,Transform origin,Vector3 targetLocation, float zPos)
     {
         
+        AudioManager.Instance.Play("Thwoomp");
         Transform interactableLetterTransform = Instantiate(prefab, new Vector3(origin.position.x, origin.position.y, zPos), Quaternion.AngleAxis(Random.Range(-20,20), Vector3.forward));
         InteractableLetter letter = interactableLetterTransform.GetComponent<InteractableLetter>();
         letter.targetLocationToMoveTo = new Vector3(targetLocation.x, targetLocation.y, zPos);
-       
 
 
         return letter;
@@ -81,6 +81,7 @@ public class InteractableLetter : MonoBehaviour
 
 
                 gameObject.layer = LayerMask.NameToLayer("Letters");
+                AudioManager.Instance.Play("PaperLand");
             }
         }
         if (isBeingProcessed)
