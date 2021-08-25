@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Failure Scene.unity
     guid: a0139ad640e6cc744ab83dfe7845253b
+  - enabled: 1
+    path: Assets/Scenes/Medal Room.unity
+    guid: df9588b0f64f5764b8f454b77ee4719f
   m_configObjects: {}
