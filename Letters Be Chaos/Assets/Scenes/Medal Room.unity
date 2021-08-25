@@ -316,7 +316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -350,7 +350,7 @@ MonoBehaviour:
   unlocked: 0
   info: ???
   unlockedSprite: {fileID: 0}
-  lockedSprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &413573094
 MonoBehaviour:
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 593893417}
   - component: {fileID: 593893418}
   m_Layer: 5
-  m_Name: Silver
+  m_Name: Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0db1f77c19cdf794b85d88a727dc96ae, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -536,11 +536,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31fbe68e342a094cbbf1a01f8b334e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  medalName: 
+  medalName: Diamond
   unlocked: 0
-  info: ???
-  unlockedSprite: {fileID: 0}
-  lockedSprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  info: 'Diamond
+
+
+    Achieved a score of over 1''000''000.'
+  unlockedSprite: {fileID: 21300000, guid: 0db1f77c19cdf794b85d88a727dc96ae, type: 3}
+  lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &593893418
 MonoBehaviour:
@@ -734,8 +737,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 593893414}
-  - {fileID: 1845101250}
   - {fileID: 1007274535}
+  - {fileID: 1845101250}
   - {fileID: 413573090}
   - {fileID: 1583438164}
   - {fileID: 1013376998}
@@ -801,11 +804,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 941379907}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -60, y: 3.2}
+  m_AnchoredPosition: {x: -120, y: 3.2}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007274536
@@ -828,7 +831,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c2065c9c92facd449d93a3c232286ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56da09d80351bdb42b6f4c264b3a3110, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -864,8 +867,8 @@ MonoBehaviour:
 
 
     Achieved a score of over 50''000.'
-  unlockedSprite: {fileID: 21300000, guid: 3c2065c9c92facd449d93a3c232286ed, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: 56da09d80351bdb42b6f4c264b3a3110, type: 3}
+  lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1007274539
 MonoBehaviour:
@@ -955,7 +958,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -989,7 +992,7 @@ MonoBehaviour:
   unlocked: 0
   info: ???
   unlockedSprite: {fileID: 0}
-  lockedSprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1013377002
 MonoBehaviour:
@@ -1389,7 +1392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1423,7 +1426,7 @@ MonoBehaviour:
   unlocked: 0
   info: ???
   unlockedSprite: {fileID: 0}
-  lockedSprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1583438168
 MonoBehaviour:
@@ -1632,11 +1635,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 941379907}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -120, y: 3.2}
+  m_AnchoredPosition: {x: -60, y: 3.2}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1845101251
@@ -1659,7 +1662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4eab1c17e4a524c44bf8893561b94d82, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9315e98511491cf40b645982ca489bf2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1695,8 +1698,8 @@ MonoBehaviour:
 
 
     Achieved a score of over 10''000.'
-  unlockedSprite: {fileID: 21300000, guid: 4eab1c17e4a524c44bf8893561b94d82, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: 9315e98511491cf40b645982ca489bf2, type: 3}
+  lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1845101254
 MonoBehaviour:
@@ -2112,7 +2115,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2146,7 +2149,7 @@ MonoBehaviour:
   unlocked: 0
   info: ???
   unlockedSprite: {fileID: 0}
-  lockedSprite: {fileID: 21300000, guid: 4406b4e2051edab4d9a084259ba475b9, type: 3}
+  lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &2121093518
 MonoBehaviour:
