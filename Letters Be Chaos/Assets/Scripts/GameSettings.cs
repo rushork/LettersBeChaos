@@ -15,6 +15,7 @@ public class GameSettings : MonoBehaviour
 
     
     private int letterCount;
+    private int tempLetterCount;
     private float letterCountTotal;
     private float letterCountCorrect;
     private float letterCountIncorrect;
@@ -98,6 +99,7 @@ public class GameSettings : MonoBehaviour
                     debugMessage += " Was correct color: red";
                     letterCountCorrect++;
                     points += 50;
+                    tempLetterCount--;
                 }
                 //if the seal is blue:
                 else if (letter.GetSealColor().Equals(blue))
@@ -105,6 +107,7 @@ public class GameSettings : MonoBehaviour
                     debugMessage += " Was correct color: blue";
                     letterCountCorrect++;
                     points += 20;
+                    tempLetterCount--;
                 }
                 //if the seal is green:
                 else if (letter.GetSealColor().Equals(green))
@@ -112,7 +115,7 @@ public class GameSettings : MonoBehaviour
                     debugMessage += " Was correct color: green";
                     letterCountCorrect++;
                     points += 10;
-
+                    tempLetterCount--;
                 }
                 //if the seal is orange, i.e. marked for reprocessing
                 else if (letter.GetSealColor().Equals(delete))
@@ -137,7 +140,7 @@ public class GameSettings : MonoBehaviour
                     debugMessage += " Was incorrect color: red";
                     points -= 150;
                     letterCountIncorrect++;
-                    increaseRandom(5);
+                    increaseRandom(10);
                     AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                 }
                 else if (letter.GetSealColor().Equals(blue))
@@ -145,7 +148,7 @@ public class GameSettings : MonoBehaviour
                     debugMessage += " Was incorrect color: blue";
                     points -= 80;
                     letterCountIncorrect++;
-                    increaseRandom(5);
+                    increaseRandom(10);
                     AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                 }
                 else if (letter.GetSealColor().Equals(green))
@@ -153,7 +156,7 @@ public class GameSettings : MonoBehaviour
                     debugMessage += " Was incorrect color: green";
                     points -= 50;
                     letterCountIncorrect++;
-                    increaseRandom(5);
+                    increaseRandom(10);
                     AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                 }
                 else if (letter.GetSealColor().Equals(delete))
@@ -163,7 +166,7 @@ public class GameSettings : MonoBehaviour
                     debugMessage += " Was incorrectly marked for deletion.";
                     letterCountIncorrect++;
                     points -= 500; //lose a lot of points
-                    increaseRandom(25);
+                    increaseRandom(26);
                 }
             }
         }
@@ -177,6 +180,7 @@ public class GameSettings : MonoBehaviour
                 ComboManager.Instance.SetLastCorrectlyStamped(letter.colorStampedWith);
                 letterCountCorrect++;
                 points += 100; //100 points for correctly discarding the letter
+                tempLetterCount--;
             }
             //if it wasnt orange, and it was invalid, take these.
             else
@@ -188,21 +192,21 @@ public class GameSettings : MonoBehaviour
                     //sending a high priority letter which is invalid loses more points than a low priority letter.
                     points -= 150;
                     letterCountIncorrect++;
-                    increaseRandom(5);
+                    increaseRandom(15);
                 }
                 //if the seal is blue:
                 else if (letter.GetSealColor().Equals(blue))
                 {
                     points -= 80;
                     letterCountIncorrect++;
-                    increaseRandom(5);
+                    increaseRandom(15);
                 }
                 //if the seal is green:
                 else if (letter.GetSealColor().Equals(green))
                 {
                     points -= 50;
                     letterCountIncorrect++;
-                    increaseRandom(5);
+                    increaseRandom(15);
                 }
                 else
                 {
@@ -345,11 +349,11 @@ public class GameSettings : MonoBehaviour
 
     public void addLetter() {
         letterCount++;
-        
         letterCountText.text = "Letters: " + letterCount.ToString();
-        if (letterCount > 10) {
-            increaseRandom(1);
-            //letterCount = 0;
+        tempLetterCount++;
+        if (tempLetterCount > 5) {
+            increaseRandom(10);
+            tempLetterCount = 0;
         }
     }
 
