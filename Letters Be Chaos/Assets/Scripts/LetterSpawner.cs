@@ -14,22 +14,37 @@ public class LetterSpawner : MonoBehaviour
     private BoxCollider2D areaToSpawn;
     private float currentZ = 0f;
 
-    private float timerValue = 2f;
+    private float originalTimeBeforeSpawnIntervalChange = 5;
+    private float timeBeforeSpawnIntervalChange;
+    private float initialTimerValue = 5f;
+    private float currentTimerValue;
 
     private void Awake()
     {
         areaToSpawn = GetComponent<BoxCollider2D>();
+        currentTimerValue = initialTimerValue;
+        timeBeforeSpawnIntervalChange = originalTimeBeforeSpawnIntervalChange;
     }
 
     private void Update()
     {
 
 
-        timerValue -= Time.deltaTime;
-        if(timerValue <= 0)
+        //Count down and spawn a letter.
+        currentTimerValue -= Time.deltaTime;
+        if(currentTimerValue <= 0)
         {
-            timerValue = 1f;
+            currentTimerValue = initialTimerValue;
             SpawnLetter();
+        }
+
+        timeBeforeSpawnIntervalChange -= Time.deltaTime;
+        if(timeBeforeSpawnIntervalChange <= 0)
+        {
+            //increase the interval by 5 seconds each time
+            timeBeforeSpawnIntervalChange = (originalTimeBeforeSpawnIntervalChange += 2.5f);
+            //Spawn letters 15% faster every 10 seconds ish.
+            initialTimerValue *= 0.85f;
         }
     }
 
