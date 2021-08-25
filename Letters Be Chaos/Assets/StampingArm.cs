@@ -27,6 +27,7 @@ public class StampingArm : MonoBehaviour
     private List<GameObject> highlightZones;
     private Color32 currentSelectedStampColor;
     public bool isOverUI;
+    [HideInInspector] public bool isStampingTracked;
 
     public enum ArmStatus
     {
@@ -69,6 +70,15 @@ public class StampingArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Space)){
+            isStampingTracked = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            isStampingTracked = false;
+        }
+
+
         if (armStatus == ArmStatus.idle)
         {
            
@@ -78,7 +88,7 @@ public class StampingArm : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && armStatus == ArmStatus.idle && !isOverUI)
         {
-
+            
             mouseTarget = new Vector2(art.transform.position.x, target.position.y - 0.7f);
             originalPos = art.transform.position;
             armStatus = ArmStatus.extending;

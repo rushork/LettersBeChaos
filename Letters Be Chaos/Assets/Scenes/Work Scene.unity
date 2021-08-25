@@ -309,6 +309,7 @@ MonoBehaviour:
   delete:
     serializedVersion: 2
     rgba: 4278872826
+  invalidColors: []
   redLocation: {fileID: 1494050577}
   greenLocation: {fileID: 1706760272}
   blueLocation: {fileID: 1367516889}
@@ -324,6 +325,11 @@ MonoBehaviour:
   icon_NoSeal_UpsideStamp: {fileID: 21300000, guid: 15d08ee3750b7a34580f3acd3814e6a8, type: 3}
   icon_WrongColor_NoStamp: {fileID: 21300000, guid: 28b523d32e29f4849acd54f039f2c391, type: 3}
   icon_WrongColor_UpsideStamp: {fileID: 21300000, guid: ea3e4ca7b95ce63439003770eca710ca, type: 3}
+  icon_WrongColor_NotTracked: {fileID: 21300000, guid: 5415a9739e2f08f4c8ea3e9c00791867, type: 3}
+  icon_WrongColor_NotTracked_UpsideStamp: {fileID: 21300000, guid: 2a8bdec44eab4984eabecce0ed049e89, type: 3}
+  icon_UpsideStamp_NotTracked: {fileID: 21300000, guid: ca54a5bb35ce7ad46baa28e213ed3f46, type: 3}
+  icon_NoSeal_NotTracked: {fileID: 21300000, guid: c57192dba684e464d85488ecff1ccf3c, type: 3}
+  icon_NotTracked: {fileID: 21300000, guid: ca54a5bb35ce7ad46baa28e213ed3f46, type: 3}
 --- !u!4 &106508872
 Transform:
   m_ObjectHideFlags: 0
@@ -1718,6 +1724,7 @@ MonoBehaviour:
   target: {fileID: 2050382696}
   overlay: {fileID: 1700466537}
   isOverUI: 0
+  isStampingTracked: 0
 --- !u!1 &845477794
 GameObject:
   m_ObjectHideFlags: 0

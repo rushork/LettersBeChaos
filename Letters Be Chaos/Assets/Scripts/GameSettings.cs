@@ -42,6 +42,7 @@ public class GameSettings : MonoBehaviour
     [SerializeField] public Color32 blue;
     [SerializeField] public Color32 green;
     [SerializeField] public Color32 delete;
+    public List<Color32> invalidColors;
 
     [Header("Areas letters are sent during processing")]
     [SerializeField] public Transform redLocation;
@@ -63,6 +64,11 @@ public class GameSettings : MonoBehaviour
     public Sprite icon_NoSeal_UpsideStamp;
     public Sprite icon_WrongColor_NoStamp;
     public Sprite icon_WrongColor_UpsideStamp;
+    public Sprite icon_WrongColor_NotTracked;
+    public Sprite icon_WrongColor_NotTracked_UpsideStamp;
+    public Sprite icon_UpsideStamp_NotTracked;
+    public Sprite icon_NoSeal_NotTracked;
+    public Sprite icon_NotTracked;
 
 
     private void Awake()
@@ -81,21 +87,23 @@ public class GameSettings : MonoBehaviour
     /// <param name="letter"></param>
     public void ProcessLetter(InteractableLetter letter)
     {
-        letterCountTotal++;
+
+        
         Sprite iconSet = null; //this is the icon we will use for errors
         int points = 0;
         string debugMessage = "";
 
         if (!letter.letterScriptable.isSpecial)
         {
-
+            //only count if not special.
+            letterCountTotal++;
 
             //if the letter is upright, with a valid color seal (rgb) and has a stamp:
             if (letter.isValidOnArrival)
             {
 
                 //if the letter was correctly stamped by the player
-                if (letter.isCorrectColor)
+                if (letter.isCorrectStampCombo)
                 {
                     //if the seal is red:
                     if (letter.GetSealColor().Equals(red))
@@ -223,7 +231,41 @@ public class GameSettings : MonoBehaviour
 
             }
 
-            if (!letter.isSealed)
+            //if it should be tracked, but isnt
+            if (letter.hasTrackingInfo && !letter.isCorrectStampCombo)
+            {
+                iconSet = icon_NotTracked;
+
+                //if it isnt sealed
+                if (!letter.isSealed)
+                {
+                    iconSet = icon_NoSeal_NotTracked;
+                    if (letter.isPostageStamped)
+                    {
+                        //is it upside down?
+                        if (letter.isUpsideDown)
+                        {
+                            //it has no seal, but has an upsidedown stamp
+                            iconSet = icon_WrongColor_NotTracked_UpsideStamp;
+
+
+                        }
+                        else
+                        {
+                            //it has no seal, but the stamp is correct.
+
+                        }
+                    }
+                    //the letter must be postage stamped to have tracking info, so there is no "else";
+                    
+                }
+                else
+                {
+                    //if it is sealed
+
+                }
+            }
+            else if (!letter.isSealed)
             {
                 //if it has a stamp:
                 if (letter.isPostageStamped)
@@ -233,6 +275,8 @@ public class GameSettings : MonoBehaviour
                     {
                         //it has no seal, but has an upsidedown stamp
                         iconSet = icon_NoSeal_UpsideStamp;
+
+                        
                     }
                     else
                     {
@@ -251,7 +295,7 @@ public class GameSettings : MonoBehaviour
             else
             {
                 //it has a seal BUT
-                if (!letter.isCorrectColor)
+                if (!letter.isCorrectStampCombo)
                 {
                     //its not the right color
                     iconSet = icon_WrongColor;
@@ -360,7 +404,7 @@ public class GameSettings : MonoBehaviour
     }
 
     // Adds letter to onscreen count & calculates usage increase every 5 unresolved letters
-    public void addLetter() {
+    public void AddLetter() {
         // Onscreen count
         letterCount++;
         letterCountText.text = "Letters: " + letterCount.ToString();
@@ -390,6 +434,21 @@ public class GameSettings : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public Color32 GetRandomColor()
+    {
+        int random = Random.Range(0, invalidColors.Count);
+
+        for(int i = 0; i < invalidColors.Count; i++)
+        {
+            if(i == random)
+            {
+                return invalidColors[i];
+            }
+        }
+
+        return invalidColors[0];
     }
    
 }

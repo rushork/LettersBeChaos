@@ -55,7 +55,7 @@ public class StampCollisionCheck : MonoBehaviour
 
 
 
-                letter.StampWithColor(arm.GetColor());
+                letter.StampWithColor(arm.GetColor(), arm.isStampingTracked);
                 AudioManager.Instance.Play("InkyThud");
                 letter.SendForProcessing();
 
@@ -105,15 +105,15 @@ public class StampCollisionCheck : MonoBehaviour
 
                     }
 
-                    letterScript.StampWithColor(letterScript.GetSealColor());
+                    letterScript.StampWithColor(letterScript.GetSealColor(),arm.isStampingTracked);
                 }
                 else
                 {
                     letterScript.SetTarget(GameSettings.Instance.deleteLocation);
-                    letterScript.StampWithColor(GameSettings.Instance.delete);
+                    letterScript.StampWithColor(GameSettings.Instance.delete, arm.isStampingTracked);
                 }
 
-                StartCoroutine(WaitFor(0.3f,letterScript, body));
+                StartCoroutine(WaitFor(0.2f,letterScript, body));
                 //letterScript.SendForProcessing();
             }
         }

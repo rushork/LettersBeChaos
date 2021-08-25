@@ -24,6 +24,8 @@ public class InteractableLetter : MonoBehaviour
 
     [Tooltip("The scriptable object assigned to this letter.")] public LetterSO letterScriptable;
     [Tooltip("The location for any generic stamp")] [SerializeField] private SpriteRenderer mechanicalStampZoneRenderer;
+    [SerializeField] private Sprite trackedStamp;
+    [SerializeField] private Sprite trackedPostageStamp;
 
     private SpriteRenderer mySpriteRenderer;
     private SpriteRenderer sealRenderer;
@@ -40,7 +42,7 @@ public class InteractableLetter : MonoBehaviour
     //these values are decided after spawning
     public bool hasTrackingInfo;
     public bool isUpsideDown;
-    public bool isCorrectColor;
+    public bool isCorrectStampCombo;
     public bool isSealed;
     public bool isPostageStamped;
     public bool isValidOnArrival; // letters are only valid if they have an upright stamp, a valid coloured seal and no defects
@@ -110,24 +112,56 @@ public class InteractableLetter : MonoBehaviour
     /// </summary>
     private void HandleRandomVariations()
     {
-     
-
         //get the random value 
         float randomVal = Random.Range(0f, 1f);
- 
 
-        if (randomVal <= GameSettings.Instance.redChance)
+        //is it stamped?
+        if (randomVal <= letterScriptable.chanceToBeCorrectlyStamped)
         {
-            sealColor = GameSettings.Instance.red;
+            //set the seal to visible if it's sealed.
+            stampRenderer.gameObject.SetActive(true);
+            isPostageStamped = true;
         }
-        else if (randomVal > GameSettings.Instance.redChance && randomVal <= GameSettings.Instance.greenChance)
+
+        randomVal = Random.Range(0f, 1f);
+        
+
+        if (letterScriptable.isTracked && isPostageStamped)
         {
-            sealColor = GameSettings.Instance.green;
+            if(randomVal <= letterScriptable.chanceToBeTracked)
+            {
+                stampRenderer.sprite = trackedPostageStamp;
+                hasTrackingInfo = true;
+                randomVal = Random.Range(0f, 1f);
+            }
+            
+
+        }
+
+        
+
+        if (randomVal <= letterScriptable.chanceForInvalidSealColor)
+        {
+            sealColor = GameSettings.Instance.GetRandomColor();
+
         }
         else
         {
-            sealColor = GameSettings.Instance.blue;
+            if (randomVal <= GameSettings.Instance.redChance)
+            {
+                sealColor = GameSettings.Instance.red;
+            }
+            else if (randomVal > GameSettings.Instance.redChance && randomVal <= GameSettings.Instance.greenChance)
+            {
+                sealColor = GameSettings.Instance.green;
+            }
+            else
+            {
+                sealColor = GameSettings.Instance.blue;
+            }
         }
+
+        
 
         sealRenderer.color = sealColor;
 
@@ -150,14 +184,7 @@ public class InteractableLetter : MonoBehaviour
             isSealed = true;
         }
 
-        randomVal = Random.Range(0f, 1f);
-
-        if (randomVal <= letterScriptable.chanceToBeCorrectlyStamped)
-        {
-            //set the seal to visible if it's sealed.
-            stampRenderer.gameObject.SetActive(true);
-            isPostageStamped = true;
-        }
+        
 
 
 
@@ -172,25 +199,40 @@ public class InteractableLetter : MonoBehaviour
 
     }
 
-    public void StampWithColor(Color32 colorStamped)
+    public void StampWithColor(Color32 colorStamped, bool trackStampEnabled)
     {
         colorStampedWith = colorStamped;
         mechanicalStampZoneRenderer.color = colorStampedWith;
         mechanicalStampZoneRenderer.gameObject.SetActive(true);
+
+        
+
         if (colorStamped.Equals(sealColor))
         {
-            isCorrectColor = true;
+            isCorrectStampCombo = true;
         }
         else
         {
-            isCorrectColor = false;
+            isCorrectStampCombo = false;
         }
 
-        //if not valid and marked with orange, its the correct color.
-        if(!isValidOnArrival && colorStampedWith.Equals(GameSettings.Instance.delete))
+        if (letterScriptable.isTracked && trackedPostageStamp)
         {
-            isCorrectColor = true;
+            mechanicalStampZoneRenderer.sprite = trackedStamp;
         }
+        else if (letterScriptable.isTracked && !trackedPostageStamp)
+        {
+            isCorrectStampCombo = false;
+        }
+
+        //if not valid and marked with orange, its the correct color. will override tracking
+        if (!isValidOnArrival && colorStampedWith.Equals(GameSettings.Instance.delete))
+        {
+            isCorrectStampCombo = true;
+        }
+
+
+        
     }
 
     public void SetTarget(Transform pos)

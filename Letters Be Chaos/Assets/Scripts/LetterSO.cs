@@ -18,7 +18,11 @@ public class LetterSO : ScriptableObject
 
     [Tooltip("The chance that this letter type will be stamped as intended on spawn")]
     [Range(0, 1)] public float chanceToBeCorrectlyStamped;
-    
 
-    
+
+    [Tooltip("The chance that this letter will have an invalid color seal")]
+    [Range(0, 1)] public float chanceForInvalidSealColor;
+
+    [Tooltip("The chance that this letter will have Tracking Info")]
+    [Range(0, 1)] public float chanceToBeTracked;
 }
