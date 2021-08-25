@@ -49,6 +49,9 @@ public class StatControllerScript : MonoBehaviour
 
         // Checks whether to load a victory/failure scene if the usage is >= 100
         if (usage >= 100 && PlayerPrefs.GetInt("Score") > 0) {
+            if (PlayerPrefs.GetInt("Score") > 1000000) {
+                PlayerPrefs.SetInt("Diamond", 1);
+            }
             if (PlayerPrefs.GetInt("Score") > 50000) {
                 PlayerPrefs.SetInt("Purple", 1);
             }
