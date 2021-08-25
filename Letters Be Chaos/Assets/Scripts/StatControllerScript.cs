@@ -51,7 +51,8 @@ public class StatControllerScript : MonoBehaviour
         if (usage >= 100 && PlayerPrefs.GetInt("Score") > 0) {
             if (PlayerPrefs.GetInt("Score") > 50000) {
                 PlayerPrefs.SetInt("Purple", 1);
-            } else if (PlayerPrefs.GetInt("Score") > 10000) {
+            }
+            if (PlayerPrefs.GetInt("Score") > 10000) {
                 PlayerPrefs.SetInt("Gold", 1);
             }
             SceneManager.LoadScene(2); // Victory
