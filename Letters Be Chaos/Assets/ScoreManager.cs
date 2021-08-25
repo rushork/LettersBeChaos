@@ -18,6 +18,22 @@ public class ScoreManager : MonoBehaviour
         textAnim = textTemp.GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            AddPoints(500);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            AddPoints(1000);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            AddPoints(10000);
+        }
+    }
+
     public void AddPoints(int amount)
     {
         score += amount;
