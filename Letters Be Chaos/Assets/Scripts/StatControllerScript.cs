@@ -49,6 +49,11 @@ public class StatControllerScript : MonoBehaviour
 
         // Checks whether to load a victory/failure scene if the usage is >= 100
         if (usage >= 100 && PlayerPrefs.GetInt("Score") > 0) {
+            if (PlayerPrefs.GetInt("Score") > 50000) {
+                PlayerPrefs.SetInt("Purple", 1);
+            } else if (PlayerPrefs.GetInt("Score") > 10000) {
+                PlayerPrefs.SetInt("Gold", 1);
+            }
             SceneManager.LoadScene(2); // Victory
         } else if (usage >= 100 && PlayerPrefs.GetInt("Score") < 0) {
             SceneManager.LoadScene(3); // Failure
