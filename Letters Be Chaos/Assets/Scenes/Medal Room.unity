@@ -293,8 +293,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 3.2}
-  m_SizeDelta: {x: 32, y: 32}
+  m_AnchoredPosition: {x: -120, y: 3.2}
+  m_SizeDelta: {x: 38, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &413573091
 MonoBehaviour:
@@ -483,8 +483,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -180, y: 3.2}
-  m_SizeDelta: {x: 32, y: 32}
+  m_AnchoredPosition: {x: 0, y: 3.2}
+  m_SizeDelta: {x: 38, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &593893415
 MonoBehaviour:
@@ -800,8 +800,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -120, y: 3.2}
-  m_SizeDelta: {x: 32, y: 32}
+  m_AnchoredPosition: {x: -60, y: 3.2}
+  m_SizeDelta: {x: 38, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007274536
 MonoBehaviour:
@@ -858,7 +858,7 @@ MonoBehaviour:
   info: 'Purple
 
 
-    Achieved a score of over 50''000.'
+    Achieved a score of over 100''000.'
   unlockedSprite: {fileID: 21300000, guid: 56da09d80351bdb42b6f4c264b3a3110, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -928,7 +928,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 120, y: 3.2}
-  m_SizeDelta: {x: 32, y: 32}
+  m_SizeDelta: {x: 38, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1013376999
 MonoBehaviour:
@@ -1362,7 +1362,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 60, y: 3.2}
-  m_SizeDelta: {x: 32, y: 32}
+  m_SizeDelta: {x: 38, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1583438165
 MonoBehaviour:
@@ -1631,8 +1631,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -60, y: 3.2}
-  m_SizeDelta: {x: 32, y: 32}
+  m_AnchoredPosition: {x: -180, y: 3.2}
+  m_SizeDelta: {x: 38, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1845101251
 MonoBehaviour:
@@ -2085,7 +2085,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 180, y: 3.2}
-  m_SizeDelta: {x: 32, y: 32}
+  m_SizeDelta: {x: 38, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2121093515
 MonoBehaviour:

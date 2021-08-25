@@ -52,7 +52,7 @@ public class StatControllerScript : MonoBehaviour
             if (PlayerPrefs.GetInt("Score") > 1000000) {
                 PlayerPrefs.SetInt("Diamond", 1);
             }
-            if (PlayerPrefs.GetInt("Score") > 50000) {
+            if (PlayerPrefs.GetInt("Score") > 100000) {
                 PlayerPrefs.SetInt("Purple", 1);
             }
             if (PlayerPrefs.GetInt("Score") > 10000) {
