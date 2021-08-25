@@ -70,8 +70,15 @@ public class StampCollisionCheck : MonoBehaviour
         foreach(Collider2D letter in letters)
         {
             InteractableLetter letterScript = letter.GetComponent<InteractableLetter>();
-            if(letterScript != null)
+            if(letterScript != null && !letterScript.letterScriptable.isSpecial)
             {
+
+                Rigidbody2D body = letter.GetComponent<Rigidbody2D>();
+
+                Vector2 dir = (letter.transform.position - transform.position) * 400f;
+                
+                body.AddForce(dir);
+
                 if (letterScript.isValidOnArrival)
                 {
                     if (letterScript.GetSealColor().Equals(GameSettings.Instance.red))
@@ -106,9 +113,18 @@ public class StampCollisionCheck : MonoBehaviour
                     letterScript.StampWithColor(GameSettings.Instance.delete);
                 }
 
-                letterScript.SendForProcessing();
+                StartCoroutine(WaitFor(0.3f,letterScript, body));
+                //letterScript.SendForProcessing();
             }
         }
+    }
+
+    private IEnumerator WaitFor(float time, InteractableLetter letterScript, Rigidbody2D body)
+    {
+        yield return new WaitForSeconds(time);
+        body.velocity = Vector2.zero;
+        body.angularVelocity = 0;
+        letterScript.SendForProcessing();
     }
 
 }

@@ -17,7 +17,7 @@ public class LetterSpawner : MonoBehaviour
 
     private float originalTimeBeforeSpawnIntervalChange = 5;
     private float timeBeforeSpawnIntervalChange;
-    private float initialTimerValue = 5f;
+    private float initialTimerValue = 0.5f;
     private float currentTimerValue;
 
     private void Awake()
@@ -53,7 +53,7 @@ public class LetterSpawner : MonoBehaviour
     {
         
         //5% chance of a special letter.
-        InteractableLetter.CreateLetter(RollForSpecialLetter(0.05f),GetRandomSpawn(), GetRandomTarget(), currentZ);
+        InteractableLetter.CreateLetter(RollForSpecialLetter(0.4f),GetRandomSpawn(), GetRandomTarget(), currentZ);
         currentZ -= 0.5f;
         if(currentZ >= 500)
         {
