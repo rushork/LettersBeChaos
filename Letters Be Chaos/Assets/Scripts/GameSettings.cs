@@ -16,7 +16,7 @@ public class GameSettings : MonoBehaviour
     
     private int letterCount;
     private int tempLetterCount;
-    private float letterCountTotal;
+    private float totalLettersProcessed;
     private float letterCountCorrect;
     private float letterCountIncorrect;
     [Header("Letter UI")]
@@ -94,10 +94,11 @@ public class GameSettings : MonoBehaviour
         int points = 0;
         string debugMessage = "";
 
+
         if (!letter.letterScriptable.isSpecial)
         {
             //only count if not special.
-            letterCountTotal++;
+            totalLettersProcessed++;
 
             //if the letter is upright, with a valid color seal (rgb) and has a stamp:
             if (letter.isValidOnArrival)
@@ -255,131 +256,102 @@ public class GameSettings : MonoBehaviour
 
             }
 
-            //if it should be tracked, but isnt
-            if (!letter.hasBeenTrackStamped && letter.hasTrackingInfo)
-            {
-                iconSet = icon_NotTracked;
 
-                //if it isnt sealed
-                if (!letter.isSealed)
+            //Is the letter sealed?
+            if (letter.isSealed)
+            {
+                //Is the seal a valid color, and have we stamped it right?
+                if (letter.isCorrectColorCombo)
                 {
-                    iconSet = icon_NoSeal_NotTracked;
                     if (letter.isPostageStamped)
                     {
-                        //is it upside down?
-                        if (letter.isUpsideDown)
+                        if (letter.hasTrackingInfo)
                         {
-                            //no seal, has an upsidedown stamp and isnt tracked
-                            iconSet = icon_NoSeal_NotTracked_UpsideStamp;
+                            if (!letter.hasBeenTrackStamped)
+                            {
+                                iconSet = icon_NotTracked;
 
-
+                                if (letter.isUpsideDown)
+                                {
+                                    iconSet = icon_UpsideStamp_NotTracked;
+                                }
+                            }
                         }
                         else
                         {
-                            //it has no seal, but the stamp is correct.
-
-                        }
-                    }
-                    //the letter must be postage stamped to have tracking info, so there is no "else";
-                    
-                }
-                else
-                {
-                    //if it is sealed
-                    if (!letter.isCorrectColorCombo)
-                    {
-                        //its not the right color
-                        iconSet = icon_WrongColor_NotTracked;
-
-                        if (letter.isUpsideDown)
-                        {
-                            //it has a stamp, but its the wrong way up
-                            iconSet = icon_WrongColor_NotTracked_UpsideStamp;
-                        }
-
-                    }
-                    else
-                    {
-                        //if everything else checks out, and its the right color combo, then its untracked with an upside down stamp.
-                        if (letter.isUpsideDown)
-                        {
-                            iconSet = icon_UpsideStamp_NotTracked;
-                        }
-                    }
-  
-                }
-            }
-            else if (!letter.isSealed)
-            {
-                //if it has a stamp:
-                if (letter.isPostageStamped)
-                {
-                    //is it upside down?
-                    if (letter.isUpsideDown)
-                    {
-                        //it has no seal, but has an upsidedown stamp
-                        iconSet = icon_NoSeal_UpsideStamp;
-
-                        
-                    }
-                    else
-                    {
-                        //it has no seal, but the stamp is correct.
-
-                    }
-                }
-                else
-                {
-                    //it doesnt have a seal or a stamp.
-                    iconSet = icon_NoSeal_NoStamp;
-                }
-
-
-            }
-            else
-            {
-                //it has a seal BUT
-                if (!letter.isCorrectColorCombo)
-                {
-                    //its not the right color
-                    iconSet = icon_WrongColor;
-                    Debug.Log("set color");
-                    if (!letter.isPostageStamped)
-                    {
-                        //it has the wrong color, and it isnt stamped
-                        iconSet = icon_WrongColor_NoStamp;
-                    }
-                    else
-                    {
-                        if (letter.isUpsideDown)
-                        {
-                            //it has a stamp, but its the wrong way up
-                            iconSet = icon_WrongColor_UpsideStamp;
-                        }
-                    }
-                }
-                else
-                {
-                    if (!letter.colorStampedWith.Equals(delete))
-                    {
-                        //its the correct color BUT:
-                        if (!letter.isPostageStamped)
-                        {
-                            //it isnt stamped:
-                            iconSet = icon_NoStamp;
-                        }
-                        else
-                        {
-                            //it is stamped, but its the wrong way up.
                             if (letter.isUpsideDown)
                             {
                                 iconSet = icon_UpsideStamp;
                             }
                         }
                     }
-
+                    else
+                    {
+                        iconSet = icon_NoStamp;
+                    }
                 }
+                else
+                {
+                    iconSet = icon_WrongColor;
 
+                    if (letter.isPostageStamped)
+                    {
+                        if (letter.hasTrackingInfo)
+                        {
+                            if (!letter.hasBeenTrackStamped)
+                            {
+                                iconSet = icon_WrongColor_NotTracked;
+
+                                if (letter.isUpsideDown)
+                                {
+                                    iconSet = icon_WrongColor_NotTracked_UpsideStamp;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (letter.isUpsideDown)
+                            {
+                                iconSet = icon_WrongColor_UpsideStamp;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        iconSet = icon_WrongColor_NoStamp;
+                    }
+                }
+            }
+            else
+            {
+                iconSet = icon_NoSeal;
+
+                if (letter.isPostageStamped)
+                {
+                    if (letter.hasTrackingInfo)
+                    {
+                        if (!letter.hasBeenTrackStamped)
+                        {
+                            iconSet = icon_NoSeal_NotTracked;
+
+                            if (letter.isUpsideDown)
+                            {
+                                iconSet = icon_NoSeal_NotTracked_UpsideStamp;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (letter.isUpsideDown)
+                        {
+                            iconSet = icon_NoSeal_UpsideStamp;
+                        }
+                    }
+                }
+                else
+                {
+                    iconSet = icon_NoSeal_NoStamp;
+                }
             }
 
         }
@@ -418,13 +390,13 @@ public class GameSettings : MonoBehaviour
         letterCountCorrectText.text = "Correct: " + "<color=#31A62E>" + letterCountCorrect.ToString() + "</color>";
         letterCountIncorrectText.text = "Incorrect: " + "<color=#B03E3E>" + letterCountIncorrect.ToString() + "</color>";
 
-        if(letterCountTotal > 0)
+        if(totalLettersProcessed > 0)
         {
-            AccuracyText.text = "Accuracy:<color=#" + GetHexColorFromFloat(letterCountCorrect / letterCountTotal) + ">" + ((letterCountCorrect / letterCountTotal) * 100).ToString("F0") + "%</color>";
+            AccuracyText.text = "Accuracy:<color=#" + GetHexColorFromFloat(letterCountCorrect / totalLettersProcessed) + ">" + ((letterCountCorrect / totalLettersProcessed) * 100).ToString("F0") + "%</color>";
         }
         else
         {
-            AccuracyText.text = "Accuracy:<color=#" + GetHexColorFromFloat(letterCountCorrect / letterCountTotal) + ">" + "100%</color>";
+            AccuracyText.text = "Accuracy:<color=#" + GetHexColorFromFloat(letterCountCorrect / totalLettersProcessed) + ">" + "100%</color>";
         }
 
 

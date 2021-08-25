@@ -309,7 +309,19 @@ MonoBehaviour:
   delete:
     serializedVersion: 2
     rgba: 4278872826
-  invalidColors: []
+  invalidColors:
+  - serializedVersion: 2
+    rgba: 4286980561
+  - serializedVersion: 2
+    rgba: 4280406465
+  - serializedVersion: 2
+    rgba: 4294901693
+  - serializedVersion: 2
+    rgba: 4278604804
+  - serializedVersion: 2
+    rgba: 4284374682
+  - serializedVersion: 2
+    rgba: 4290194026
   redLocation: {fileID: 1494050577}
   greenLocation: {fileID: 1706760272}
   blueLocation: {fileID: 1367516889}
