@@ -9,13 +9,19 @@ using UnityEngine;
 public class LetterSpawner : MonoBehaviour
 {
     [SerializeField] Transform letterPrefab_Basic;
+
+    [Header("Bombs")]
     [SerializeField] Transform letterPrefab_Bomb;
+    [SerializeField] Transform letterPrefab_BombR;
+    [SerializeField] Transform letterPrefab_BombG;
+    [SerializeField] Transform letterPrefab_BombB;
+    [SerializeField] private float chanceForDangerBomb; //danger bombs send letters absolutely anywhere with a 5X MULTIPLIER! 
 
     public List<Transform> spawnLocations;
     private BoxCollider2D areaToSpawn;
     private float currentZ = 0f;
 
-    private float originalTimeBeforeSpawnIntervalChange = 5;
+    private float originalTimeBeforeSpawnIntervalChange = 2.5f;
     private float timeBeforeSpawnIntervalChange;
     private float initialTimerValue = 5f;
     private float currentTimerValue;
@@ -43,10 +49,14 @@ public class LetterSpawner : MonoBehaviour
         if(timeBeforeSpawnIntervalChange <= 0)
         {
             //increase the interval by 5 seconds each time
-            timeBeforeSpawnIntervalChange = (originalTimeBeforeSpawnIntervalChange += 2.5f);
+            timeBeforeSpawnIntervalChange = (originalTimeBeforeSpawnIntervalChange += 3.5f);
             //Spawn letters 15% faster every 10 seconds ish.
-            initialTimerValue *= 0.85f;
-            initialTimerValue = Mathf.Round(initialTimerValue * 100) / 100f;
+            if(initialTimerValue > 0.25f)
+            {
+                initialTimerValue *= 0.85f;
+                initialTimerValue = Mathf.Round(initialTimerValue * 100) / 100f;
+            }
+            
         }
     }
 
@@ -75,11 +85,34 @@ public class LetterSpawner : MonoBehaviour
     //chance is the chance of this letter changing
     private Transform RollForSpecialLetter(float chance)
     {
-        float random = Random.Range(0, 1f);
+        float random = Random.Range(0f, 1f);
+        random = Mathf.Round(random * 1000) / 1000;
         if(random <= chance)
         {
             //for now, theres only bombs.
-            return letterPrefab_Bomb;
+            random = Random.Range(0f, 1f);
+            if(random <= chanceForDangerBomb)
+            {
+                int random2 = Random.Range(1, 4);
+                if(random2 == 1)
+                {
+                    return letterPrefab_BombR;
+                }
+                else if (random2 == 2)
+                {
+                    return letterPrefab_BombG;
+                }
+                else
+                {
+                    return letterPrefab_BombB;
+                }
+            }
+            else
+            {
+                return letterPrefab_Bomb;
+            }
+            
+            
         }
         else
         {

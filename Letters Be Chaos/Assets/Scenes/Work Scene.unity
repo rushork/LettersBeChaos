@@ -287,6 +287,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arm: {fileID: 837519898}
+  secondColorTimer: 30
+  thirdColorTimer: 60
+  upsideStampTimer: 75
+  noStampTimer: 45
+  trackingTimer: 90
+  noSealTimer: 80
+  invalidColorTimer: 120
+  specialLetterTimer: 120
+  secondColorAllowed: 0
+  thirdColorAllowed: 0
+  upsideStampAllowed: 0
+  noStampAllowed: 0
+  noSealAllowed: 0
+  trackingAllowed: 0
+  invalidColorAllowed: 0
+  specialLettersAllowed: 0
   letterCountText: {fileID: 1040350647}
   letterCountCorrectText: {fileID: 750994582}
   letterCountIncorrectText: {fileID: 13652852}
@@ -327,8 +343,8 @@ MonoBehaviour:
   blueLocation: {fileID: 1367516889}
   deleteLocation: {fileID: 1214396101}
   redChance: 0.1
-  greenChance: 0.4
-  blueChance: 0.5
+  greenChance: 0.5
+  blueChance: 0.4
   icon_WrongColor: {fileID: 21300000, guid: bc5a107e59feae14789a747b6a42301c, type: 3}
   icon_NoStamp: {fileID: 21300000, guid: 3d6c197ea46645e48ab6c60a0a5f286e, type: 3}
   icon_UpsideStamp: {fileID: 21300000, guid: 1a5885f5ea3d53e4eb2fb50742b0ca77, type: 3}
@@ -3496,6 +3512,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   letterPrefab_Basic: {fileID: 2170503785109212156, guid: 37e0c4e1ca71edb4399e5d009418de91, type: 3}
   letterPrefab_Bomb: {fileID: 2170503785109212156, guid: 756840a29879746449c3a787bbca8b5e, type: 3}
+  letterPrefab_BombR: {fileID: 2170503785109212156, guid: 5266ac9936a9d1341a4a56ed9cfd33ee, type: 3}
+  letterPrefab_BombG: {fileID: 2170503785109212156, guid: c58d49ba6cf26054397dd3713d9264f5, type: 3}
+  letterPrefab_BombB: {fileID: 2170503785109212156, guid: 2100bebc51e5f6b41ad467326acf210c, type: 3}
+  chanceForDangerBomb: 0.6
   spawnLocations:
   - {fileID: 1646808215}
   - {fileID: 445295115}

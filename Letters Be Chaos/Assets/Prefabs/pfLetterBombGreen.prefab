@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 8695004542617228757}
   - component: {fileID: 5343853080559400252}
   m_Layer: 2
-  m_Name: pfLetterBomb
+  m_Name: pfLetterBombGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0d169477b9ed8488f085de17e55e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterScriptable: {fileID: 11400000, guid: c7413ddce31c7e34194c5083b8a06f8d, type: 2}
+  letterScriptable: {fileID: 11400000, guid: 1e2466ef02b46e24f830f005973e6a2d, type: 2}
   mechanicalStampZoneRenderer: {fileID: 2606655753090066846}
   trackedStamp: {fileID: 0}
   trackedPostageStamp: {fileID: 0}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b133b60271986be47bb555a7090e862a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestructionTimerMax: 6
+  DestructionTimerMax: 12
   text: {fileID: 2050822871305183338}
   animPrefab: {fileID: 2170503785109212156, guid: ab392234c7e7e1c4f9f2992cf5a0990c, type: 3}
 --- !u!1 &2170503785145343180
@@ -510,7 +510,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4f6b960ccda3dc046a0736dd556bacd5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec5e43d525b9ca048b1320a46bcdf735, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -651,7 +651,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0033, y: 0.089}
+  m_AnchoredPosition: {x: -0.1365, y: -0.0245}
   m_SizeDelta: {x: 0.14043, y: 0.09594}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &8291526453697635841
@@ -724,8 +724,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4282170998
+  m_fontColor: {r: 0.4610257, g: 0.745283, b: 0.23553754, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

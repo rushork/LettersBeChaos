@@ -52,12 +52,7 @@ public class ComboManager : MonoBehaviour
 
     private void Update()
     {
-        //every 10 letters, add another combo.
-        if(correctSequentialStamps5orMore == 5)
-        {
-            correctSequentialStamps5orMore = 0;
-            AddMultiplier(0.2f);
-        }
+        
 
 
         //Only fires once, and thats if 10 were stamped.
@@ -68,7 +63,23 @@ public class ComboManager : MonoBehaviour
             {
                 correctSequentialStamps10orMore = 0;
                 checkingForSequentialStampCombo = false;
-                AddMultiplier(1.5f);
+
+                //every 5 letters, add another combo.
+                if (correctSequentialStamps5orMore == 5)
+                {
+                    correctSequentialStamps5orMore = 0;
+                    AddMultiplier(2f);
+                }
+                else
+                {
+                    AddMultiplier(1.5f);
+                }
+
+            }
+            else if(correctSequentialStamps5orMore == 5)
+            {
+                correctSequentialStamps5orMore = 0;
+                AddMultiplier(0.2f);
             }
         }
 
@@ -135,7 +146,7 @@ public class ComboManager : MonoBehaviour
 
     private void ResetMultiplier()
     {
-        comboMultiplier = 0f;
+        comboMultiplier = 1f;
         comboTextDebug.text = "1x Multiplier";
         //reset all booleans
         checkingForSequentialStampCombo = true;
@@ -237,7 +248,6 @@ public class ComboManager : MonoBehaviour
         {
             if (!hasStampedOrange)
             {
-                Debug.Log("orange");
                 hasStampedOrange = true;
             }
             else

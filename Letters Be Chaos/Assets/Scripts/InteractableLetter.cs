@@ -37,6 +37,7 @@ public class InteractableLetter : MonoBehaviour
     private bool highlightable; //can this be highlighted?
     private bool isBeingProcessed;
     private bool isHighlighted;
+    [HideInInspector] public bool usagePenaltyEnabled;
     [HideInInspector] public bool hasBeenSelected;
 
     //these values are decided after spawning
@@ -119,50 +120,110 @@ public class InteractableLetter : MonoBehaviour
         float randomVal = Random.Range(0f, 1f);
 
         //is it stamped?
-        if (randomVal <= letterScriptable.chanceToBeCorrectlyStamped)
+        if (GameSettings.Instance.noStampAllowed)
         {
-            //set the seal to visible if it's sealed.
-            stampRenderer.gameObject.SetActive(true);
-            isPostageStamped = true;
-        }
-
-        randomVal = Random.Range(0f, 1f);
-        
-
-        if (letterScriptable.isTracked && isPostageStamped)
-        {
-            if(randomVal <= letterScriptable.chanceToBeTracked)
+            if (randomVal <= letterScriptable.chanceToBeCorrectlyStamped)
             {
-                stampRenderer.sprite = trackedPostageStamp;
-                hasTrackingInfo = true;
-                
+                //set the seal to visible if it's sealed.
+                stampRenderer.gameObject.SetActive(true);
+                isPostageStamped = true;
             }
-            
-
-        }
-
-        randomVal = Random.Range(0f, 1f);
-
-        if (randomVal <= letterScriptable.chanceForInvalidSealColor)
-        {
-            sealColor = GameSettings.Instance.GetRandomColor();
-            hasInvalidColor = true;
         }
         else
         {
-            if (randomVal <= GameSettings.Instance.redChance)
+            if (!letterScriptable.isSpecial)
             {
-                sealColor = GameSettings.Instance.red;
+                stampRenderer.gameObject.SetActive(true);
+                isPostageStamped = true;
             }
-            else if (randomVal > GameSettings.Instance.redChance && randomVal <= GameSettings.Instance.greenChance)
+        }
+        
+
+        randomVal = Random.Range(0f, 1f);
+
+
+        if (GameSettings.Instance.trackingAllowed)
+        {
+            if (letterScriptable.isTracked && isPostageStamped)
             {
-                sealColor = GameSettings.Instance.green;
+                if (randomVal <= letterScriptable.chanceToBeTracked)
+                {
+                    stampRenderer.sprite = trackedPostageStamp;
+                    hasTrackingInfo = true;
+
+                }
+
+
+            }
+        }
+        
+
+        randomVal = Random.Range(0f, 1f);
+
+        if (GameSettings.Instance.invalidColorAllowed)
+        {
+            if (randomVal <= letterScriptable.chanceForInvalidSealColor)
+            {
+                sealColor = GameSettings.Instance.GetRandomColor();
+                hasInvalidColor = true;
             }
             else
             {
-                sealColor = GameSettings.Instance.blue;
+                if (randomVal <= GameSettings.Instance.redChance)
+                {
+                    sealColor = GameSettings.Instance.red;
+                }
+                else if (randomVal > GameSettings.Instance.redChance && randomVal <= GameSettings.Instance.greenChance)
+                {
+                    sealColor = GameSettings.Instance.green;
+                }
+                else
+                {
+                    sealColor = GameSettings.Instance.blue;
+                }
             }
         }
+        else
+        {
+            if(GameSettings.Instance.secondColorAllowed)
+            {
+                if (randomVal <= GameSettings.Instance.redChance)
+                {
+                    if (GameSettings.Instance.thirdColorAllowed)
+                    {
+                        sealColor = GameSettings.Instance.red;
+                    }
+                    else
+                    {
+                        if (randomVal <= GameSettings.Instance.greenChance)
+                        {
+                            sealColor = GameSettings.Instance.green;
+                        }
+                        else
+                        {
+
+                            sealColor = GameSettings.Instance.blue;
+                        }
+                    }
+                    
+                }
+                else if (randomVal > GameSettings.Instance.redChance && randomVal <= GameSettings.Instance.greenChance)
+                {
+                    sealColor = GameSettings.Instance.green;
+                }
+                else
+                {
+                    
+                    sealColor = GameSettings.Instance.blue;
+                }
+            }
+            else
+            {
+                sealColor = GameSettings.Instance.green;
+            }
+        }
+
+        
 
         
 
@@ -171,21 +232,39 @@ public class InteractableLetter : MonoBehaviour
         randomVal = Random.Range(0f, 1f);
 
         //chance to flip
-        if (randomVal <= letterScriptable.chanceToSpawnStampFlipped)
+        if (GameSettings.Instance.upsideStampAllowed)
         {
-            stampRenderer.flipY = true;
-            isUpsideDown = true;
+            if (randomVal <= letterScriptable.chanceToSpawnStampFlipped)
+            {
+                stampRenderer.flipY = true;
+                isUpsideDown = true;
+            }
         }
+        
 
         randomVal = Random.Range(0f, 1f);
 
         //chance to spawn sealed
-        if (randomVal <= letterScriptable.chanceToSpawnSealed)
+        if (GameSettings.Instance.noSealAllowed)
         {
-            //set the seal to visible if it's sealed.
-            sealRenderer.gameObject.SetActive(true);
-            isSealed = true;
+            if (randomVal <= letterScriptable.chanceToSpawnSealed)
+            {
+                //set the seal to visible if it's sealed.
+                sealRenderer.gameObject.SetActive(true);
+                isSealed = true;
+            }
         }
+        else
+        {
+            //as long as it isnt a special letter, it should be active.
+            if (!letterScriptable.isSpecial)
+            {
+                sealRenderer.gameObject.SetActive(true);
+                isSealed = true;
+            }
+            
+        }
+        
 
         
 

@@ -6,12 +6,12 @@ public class StampCollisionCheck : MonoBehaviour
 {
     [SerializeField] StampingArm arm;
     [HideInInspector] public bool hasHitLetter;
-
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         InteractableLetter letter = collision.GetComponent<InteractableLetter>();
-        
+        bool avoidStandardProcessing = false;
         if (letter != null)
         {
             
@@ -28,6 +28,59 @@ public class StampCollisionCheck : MonoBehaviour
                     AudioManager.Instance.Play("Explosion");
                     Explode();
                 }
+                else if (letter.letterScriptable.nameString == "BombR")
+                {
+                    if (arm.GetColor().Equals(GameSettings.Instance.red))
+                    {
+                        AudioManager.Instance.Play("Explosion");
+                        ExplodeAtRandom("red");
+                        avoidStandardProcessing = true;
+                    }
+                    else
+                    {
+                        //misfire
+                        letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
+                        GameSettings.Instance.IncreaseRandom(10);
+                        AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
+
+                    }
+                    
+                }
+                else if (letter.letterScriptable.nameString == "BombB")
+                {
+                    if (arm.GetColor().Equals(GameSettings.Instance.blue))
+                    {
+                        AudioManager.Instance.Play("Explosion");
+                        ExplodeAtRandom("green");
+                        avoidStandardProcessing = true;
+                    }
+                    else
+                    {
+                        //misfire
+                        letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
+                        GameSettings.Instance.IncreaseRandom(10);
+                        AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
+                    }
+
+                }
+                else if (letter.letterScriptable.nameString == "BombG")
+                {
+                    if (arm.GetColor().Equals(GameSettings.Instance.green))
+                    {
+                        AudioManager.Instance.Play("Explosion");
+                        ExplodeAtRandom("blue");
+                        avoidStandardProcessing = true;
+                    }
+                    else
+                    {
+                        //misfire
+                        letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
+                        GameSettings.Instance.IncreaseRandom(10);
+                        AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
+                    }
+
+                }
+
 
                 hasHitLetter = true;
 
@@ -58,7 +111,18 @@ public class StampCollisionCheck : MonoBehaviour
 
                 letter.StampWithColor(arm.GetColor(), arm.isStampingTracked);
                 AudioManager.Instance.Play("InkyThud");
-                letter.SendForProcessing();
+
+                if (avoidStandardProcessing)
+                {
+                    letter.usagePenaltyEnabled = false;
+                    letter.SendForProcessing();
+                }
+                else
+                {
+                    letter.usagePenaltyEnabled = true;
+                    letter.SendForProcessing();
+                }
+                
 
             }
         }
@@ -120,11 +184,63 @@ public class StampCollisionCheck : MonoBehaviour
         }
     }
 
+    //Will send all letters to the same color regardless. Must be stamped with the right color to work!
+    private void ExplodeAtRandom(string color)
+    {
+        Collider2D[] letters = Physics2D.OverlapCircleAll(transform.position, 5f, 1 << LayerMask.NameToLayer("Letters"));
+
+        foreach (Collider2D letter in letters)
+        {
+            InteractableLetter letterScript = letter.GetComponent<InteractableLetter>();
+            if (letterScript != null && !letterScript.letterScriptable.isSpecial)
+            {
+
+                Rigidbody2D body = letter.GetComponent<Rigidbody2D>();
+
+                Vector2 dir = (letter.transform.position - transform.position) * 400f;
+
+                body.AddForce(dir);
+
+                Color32 currentColor;
+                Transform currentTransformTarget;
+                if(color == "red")
+                {
+                    currentColor = GameSettings.Instance.red;
+                    currentTransformTarget = GameSettings.Instance.redLocation;
+                }
+                else if (color == "green")
+                {
+                    currentColor = GameSettings.Instance.blue;
+                    currentTransformTarget = GameSettings.Instance.blueLocation;
+                }
+                else
+                {
+                    currentColor = GameSettings.Instance.green;
+                    currentTransformTarget = GameSettings.Instance.greenLocation;
+                }
+
+                letterScript.SetTarget(currentTransformTarget);
+                letterScript.StampWithColor(currentColor, arm.isStampingTracked);
+
+                StartCoroutine(WaitFor(0.2f, letterScript, body));
+                //letterScript.SendForProcessing();
+            }
+
+
+
+
+        }
+    }
+
     private IEnumerator WaitFor(float time, InteractableLetter letterScript, Rigidbody2D body)
     {
         yield return new WaitForSeconds(time);
-        body.velocity = Vector2.zero;
-        body.angularVelocity = 0;
+        if(body != null)
+        {
+            body.velocity = Vector2.zero;
+            body.angularVelocity = 0;
+        }
+        
         letterScript.SendForProcessing();
     }
 

@@ -311,3 +311,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 6253461821577139181}
   iconRenderer: {fileID: 6935623155655233211}
+  lessThan100:
+    serializedVersion: 2
+    rgba: 4280597225
+  lessThan300:
+    serializedVersion: 2
+    rgba: 4280609146
+  lessThan500:
+    serializedVersion: 2
+    rgba: 4290113866
+  lessThan1000:
+    serializedVersion: 2
+    rgba: 4289608435
+  lessThan5000:
+    serializedVersion: 2
+    rgba: 4292683670
+  lessThan10000:
+    serializedVersion: 2
+    rgba: 4278811594

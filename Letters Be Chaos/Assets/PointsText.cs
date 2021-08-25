@@ -18,10 +18,17 @@ public class PointsText : MonoBehaviour
 
     [SerializeField]private TextMeshPro text;
     [SerializeField]private SpriteRenderer iconRenderer;
+    public Color32 lessThan100;
+    public Color32 lessThan300;
+    public Color32 lessThan500;
+    public Color32 lessThan1000;
+    public Color32 lessThan5000;
+    public Color32 lessThan10000;
     private float disappearTimer;
     private Color textColor;
     private Color iconColor;
     private Color originalTextColor;
+    
     private float originalFontSize;
     private const float DISAPPEAR_TIMER_MAX = 0.6f;
 
@@ -37,7 +44,34 @@ public class PointsText : MonoBehaviour
         if (!isNegative)
         {
             text.fontSize = originalFontSize;
-            textColor = originalTextColor;
+            
+
+
+            if(pointsValue < 100)
+            {
+                textColor = lessThan100;
+            }
+            else if (pointsValue < 300)
+            {
+                textColor = lessThan300;
+            }
+            else if (pointsValue < 500)
+            {
+                textColor = lessThan500;
+            }
+            else if (pointsValue < 1000)
+            {
+                textColor = lessThan1000;
+            }
+            else if (pointsValue < 5000)
+            {
+                textColor = lessThan5000;
+            }
+            else
+            {
+                textColor = lessThan10000;
+            }
+
         }
         else
         {

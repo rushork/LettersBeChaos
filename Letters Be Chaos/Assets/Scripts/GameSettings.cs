@@ -14,13 +14,35 @@ public class GameSettings : MonoBehaviour
 
     public StampingArm arm;
 
-    
+    //Gradual Increases
+    [Header("Time Until Allowed")]
+    [SerializeField] private float secondColorTimer;
+    [SerializeField] private float thirdColorTimer;
+    [SerializeField] private float upsideStampTimer;
+    [SerializeField] private float noStampTimer;
+    [SerializeField] private float trackingTimer;
+    [SerializeField] private float noSealTimer;
+    [SerializeField] private float invalidColorTimer;
+    [SerializeField] private float specialLetterTimer;
+    [HideInInspector]public bool secondColorAllowed;
+    [HideInInspector]public bool thirdColorAllowed;
+    [HideInInspector]public bool upsideStampAllowed;
+    [HideInInspector]public bool noStampAllowed;
+    [HideInInspector]public bool noSealAllowed;
+    [HideInInspector]public bool trackingAllowed;
+    [HideInInspector]public bool invalidColorAllowed;
+    [HideInInspector]public bool specialLettersAllowed;
+
+
+
+    //Counts
     private int letterCount;
-    
     private int tempLetterCount;
     private float totalLettersProcessed;
     private float letterCountCorrect;
     private float letterCountIncorrect;
+
+
     [Header("Letter UI")]
     public TextMeshProUGUI letterCountText;
     public TextMeshProUGUI letterCountCorrectText;
@@ -84,6 +106,12 @@ public class GameSettings : MonoBehaviour
         AccuracyText.text = "Accuracy: --";
     }
 
+
+    private void Start()
+    {
+        ManageGradualDifficultyIncrease();
+    }
+
     /// <summary>
     /// Sort the letter and assign points.
     /// </summary>
@@ -115,7 +143,7 @@ public class GameSettings : MonoBehaviour
                     //incorrect stamped with tracking info, wasting company money.
                     AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     points -= 400;
-                    increaseRandom(25);
+                    IncreaseRandomCheckPenaltyStatus(letter,25);
                 }
 
                 //if the letter was correctly stamped by the player
@@ -167,24 +195,24 @@ public class GameSettings : MonoBehaviour
                     {
                         debugMessage += " Was incorrect color: red";
                         points -= 150;
-                    
-                        increaseRandom(10);
+
+                        IncreaseRandomCheckPenaltyStatus(letter, 10);
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     }
                     else if (letter.GetSealColor().Equals(blue))
                     {
                         debugMessage += " Was incorrect color: blue";
                         points -= 80;
-                      
-                        increaseRandom(10);
+
+                        IncreaseRandomCheckPenaltyStatus(letter, 10);
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     }
                     else if (letter.GetSealColor().Equals(green))
                     {
                         debugMessage += " Was incorrect color: green";
                         points -= 50;
-                      
-                        increaseRandom(10);
+
+                        IncreaseRandomCheckPenaltyStatus(letter, 10);
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     }
                     else if (letter.GetSealColor().Equals(delete))
@@ -194,7 +222,7 @@ public class GameSettings : MonoBehaviour
                         debugMessage += " Was incorrectly marked for deletion.";
                      
                         points -= 500; //lose a lot of points
-                        increaseRandom(25);
+                        IncreaseRandomCheckPenaltyStatus(letter, 25);
                     }
                 }
             }
@@ -219,22 +247,22 @@ public class GameSettings : MonoBehaviour
                     {
                         //sending a high priority letter which is invalid loses more points than a low priority letter.
                         points -= 150;
-                        
-                        increaseRandom(15);
+
+                        IncreaseRandomCheckPenaltyStatus(letter, 15);
                     }
                     //if the seal is blue:
                     else if (letter.GetSealColor().Equals(blue))
                     {
                         points -= 80;
-                      
-                        increaseRandom(15);
+
+                        IncreaseRandomCheckPenaltyStatus(letter, 15);
                     }
                     //if the seal is green:
                     else if (letter.GetSealColor().Equals(green))
                     {
                         points -= 50;
-                       
-                        increaseRandom(15);
+
+                        IncreaseRandomCheckPenaltyStatus(letter, 15);
                     }
 
 
@@ -243,7 +271,7 @@ public class GameSettings : MonoBehaviour
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                         //you missed a high priority letter.
                         points -= 150;
-                        increaseRandom(20);
+                        IncreaseRandomCheckPenaltyStatus(letter, 20);
                     }
 
                     
@@ -360,7 +388,22 @@ public class GameSettings : MonoBehaviour
             //the letter is special. Add points for a special letter.
             if(letter.letterScriptable.nameString == "Bomb")
             {
-                points += 1000;
+                points += 100;
+            }
+            else if (letter.letterScriptable.nameString == "BombR")
+            {
+                ComboManager.Instance.AddMultiplier(4);
+                points += 100;
+            }
+            else if (letter.letterScriptable.nameString == "BombB")
+            {
+                ComboManager.Instance.AddMultiplier(6);
+                points += 100;
+            }
+            else if (letter.letterScriptable.nameString == "BombG")
+            {
+                ComboManager.Instance.AddMultiplier(8);
+                points += 100;
             }
         }
         
@@ -450,7 +493,7 @@ public class GameSettings : MonoBehaviour
         tempLetterCount++;
         if (tempLetterCount > 5)
         {
-            increaseRandom(10);
+            IncreaseRandom(10);
             tempLetterCount = 0;
         }
 
@@ -458,8 +501,18 @@ public class GameSettings : MonoBehaviour
 
     }
 
+    //check if this letter modifies the stat usage
+    public void IncreaseRandomCheckPenaltyStatus(InteractableLetter letter, int usageIncrease)
+    {
+        if (letter.usagePenaltyEnabled)
+        {
+            IncreaseRandom(usageIncrease);
+        }
+    }
+
     // Increases a random stat.
-    void increaseRandom(int usageIncrease) {
+    public void IncreaseRandom(int usageIncrease) {
+        
         int r = Random.Range(0, 3);
 
         switch (r) {
@@ -480,7 +533,6 @@ public class GameSettings : MonoBehaviour
     public Color32 GetRandomColor()
     {
         int random = Random.Range(0, invalidColors.Count);
-        Debug.Log(random);
         for(int i = 0; i < invalidColors.Count; i++)
         {
             if(random == i)
@@ -510,4 +562,64 @@ public class GameSettings : MonoBehaviour
         }
     }
    
+
+
+
+
+
+
+
+
+    //code to do with slowly introducing new concepts.
+    public void ManageGradualDifficultyIncrease()
+    {
+        Invoke("AllowSecondColor",secondColorTimer);
+        Invoke("AllowThirdColor", thirdColorTimer);
+        Invoke("AllowNoSeal", noSealTimer);
+        Invoke("AllowTracking", trackingTimer);
+        Invoke("AllowNoStamp", noStampTimer);
+        Invoke("AllowUpsideStamp", upsideStampTimer);
+        Invoke("AllowInvalidColor", invalidColorTimer);
+        Invoke("AllowSpecialLetters", specialLetterTimer);
+    }
+
+    private void AllowSecondColor()
+    {
+        secondColorAllowed = true;
+    }
+
+    private void AllowThirdColor()
+    {
+        thirdColorAllowed = true;
+    }
+
+    private void AllowNoSeal()
+    {
+        noSealAllowed = true;
+    }
+
+    private void AllowTracking()
+    {
+        trackingAllowed = true;
+    }
+
+    private void AllowNoStamp()
+    {
+        noStampAllowed = true;
+    }
+
+    private void AllowUpsideStamp()
+    {
+        upsideStampAllowed = true;
+    }
+
+    private void AllowInvalidColor()
+    {
+        invalidColorAllowed = true;
+    }
+
+    private void AllowSpecialLetters()
+    {
+        specialLettersAllowed = true;
+    }
 }
