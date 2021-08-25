@@ -46,6 +46,7 @@ public class InteractableLetter : MonoBehaviour
     public bool isCorrectColorCombo;
     public bool isSealed;
     public bool isPostageStamped;
+    public bool hasInvalidColor;
     public bool isValidOnArrival; // letters are only valid if they have an upright stamp, a valid coloured seal and no defects
     
 
@@ -133,7 +134,7 @@ public class InteractableLetter : MonoBehaviour
             {
                 stampRenderer.sprite = trackedPostageStamp;
                 hasTrackingInfo = true;
-                randomVal = Random.Range(0f, 1f);
+                
             }
             
 
@@ -144,7 +145,7 @@ public class InteractableLetter : MonoBehaviour
         if (randomVal <= letterScriptable.chanceForInvalidSealColor)
         {
             sealColor = GameSettings.Instance.GetRandomColor();
-
+            hasInvalidColor = true;
         }
         else
         {
@@ -189,7 +190,7 @@ public class InteractableLetter : MonoBehaviour
 
 
 
-        if(isSealed && !isUpsideDown && isPostageStamped)
+        if(isSealed && !isUpsideDown && isPostageStamped && !hasInvalidColor)
         {
             isValidOnArrival = true;
         }
@@ -217,12 +218,12 @@ public class InteractableLetter : MonoBehaviour
             isCorrectColorCombo = false;
         }
 
-        if (letterScriptable.isTracked && trackedPostageStamp)
+        if (letterScriptable.isTracked && trackedPostageStamp && trackStampEnabled)
         {
             mechanicalStampZoneRenderer.sprite = trackedStamp;
             hasBeenTrackStamped = true;
         }
-        else if (letterScriptable.isTracked && !trackedPostageStamp)
+        else
         {
             hasBeenTrackStamped = false;
         }

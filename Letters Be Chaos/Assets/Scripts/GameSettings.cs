@@ -102,6 +102,11 @@ public class GameSettings : MonoBehaviour
             //if the letter is upright, with a valid color seal (rgb) and has a stamp:
             if (letter.isValidOnArrival)
             {
+                if(letter.hasTrackingInfo && letter.hasBeenTrackStamped)
+                {
+                    //you correctly tracked this letter, theres a 100 bonus
+                    points += 100;
+                }
 
                 //if the letter was correctly stamped by the player
                 if (letter.isCorrectColorCombo)
@@ -223,8 +228,20 @@ public class GameSettings : MonoBehaviour
                     }
                     else
                     {
-                        debugMessage += " Unknown Error, no color.";
+                        
+
+
                     }
+
+                    if(letter.hasTrackingInfo && !letter.hasBeenTrackStamped)
+                    {
+                        //you missed a high priority letter.
+                        points -= 150;
+
+                    }
+
+                    
+
                 }
 
 
@@ -459,7 +476,7 @@ public class GameSettings : MonoBehaviour
 
     public Color32 GetRandomColor()
     {
-        int random = Random.Range(0, invalidColors.Count);
+        int random = Random.Range(1, invalidColors.Count);
 
         for(int i = 0; i < invalidColors.Count; i++)
         {
@@ -469,7 +486,7 @@ public class GameSettings : MonoBehaviour
             }
         }
 
-        return invalidColors[invalidColors.Count];
+        return new Color32(255,255,255,255);
     }
    
 }

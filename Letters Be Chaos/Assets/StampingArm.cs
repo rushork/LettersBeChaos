@@ -28,6 +28,7 @@ public class StampingArm : MonoBehaviour
     private Color32 currentSelectedStampColor;
     public bool isOverUI;
     [HideInInspector] public bool isStampingTracked;
+    [SerializeField] private GameObject trackingIcon;
 
     public enum ArmStatus
     {
@@ -70,12 +71,22 @@ public class StampingArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space)){
-            isStampingTracked = true;
-        }
+        
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            if(isStampingTracked == true)
+            {
+                trackingIcon.SetActive(false);
+            }
             isStampingTracked = false;
+        }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (isStampingTracked == false)
+            {
+                trackingIcon.SetActive(true);
+            }
+            isStampingTracked = true;
         }
 
 
