@@ -16,6 +16,7 @@ public class GameSettings : MonoBehaviour
 
     
     private int letterCount;
+    
     private int tempLetterCount;
     private float totalLettersProcessed;
     private float letterCountCorrect;
@@ -114,6 +115,7 @@ public class GameSettings : MonoBehaviour
                     //incorrect stamped with tracking info, wasting company money.
                     AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     points -= 400;
+                    increaseRandom(25);
                 }
 
                 //if the letter was correctly stamped by the player
@@ -192,7 +194,7 @@ public class GameSettings : MonoBehaviour
                         debugMessage += " Was incorrectly marked for deletion.";
                      
                         points -= 500; //lose a lot of points
-                        increaseRandom(26);
+                        increaseRandom(25);
                     }
                 }
             }
@@ -234,18 +236,14 @@ public class GameSettings : MonoBehaviour
                        
                         increaseRandom(15);
                     }
-                    else
-                    {
-                        
 
-
-                    }
 
                     if(letter.hasTrackingInfo && !letter.hasBeenTrackStamped)
                     {
+                        AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                         //you missed a high priority letter.
                         points -= 150;
-
+                        increaseRandom(20);
                     }
 
                     
@@ -358,6 +356,7 @@ public class GameSettings : MonoBehaviour
         }
         else
         {
+            
             //the letter is special. Add points for a special letter.
             if(letter.letterScriptable.nameString == "Bomb")
             {
@@ -385,6 +384,8 @@ public class GameSettings : MonoBehaviour
 
         ScoreManager.Instance.AddPoints(points);
         PointsText.Create(letter.transform.position, points, isNegative, iconSet);
+
+       
         letterCount--;
         letterCountText.text = "Letters: " + letterCount.ToString();
 
@@ -429,15 +430,22 @@ public class GameSettings : MonoBehaviour
     // Adds letter to onscreen count & calculates usage increase every 5 unresolved letters
     public void AddLetter() {
         // Onscreen count
+
+        //as long as the letter isnt special:
+
         letterCount++;
         letterCountText.text = "Letters: " + letterCount.ToString();
 
         // Every 5 uncorrectly resolved letters, increase random stat by 10.
         tempLetterCount++;
-        if (tempLetterCount > 5) {
+        if (tempLetterCount > 5)
+        {
             increaseRandom(10);
             tempLetterCount = 0;
         }
+
+
+
     }
 
     // Increases a random stat.

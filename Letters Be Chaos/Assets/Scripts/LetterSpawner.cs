@@ -46,6 +46,7 @@ public class LetterSpawner : MonoBehaviour
             timeBeforeSpawnIntervalChange = (originalTimeBeforeSpawnIntervalChange += 2.5f);
             //Spawn letters 15% faster every 10 seconds ish.
             initialTimerValue *= 0.85f;
+            initialTimerValue = Mathf.Round(initialTimerValue * 100) / 100f;
         }
     }
 

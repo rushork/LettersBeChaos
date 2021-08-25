@@ -24,7 +24,7 @@ public class ComboManager : MonoBehaviour
 
     //Basic "10 or more correct" Combo.
     //Players must stamp 10 letters in a row, without error.
-    private int correctSequentialStamps = 0;
+    private int correctSequentialStamps10orMore = 0;
     private bool checkingForSequentialStampCombo = true;
 
     //10 or more with the same color
@@ -39,7 +39,8 @@ public class ComboManager : MonoBehaviour
     private bool hasStampedGreen;
     private bool hasStampedOrange;
     private bool allColoursStamped;
-    private bool textShrink;
+
+    private int correctSequentialStamps5orMore = 0;
 
     private void Awake()
     {
@@ -51,13 +52,21 @@ public class ComboManager : MonoBehaviour
 
     private void Update()
     {
+        //every 10 letters, add another combo.
+        if(correctSequentialStamps5orMore == 5)
+        {
+            correctSequentialStamps5orMore = 0;
+            AddMultiplier(0.2f);
+        }
+
+
         //Only fires once, and thats if 10 were stamped.
         if(checkingForSequentialStampCombo)
         {
             
-            if (correctSequentialStamps == 10)
+            if (correctSequentialStamps10orMore == 10)
             {
-                correctSequentialStamps = 0;
+                correctSequentialStamps10orMore = 0;
                 checkingForSequentialStampCombo = false;
                 AddMultiplier(1.5f);
             }
@@ -135,14 +144,16 @@ public class ComboManager : MonoBehaviour
 
     public void AddCorrectStamp()
     {
-        correctSequentialStamps++;
+        correctSequentialStamps10orMore++;
+        correctSequentialStamps5orMore++;
     }
 
     public void MarkIncorrectStamp()
     {
         ResetMultiplier();
         //If the player stamps something incorrectly, this is called.
-        correctSequentialStamps = 0;
+        correctSequentialStamps10orMore = 0;
+        correctSequentialStamps5orMore = 0;
         correctSequentialStampsWithSameColor = 0;
         lastCorrectlyStampedColor = Color.black;
     }
