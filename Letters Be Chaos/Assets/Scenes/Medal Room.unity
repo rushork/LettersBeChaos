@@ -1976,7 +1976,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hover over a medal to view details
+  m_text: 'Hover over a medal to view detail '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 004c40540fc65a8459a1609617fe6048, type: 2}
   m_sharedMaterial: {fileID: 7898051951576004044, guid: 004c40540fc65a8459a1609617fe6048, type: 2}

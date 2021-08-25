@@ -14,4 +14,8 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void MedalRoom() {
+        SceneManager.LoadScene(4);
+    }
+
 }
