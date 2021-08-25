@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class StatControllerScript : MonoBehaviour
 {
@@ -49,18 +49,9 @@ public class StatControllerScript : MonoBehaviour
 
         // Checks whether to load a victory/failure scene if the usage is >= 100
         if (usage >= 100 && PlayerPrefs.GetInt("Score") > 0) {
-            if (PlayerPrefs.GetInt("Score") > 1000000) {
-                PlayerPrefs.SetInt("Diamond", 1);
-            }
-            if (PlayerPrefs.GetInt("Score") > 100000) {
-                PlayerPrefs.SetInt("Purple", 1);
-            }
-            if (PlayerPrefs.GetInt("Score") > 10000) {
-                PlayerPrefs.SetInt("Gold", 1);
-            }
-            SceneManager.LoadScene(2); // Victory
+            GameSettings.Instance.ExitGame(true);
         } else if (usage >= 100 && PlayerPrefs.GetInt("Score") < 0) {
-            SceneManager.LoadScene(3); // Failure
+            GameSettings.Instance.ExitGame(false);
         }
 
     }

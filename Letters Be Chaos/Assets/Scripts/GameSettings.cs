@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 /*
@@ -471,6 +472,24 @@ public class GameSettings : MonoBehaviour
         }
 
         return new Color32(255,255,255,255);
+    }
+
+    public void ExitGame(bool victory) {
+        if (victory) {
+            // Give medals
+            if (PlayerPrefs.GetInt("Score") > 1000000) {
+                PlayerPrefs.SetInt("Diamond", 1);
+            }
+            if (PlayerPrefs.GetInt("Score") > 100000) {
+                PlayerPrefs.SetInt("Purple", 1);
+            }
+            if (PlayerPrefs.GetInt("Score") > 10000) {
+                PlayerPrefs.SetInt("Gold", 1);
+            }
+            SceneManager.LoadScene(2); // Victory
+        } else {
+            SceneManager.LoadScene(3); // Failure
+        }
     }
    
 }
