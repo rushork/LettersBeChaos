@@ -329,6 +329,7 @@ MonoBehaviour:
   icon_WrongColor_NotTracked_UpsideStamp: {fileID: 21300000, guid: 2a8bdec44eab4984eabecce0ed049e89, type: 3}
   icon_UpsideStamp_NotTracked: {fileID: 21300000, guid: ca54a5bb35ce7ad46baa28e213ed3f46, type: 3}
   icon_NoSeal_NotTracked: {fileID: 21300000, guid: c57192dba684e464d85488ecff1ccf3c, type: 3}
+  icon_NoSeal_NotTracked_UpsideStamp: {fileID: 21300000, guid: 8f5de282c0b76dd4280567eee7300330, type: 3}
   icon_NotTracked: {fileID: 21300000, guid: ca54a5bb35ce7ad46baa28e213ed3f46, type: 3}
 --- !u!4 &106508872
 Transform:

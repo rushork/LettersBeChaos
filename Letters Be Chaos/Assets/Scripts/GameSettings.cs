@@ -68,6 +68,7 @@ public class GameSettings : MonoBehaviour
     public Sprite icon_WrongColor_NotTracked_UpsideStamp;
     public Sprite icon_UpsideStamp_NotTracked;
     public Sprite icon_NoSeal_NotTracked;
+    public Sprite icon_NoSeal_NotTracked_UpsideStamp;
     public Sprite icon_NotTracked;
 
 
@@ -103,7 +104,7 @@ public class GameSettings : MonoBehaviour
             {
 
                 //if the letter was correctly stamped by the player
-                if (letter.isCorrectStampCombo)
+                if (letter.isCorrectColorCombo)
                 {
                     //if the seal is red:
                     if (letter.GetSealColor().Equals(red))
@@ -232,7 +233,7 @@ public class GameSettings : MonoBehaviour
             }
 
             //if it should be tracked, but isnt
-            if (letter.hasTrackingInfo && !letter.isCorrectStampCombo)
+            if (!letter.hasBeenTrackStamped && letter.hasTrackingInfo)
             {
                 iconSet = icon_NotTracked;
 
@@ -245,8 +246,8 @@ public class GameSettings : MonoBehaviour
                         //is it upside down?
                         if (letter.isUpsideDown)
                         {
-                            //it has no seal, but has an upsidedown stamp
-                            iconSet = icon_WrongColor_NotTracked_UpsideStamp;
+                            //no seal, has an upsidedown stamp and isnt tracked
+                            iconSet = icon_NoSeal_NotTracked_UpsideStamp;
 
 
                         }
@@ -262,7 +263,27 @@ public class GameSettings : MonoBehaviour
                 else
                 {
                     //if it is sealed
+                    if (!letter.isCorrectColorCombo)
+                    {
+                        //its not the right color
+                        iconSet = icon_WrongColor_NotTracked;
 
+                        if (letter.isUpsideDown)
+                        {
+                            //it has a stamp, but its the wrong way up
+                            iconSet = icon_WrongColor_NotTracked_UpsideStamp;
+                        }
+
+                    }
+                    else
+                    {
+                        //if everything else checks out, and its the right color combo, then its untracked with an upside down stamp.
+                        if (letter.isUpsideDown)
+                        {
+                            iconSet = icon_UpsideStamp_NotTracked;
+                        }
+                    }
+  
                 }
             }
             else if (!letter.isSealed)
@@ -295,7 +316,7 @@ public class GameSettings : MonoBehaviour
             else
             {
                 //it has a seal BUT
-                if (!letter.isCorrectStampCombo)
+                if (!letter.isCorrectColorCombo)
                 {
                     //its not the right color
                     iconSet = icon_WrongColor;
@@ -448,7 +469,7 @@ public class GameSettings : MonoBehaviour
             }
         }
 
-        return invalidColors[0];
+        return invalidColors[invalidColors.Count];
     }
    
 }

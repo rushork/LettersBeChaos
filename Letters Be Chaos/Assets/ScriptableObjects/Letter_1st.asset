@@ -19,3 +19,4 @@ MonoBehaviour:
   chanceToSpawnStampFlipped: 0.1
   chanceToBeCorrectlyStamped: 0.95
   chanceForInvalidSealColor: 0.9
+  chanceToBeTracked: 0.15
