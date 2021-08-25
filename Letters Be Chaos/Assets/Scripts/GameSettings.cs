@@ -107,6 +107,12 @@ public class GameSettings : MonoBehaviour
                     //you correctly tracked this letter, theres a 100 bonus
                     points += 100;
                 }
+                else if (!letter.hasTrackingInfo && letter.hasBeenTrackStamped)
+                {
+                    //incorrect stamped with tracking info, wasting company money.
+                    AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
+                    points -= 400;
+                }
 
                 //if the letter was correctly stamped by the player
                 if (letter.isCorrectColorCombo)
@@ -115,7 +121,7 @@ public class GameSettings : MonoBehaviour
                     if (letter.GetSealColor().Equals(red))
                     {
                         debugMessage += " Was correct color: red";
-                        letterCountCorrect++;
+                     
                         points += 50;
                         tempLetterCount--;
                     }
@@ -123,7 +129,7 @@ public class GameSettings : MonoBehaviour
                     else if (letter.GetSealColor().Equals(blue))
                     {
                         debugMessage += " Was correct color: blue";
-                        letterCountCorrect++;
+                      
                         points += 20;
                         tempLetterCount--;
                     }
@@ -131,7 +137,7 @@ public class GameSettings : MonoBehaviour
                     else if (letter.GetSealColor().Equals(green))
                     {
                         debugMessage += " Was correct color: green";
-                        letterCountCorrect++;
+                       
                         points += 10;
                         tempLetterCount--;
                     }
@@ -157,7 +163,7 @@ public class GameSettings : MonoBehaviour
                     {
                         debugMessage += " Was incorrect color: red";
                         points -= 150;
-                        letterCountIncorrect++;
+                    
                         increaseRandom(10);
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     }
@@ -165,7 +171,7 @@ public class GameSettings : MonoBehaviour
                     {
                         debugMessage += " Was incorrect color: blue";
                         points -= 80;
-                        letterCountIncorrect++;
+                      
                         increaseRandom(10);
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     }
@@ -173,7 +179,7 @@ public class GameSettings : MonoBehaviour
                     {
                         debugMessage += " Was incorrect color: green";
                         points -= 50;
-                        letterCountIncorrect++;
+                      
                         increaseRandom(10);
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     }
@@ -182,7 +188,7 @@ public class GameSettings : MonoBehaviour
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(3));
                         //if the player marks a valid letter for deletion
                         debugMessage += " Was incorrectly marked for deletion.";
-                        letterCountIncorrect++;
+                     
                         points -= 500; //lose a lot of points
                         increaseRandom(26);
                     }
@@ -196,7 +202,7 @@ public class GameSettings : MonoBehaviour
                 {
                     AudioManager.Instance.Play("Point");
                     ComboManager.Instance.SetLastCorrectlyStamped(letter.colorStampedWith);
-                    letterCountCorrect++;
+                 
                     points += 100; //100 points for correctly discarding the letter
                     tempLetterCount--;
                 }
@@ -209,21 +215,21 @@ public class GameSettings : MonoBehaviour
                     {
                         //sending a high priority letter which is invalid loses more points than a low priority letter.
                         points -= 150;
-                        letterCountIncorrect++;
+                        
                         increaseRandom(15);
                     }
                     //if the seal is blue:
                     else if (letter.GetSealColor().Equals(blue))
                     {
                         points -= 80;
-                        letterCountIncorrect++;
+                      
                         increaseRandom(15);
                     }
                     //if the seal is green:
                     else if (letter.GetSealColor().Equals(green))
                     {
                         points -= 50;
-                        letterCountIncorrect++;
+                       
                         increaseRandom(15);
                     }
                     else
@@ -390,11 +396,17 @@ public class GameSettings : MonoBehaviour
         bool isNegative = false;
         if(points < 0)
         {
+            letterCountIncorrect++;
             ComboManager.Instance.MarkIncorrectStamp();
             isNegative = true;
         }
-        else if (points > 0 && ComboManager.Instance.comboActive)
+        else
         {
+            letterCountCorrect++;
+        }
+        if (points > 0 && ComboManager.Instance.comboActive)
+        {
+
             points = Mathf.RoundToInt(points * ComboManager.Instance.GetMultiplier());
         }
 
@@ -476,11 +488,11 @@ public class GameSettings : MonoBehaviour
 
     public Color32 GetRandomColor()
     {
-        int random = Random.Range(1, invalidColors.Count);
-
+        int random = Random.Range(0, invalidColors.Count);
+        Debug.Log(random);
         for(int i = 0; i < invalidColors.Count; i++)
         {
-            if(i == random)
+            if(random == i)
             {
                 return invalidColors[i];
             }
