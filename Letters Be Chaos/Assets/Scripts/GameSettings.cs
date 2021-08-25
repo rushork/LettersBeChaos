@@ -347,9 +347,13 @@ public class GameSettings : MonoBehaviour
         }
     }
 
+    // Adds letter to onscreen count & calculates usage increase every 5 unresolved letters
     public void addLetter() {
+        // Onscreen count
         letterCount++;
         letterCountText.text = "Letters: " + letterCount.ToString();
+
+        // Every 5 uncorrectly resolved letters, increase random stat by 10.
         tempLetterCount++;
         if (tempLetterCount > 5) {
             increaseRandom(10);
