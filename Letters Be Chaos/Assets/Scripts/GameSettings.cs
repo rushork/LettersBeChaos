@@ -544,18 +544,32 @@ public class GameSettings : MonoBehaviour
         return new Color32(255,255,255,255);
     }
 
+    // Finishes game once a usage has gone over 100
     public void ExitGame(bool victory) {
         if (victory) {
-            // Give medals
+            // Give score based medals
             if (PlayerPrefs.GetInt("Score") > 1000000) {
-                PlayerPrefs.SetInt("Diamond", 1);
+                PlayerPrefs.SetInt("1MilMedal", 1);
+            }
+            if (PlayerPrefs.GetInt("Score") > 500000) {
+                PlayerPrefs.SetInt("500kMedal", 1);
             }
             if (PlayerPrefs.GetInt("Score") > 100000) {
-                PlayerPrefs.SetInt("Purple", 1);
+                PlayerPrefs.SetInt("100kMedal", 1);
+            }
+            if (PlayerPrefs.GetInt("Score") > 50000) {
+                PlayerPrefs.SetInt("50kMedal", 1);
             }
             if (PlayerPrefs.GetInt("Score") > 10000) {
-                PlayerPrefs.SetInt("Gold", 1);
+                PlayerPrefs.SetInt("10kMedal", 1);
             }
+            if (PlayerPrefs.GetInt("Score") > 5000) {
+                PlayerPrefs.SetInt("5kMedal", 1);
+            }
+            if (PlayerPrefs.GetInt("Score") > 1000) {
+                PlayerPrefs.SetInt("1kMedal", 1);
+            }
+
             SceneManager.LoadScene(2); // Victory
         } else {
             SceneManager.LoadScene(3); // Failure
