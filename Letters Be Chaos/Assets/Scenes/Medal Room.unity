@@ -795,6 +795,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438d4f6e0e558f44ea81e03a0ec9d0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lettersSortedCorrectAutomatically: 0
+  lettersSortedIncorrectAutomatically: 0
+  lettersSortedAutomaticallyTotal: 0
+  lettersSortedIncorrectManually: 0
+  lettersSortedCorrectManually: 0
+  lettersSortedManuallyTotal: 0
+  lettersSortedCorrectTracked: 0
+  lettersSortedIncorrectTracked: 0
+  lettersSortedTrackedTotal: 0
+  pointsLostByIncorrectTracking: 0
+  trackedLettersMissed: 0
+  lettersDestroyedCorrect: 0
+  lettersDestroyedIncorrect: 0
+  lettersDestroyedTotal: 0
+  lettersDestroyedCorrectSequentialCount: 0
+  lettersSortedRed: 0
+  lettersSortedBlue: 0
+  lettersSortedGreen: 0
+  lettersSortedOrange: 0
+  lettersSortedWrongColor: 0
+  lettersSortedWrongColorIncorrectly: 0
+  lettersSortedUpsideStampOnly: 0
+  specialLetters: []
+  anySpecialLetterCount: 0
+  bombSpecialLetterCount: 0
+  lettersSortedByAutoSortCount: 0
+  lettersHighlightedWhenCorrectlyDeletedCount: 0
+  autoSortBombCount: 0
+  bombColors: []
 --- !u!4 &391154655
 Transform:
   m_ObjectHideFlags: 0
