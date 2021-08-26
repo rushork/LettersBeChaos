@@ -69,6 +69,7 @@ public class MedalManager : MonoBehaviour
 
     private void Awake()
     {
+        
         Instance = this;
     }
 
@@ -185,7 +186,7 @@ public class MedalManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("E6", 1);
         }
-        if (score < 70000 && accuracy <= 0.2f)
+        if (score > 70000 && accuracy <= 0.2f)
         {
             PlayerPrefs.SetInt("E7", 1);
         }
