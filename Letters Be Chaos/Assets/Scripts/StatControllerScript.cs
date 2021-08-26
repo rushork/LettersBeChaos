@@ -48,10 +48,8 @@ public class StatControllerScript : MonoBehaviour
         usage = u;
 
         // Checks whether to load a victory/failure scene if the usage is >= 100
-        if (usage >= 100 && PlayerPrefs.GetInt("Score") > 0) {
-            GameSettings.Instance.ExitGame(true);
-        } else if (usage >= 100 && PlayerPrefs.GetInt("Score") < 0) {
-            GameSettings.Instance.ExitGame(false);
+        if (usage >= 100) {
+            GameSettings.Instance.ExitGame();
         }
 
     }

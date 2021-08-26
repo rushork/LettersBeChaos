@@ -545,7 +545,15 @@ public class GameSettings : MonoBehaviour
     }
 
     // Finishes game once a usage has gone over 100
-    public void ExitGame(bool victory) {
+    public void ExitGame() {
+
+        bool victory = false;
+
+        // If the player has processed atleast 100 letters and their score is above 1000 they they succeed.
+        if (totalLettersProcessed > 99 && PlayerPrefs.GetInt("Score") > 1000) {
+            victory = true;
+        }
+
         if (victory) {
             // Give score based medals
             if (PlayerPrefs.GetInt("Score") > 1000000) {
