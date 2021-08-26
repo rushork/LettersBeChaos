@@ -210,7 +210,7 @@ MonoBehaviour:
 
 
     Clear 80 letters from the table in under 5 seconds.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &128001036
@@ -357,7 +357,7 @@ MonoBehaviour:
 
 
     Stamp 3 bombs sequentially in under 5 seconds '
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &157459815
@@ -504,7 +504,7 @@ MonoBehaviour:
 
 
     Highlight and sort 100 letters in one sitting.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &171484844
@@ -786,7 +786,7 @@ MonoBehaviour:
 
     Survive with a score of over 50000 with
     an accuracy of 70% or higher.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &284487776
@@ -1012,7 +1012,7 @@ MonoBehaviour:
 
 
     Stamp 3 bombs in under 5 seconds'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &409513858
@@ -1373,7 +1373,7 @@ MonoBehaviour:
 
     Survive with a score of over
     10000 with an accuracy of 60% or higher.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &488964285
@@ -1521,7 +1521,7 @@ MonoBehaviour:
 
     Survive with a score of over 1000000 with an accuracy of
     85% or higher.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &563454951
@@ -1671,7 +1671,7 @@ MonoBehaviour:
     one.
 
 '
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &581794320
@@ -1965,7 +1965,7 @@ MonoBehaviour:
 
 
     Stamp one of each special letter in a single sitting.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &606545385
@@ -2112,7 +2112,7 @@ MonoBehaviour:
 
 
     Survive with an accuracy of 10% or lower.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &613117538
@@ -2259,7 +2259,7 @@ MonoBehaviour:
 
 
     Stamp 30 bombs of any kind in one sitting'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &669277913
@@ -2541,7 +2541,7 @@ MonoBehaviour:
 
     Reach maximum usage after scoring 99000 points but
     less than 1000000 points.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &849635439
@@ -2689,7 +2689,7 @@ MonoBehaviour:
 
     Lose 1000 points by accidently tracking
     the wrong letters.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &893448096
@@ -2908,7 +2908,7 @@ MonoBehaviour:
 
 
     Destroy 1000 invalid letters.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &950716790
@@ -3055,7 +3055,7 @@ MonoBehaviour:
 
 
     Sort 800 letters manually.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &987161717
@@ -3496,7 +3496,7 @@ MonoBehaviour:
 
 
     Sort 200 letters manually.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1040489399
@@ -3644,7 +3644,7 @@ MonoBehaviour:
 
     Auto-sort 100 invalid
     letters.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1056924628
@@ -3792,7 +3792,7 @@ MonoBehaviour:
 
     Incorrectly process 5 letters which
     are correct apart from having an incorrect seal colour.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1113448215
@@ -3939,7 +3939,7 @@ MonoBehaviour:
 
 
     Clear 500 letters from the table in under 20 seconds.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1233763765
@@ -4262,7 +4262,7 @@ MonoBehaviour:
 
     Incorrectly process 20 letters which are correct
     apart from having upside-down stamps.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1452261099
@@ -4410,7 +4410,7 @@ MonoBehaviour:
 
     Survive with a score of under 70000 with
     an accuracy of 20% or lower.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1505621017
@@ -4557,7 +4557,7 @@ MonoBehaviour:
 
 
     Sort 500 letters with the sorting bomb in one sitting.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1531058337
@@ -4987,7 +4987,7 @@ MonoBehaviour:
 
 
     Destroy 2000 invalid letters.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1609040214
@@ -5135,7 +5135,7 @@ MonoBehaviour:
 
     Survive with a score of over 5000 with an accuracy
     of 40% or higher.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1685534908
@@ -5428,7 +5428,7 @@ MonoBehaviour:
 
 
     Successfuly sort and track 100 letters.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1723799794
@@ -5914,7 +5914,7 @@ MonoBehaviour:
 
 
     Destroy 5000 letters.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1899248294
@@ -6061,7 +6061,7 @@ MonoBehaviour:
 
 
     Successfully sort and track 1000 letters.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &1961325960
@@ -6209,7 +6209,7 @@ MonoBehaviour:
 
     Survive with a score of
     under 30000 with an accuracy of 80% or higher.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &2035323410
@@ -6491,7 +6491,7 @@ MonoBehaviour:
 
     Survive with a score of over 5000, with an accuracy of 40%
     or higher.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &2090014045
@@ -6785,7 +6785,7 @@ MonoBehaviour:
 
 
     Sort 1500 letters manually.'
-  unlockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
 --- !u!114 &2125874209
