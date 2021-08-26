@@ -115,6 +115,7 @@ public class InteractableLetter : MonoBehaviour
 
         if (isBeingColumnSorted)
         {
+            transform.position = Vector3.Lerp(transform.position, targetLocationToMoveTo, 6f * Time.deltaTime);
             if (Vector2.Distance(transform.position, targetLocationToMoveTo) <= 0.1)
             {
                 gameObject.layer = LayerMask.NameToLayer("Letters");
@@ -345,7 +346,7 @@ public class InteractableLetter : MonoBehaviour
     {
         targetLocationToMoveTo = pos.position;
     }
-    public void SetTarget(Vector2 location)
+    public void SetTarget(Vector3 location)
     {
         targetLocationToMoveTo = location;
     }

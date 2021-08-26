@@ -165,20 +165,23 @@ public class StampCollisionCheck : MonoBehaviour
                     {
                         Vector2 extents = redZone.size / 2f;
                         Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + redZone.bounds.center.y);
-                        letterScript.SetTarget(point);
+                        point += (Vector2)redZone.transform.position;
+                        letterScript.SetTarget(new Vector3(point.x, point.y, letterScript.transform.position.z));
 
                     }
                     else if (letterScript.GetSealColor().Equals(GameSettings.Instance.green))
                     {
                         Vector2 extents = greenZone.size / 2f;
                         Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + greenZone.bounds.center.y);
-                        letterScript.SetTarget(point);
+                        point += (Vector2)greenZone.transform.position;
+                        letterScript.SetTarget(new Vector3(point.x, point.y, letterScript.transform.position.z));
                     }
                     else if (letterScript.GetSealColor().Equals(GameSettings.Instance.blue))
                     {
                         Vector2 extents = blueZone.size / 2f;
                         Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + blueZone.bounds.center.y);
-                        letterScript.SetTarget(point);
+                        point += (Vector2)blueZone.transform.position;
+                        letterScript.SetTarget(new Vector3(point.x, point.y, letterScript.transform.position.z));
                     }
 
                     letterScript.InitiateColumnSort();
