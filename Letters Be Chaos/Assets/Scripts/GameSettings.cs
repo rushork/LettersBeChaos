@@ -550,7 +550,7 @@ public class GameSettings : MonoBehaviour
         bool victory = false;
 
         // If the player has processed atleast 100 letters and their score is above 1000 they they succeed.
-        if (totalLettersProcessed > 99 && PlayerPrefs.GetInt("Score") > 1000) {
+        if (letterCountCorrect > 99 && PlayerPrefs.GetInt("Score") > 1000) {
             victory = true;
         }
 
