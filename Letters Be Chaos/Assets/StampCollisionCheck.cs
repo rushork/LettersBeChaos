@@ -6,7 +6,10 @@ public class StampCollisionCheck : MonoBehaviour
 {
     [SerializeField] StampingArm arm;
     [HideInInspector] public bool hasHitLetter;
-    
+    [SerializeField] private LetterSpawner spawner;
+    public BoxCollider2D redZone;
+    public BoxCollider2D greenZone;
+    public BoxCollider2D blueZone;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -51,7 +54,7 @@ public class StampCollisionCheck : MonoBehaviour
                     if (arm.GetColor().Equals(GameSettings.Instance.blue))
                     {
                         AudioManager.Instance.Play("Explosion");
-                        ExplodeAtRandom("green");
+                        ExplodeAtRandom("blue");
                         avoidStandardProcessing = true;
                     }
                     else
@@ -68,7 +71,7 @@ public class StampCollisionCheck : MonoBehaviour
                     if (arm.GetColor().Equals(GameSettings.Instance.green))
                     {
                         AudioManager.Instance.Play("Explosion");
-                        ExplodeAtRandom("blue");
+                        ExplodeAtRandom("green");
                         avoidStandardProcessing = true;
                     }
                     else
@@ -79,6 +82,23 @@ public class StampCollisionCheck : MonoBehaviour
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     }
 
+                }
+                else if (letter.letterScriptable.nameString == "Summon")
+                {
+                    AudioManager.Instance.Play("Explosion");
+                    spawner.SummonBomb();
+                }
+                else if (letter.letterScriptable.nameString == "Trash")
+                {
+                    AudioManager.Instance.Play("Explosion");
+                    EnableDeleteHighlights();
+                    letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
+                }
+                else if (letter.letterScriptable.nameString == "Column")
+                {
+                    AudioManager.Instance.Play("Explosion");
+                    ColumnSort();
+                    letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
                 }
 
 
@@ -124,6 +144,46 @@ public class StampCollisionCheck : MonoBehaviour
                 }
                 
 
+            }
+        }
+    }
+
+    private void ColumnSort()
+    {
+        Collider2D[] letters = Physics2D.OverlapCircleAll(transform.position, 5f, 1 << LayerMask.NameToLayer("Letters"));
+
+        foreach (Collider2D letter in letters)
+        {
+            InteractableLetter letterScript = letter.GetComponent<InteractableLetter>();
+            if (letterScript != null)
+            {
+
+                if (letterScript.isValidOnArrival)
+                {
+                    if (letterScript.GetSealColor().Equals(GameSettings.Instance.red))
+                    {
+                        Vector2 extents = redZone.size / 2f;
+                        Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + redZone.bounds.center.y);
+                        letterScript.SetTarget(point);
+
+                    }
+                    else if (letterScript.GetSealColor().Equals(GameSettings.Instance.green))
+                    {
+                        Vector2 extents = greenZone.size / 2f;
+                        Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + greenZone.bounds.center.y);
+                        letterScript.SetTarget(point);
+                    }
+                    else if (letterScript.GetSealColor().Equals(GameSettings.Instance.blue))
+                    {
+                        Vector2 extents = blueZone.size / 2f;
+                        Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + blueZone.bounds.center.y);
+                        letterScript.SetTarget(point);
+                    }
+
+                    letterScript.InitiateColumnSort();
+                }
+                
+               
             }
         }
     }
@@ -210,13 +270,13 @@ public class StampCollisionCheck : MonoBehaviour
                 }
                 else if (color == "green")
                 {
-                    currentColor = GameSettings.Instance.blue;
-                    currentTransformTarget = GameSettings.Instance.blueLocation;
+                    currentColor = GameSettings.Instance.green;
+                    currentTransformTarget = GameSettings.Instance.greenLocation;
                 }
                 else
                 {
-                    currentColor = GameSettings.Instance.green;
-                    currentTransformTarget = GameSettings.Instance.greenLocation;
+                    currentColor = GameSettings.Instance.blue;
+                    currentTransformTarget = GameSettings.Instance.blueLocation;
                 }
 
                 letterScript.SetTarget(currentTransformTarget);
@@ -224,6 +284,28 @@ public class StampCollisionCheck : MonoBehaviour
 
                 StartCoroutine(WaitFor(0.2f, letterScript, body));
                 //letterScript.SendForProcessing();
+            }
+
+
+
+
+        }
+    }
+
+    private void EnableDeleteHighlights()
+    {
+        Collider2D[] letters = Physics2D.OverlapCircleAll(transform.position, 5f, 1 << LayerMask.NameToLayer("Letters"));
+
+        foreach (Collider2D letter in letters)
+        {
+            InteractableLetter letterScript = letter.GetComponent<InteractableLetter>();
+            if (letterScript != null && !letterScript.letterScriptable.isSpecial)
+            {
+
+                if (!letterScript.isValidOnArrival)
+                {
+                    letterScript.ShowDeleteHighlight();
+                }
             }
 
 

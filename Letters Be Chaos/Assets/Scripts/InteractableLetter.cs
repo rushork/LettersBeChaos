@@ -31,12 +31,14 @@ public class InteractableLetter : MonoBehaviour
     private SpriteRenderer sealRenderer;
     private SpriteRenderer stampRenderer;
     private GameObject highlightObject;
+    private GameObject highlightObjectDelete;
     private Color32 sealColor;
     [HideInInspector]public Color32 colorStampedWith; // this is the colour that it has been stamped with by the player
     private string trackingNumber; //this is a string because it contains letters and numbers.
     private bool highlightable; //can this be highlighted?
     private bool isBeingProcessed;
     private bool isHighlighted;
+    private bool isBeingColumnSorted;
     [HideInInspector] public bool usagePenaltyEnabled;
     [HideInInspector] public bool hasBeenSelected;
 
@@ -61,7 +63,7 @@ public class InteractableLetter : MonoBehaviour
         stampRenderer = transform.Find("PostageStamp").GetComponent<SpriteRenderer>();
         mySpriteRenderer = transform.Find("Letter").GetComponent<SpriteRenderer>();
         highlightObject = transform.Find("Highlight").gameObject;
-        
+        highlightObjectDelete = transform.Find("deleteHighlight").gameObject;
     }
 
     private void Start()
@@ -109,6 +111,27 @@ public class InteractableLetter : MonoBehaviour
             }
             
         }
+
+
+        if (isBeingColumnSorted)
+        {
+            if (Vector2.Distance(transform.position, targetLocationToMoveTo) <= 0.1)
+            {
+                gameObject.layer = LayerMask.NameToLayer("Letters");
+                isBeingColumnSorted = false;
+            }
+        }
+    }
+
+    public void InitiateColumnSort()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        isBeingColumnSorted = true;
+    }
+
+    public void ShowDeleteHighlight()
+    {
+        highlightObjectDelete.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -322,6 +345,11 @@ public class InteractableLetter : MonoBehaviour
     {
         targetLocationToMoveTo = pos.position;
     }
+    public void SetTarget(Vector2 location)
+    {
+        targetLocationToMoveTo = location;
+    }
+
 
     public void SendForProcessing()
     {

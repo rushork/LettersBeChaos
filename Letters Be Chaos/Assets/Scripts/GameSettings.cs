@@ -24,15 +24,25 @@ public class GameSettings : MonoBehaviour
     [SerializeField] private float noSealTimer;
     [SerializeField] private float invalidColorTimer;
     [SerializeField] private float specialLetterTimer;
-    [HideInInspector]public bool secondColorAllowed;
-    [HideInInspector]public bool thirdColorAllowed;
-    [HideInInspector]public bool upsideStampAllowed;
-    [HideInInspector]public bool noStampAllowed;
-    [HideInInspector]public bool noSealAllowed;
-    [HideInInspector]public bool trackingAllowed;
-    [HideInInspector]public bool invalidColorAllowed;
-    [HideInInspector]public bool specialLettersAllowed;
 
+    [SerializeField] private float autoBombTimer;
+    [SerializeField] private float colourBombTimer;
+    [SerializeField] private float summonBombTimer;
+    [SerializeField] private float trashBombTimer;
+    [SerializeField] private float columnBombTimer;
+    [HideInInspector] public bool secondColorAllowed;
+    [HideInInspector] public bool thirdColorAllowed;
+    [HideInInspector] public bool upsideStampAllowed;
+    [HideInInspector] public bool noStampAllowed;
+    [HideInInspector] public bool noSealAllowed;
+    [HideInInspector] public bool trackingAllowed;
+    [HideInInspector] public bool invalidColorAllowed;
+    [HideInInspector] public bool specialLettersAllowed;
+    [HideInInspector] public bool autoBombAllowed;
+    [HideInInspector] public bool colourBombAllowed;
+    [HideInInspector] public bool columnBombAllowed;
+    [HideInInspector] public bool summonBombAllowed;
+    [HideInInspector] public bool trashAllowed;
 
 
     //Counts
@@ -95,6 +105,8 @@ public class GameSettings : MonoBehaviour
     public Sprite icon_NoSeal_NotTracked_UpsideStamp;
     public Sprite icon_NotTracked;
 
+
+    
 
     private void Awake()
     {
@@ -601,6 +613,11 @@ public class GameSettings : MonoBehaviour
         Invoke("AllowUpsideStamp", upsideStampTimer);
         Invoke("AllowInvalidColor", invalidColorTimer);
         Invoke("AllowSpecialLetters", specialLetterTimer);
+        Invoke("AllowAutoSort", autoBombTimer);
+        Invoke("AllowColourBomb", colourBombTimer);
+        Invoke("AllowTrash", trashBombTimer);
+        Invoke("AllowSummon", summonBombTimer);
+        Invoke("AllowColumnSort", columnBombTimer);
     }
 
     private void AllowSecondColor()
@@ -641,5 +658,30 @@ public class GameSettings : MonoBehaviour
     private void AllowSpecialLetters()
     {
         specialLettersAllowed = true;
+    }
+
+    private void AllowAutoSort()
+    {
+        autoBombAllowed = true;
+    }
+
+    private void AllowColourBomb()
+    {
+        colourBombAllowed = true;
+    }
+
+    private void AllowTrash()
+    {
+        trashAllowed = true;
+    }
+
+    private void AllowSummon()
+    {
+        summonBombAllowed = true;
+    }
+
+    private void AllowColumnSort()
+    {
+        columnBombAllowed = true;
     }
 }

@@ -15,7 +15,16 @@ public class LetterSpawner : MonoBehaviour
     [SerializeField] Transform letterPrefab_BombR;
     [SerializeField] Transform letterPrefab_BombG;
     [SerializeField] Transform letterPrefab_BombB;
+    [SerializeField] Transform letterPrefab_Trash;
+    [SerializeField] Transform letterPrefab_Summon;
+    [SerializeField] Transform letterPrefab_Column;
+    [Header("Two Categories. Add to 1.0")]
     [SerializeField] private float chanceForDangerBomb; //danger bombs send letters absolutely anywhere with a 5X MULTIPLIER! 
+    [SerializeField] private float chanceForSuperBomb; //any of the three below bombs have an equal chance of spawning.
+    [Space]
+    [SerializeField] private float chanceForSummonBomb;
+    [SerializeField] private float chanceForColumnBomb;
+    [SerializeField] private float chanceForTrashBomb;
 
     public List<Transform> spawnLocations;
     private BoxCollider2D areaToSpawn;
@@ -25,6 +34,11 @@ public class LetterSpawner : MonoBehaviour
     private float timeBeforeSpawnIntervalChange;
     private float initialTimerValue = 5f;
     private float currentTimerValue;
+
+    private int summonBombAmount; //the amount that will spawn this round
+    private bool summoning;
+    private bool allowSummonBombSpawn = true;
+    private float summonDelay = 0.15f;
 
     private void Awake()
     {
@@ -58,13 +72,57 @@ public class LetterSpawner : MonoBehaviour
             }
             
         }
+
+
+        if (summoning)
+        {
+            summonDelay -= Time.deltaTime;
+            if(summonDelay <= 0)
+            {
+                if(summonBombAmount > 0)
+                {
+                    
+                    SpawnLetter();
+                    summonBombAmount--;
+                }
+                else
+                {
+                    summonBombAmount = 0;
+                    summoning = false;
+                    allowSummonBombSpawn = true;
+                }
+
+                summonDelay = 0.15f;
+
+            }
+        }
     }
 
     private void SpawnLetter()
     {
-        
+
         //5% chance of a special letter.
-        InteractableLetter letter = InteractableLetter.CreateLetter(RollForSpecialLetter(0.05f),GetRandomSpawn(), GetRandomTarget(), currentZ);
+        if (GameSettings.Instance.specialLettersAllowed)
+        {
+            InteractableLetter letter = InteractableLetter.CreateLetter(RollForSpecialLetter(0.05f), GetRandomSpawn(), GetRandomTarget(), currentZ);
+
+            //dont add letters if they're special, they dont count.
+            if (!letter.letterScriptable.isSpecial)
+            {
+                GameSettings.Instance.AddLetter(); // Adds letter to letter count.
+            }
+        }
+        else
+        {
+            InteractableLetter letter = InteractableLetter.CreateLetter(letterPrefab_Basic, GetRandomSpawn(), GetRandomTarget(), currentZ);
+
+            //dont add letters if they're special, they dont count.
+            if (!letter.letterScriptable.isSpecial)
+            {
+                GameSettings.Instance.AddLetter(); // Adds letter to letter count.
+            }
+        }
+        
 
 
         currentZ -= 0.5f;
@@ -73,11 +131,7 @@ public class LetterSpawner : MonoBehaviour
             currentZ = 0;
         }
 
-        //dont add letters if they're special, they dont count.
-        if (!letter.letterScriptable.isSpecial)
-        {
-            GameSettings.Instance.AddLetter(); // Adds letter to letter count.
-        }
+        
         
     }
 
@@ -87,37 +141,253 @@ public class LetterSpawner : MonoBehaviour
     {
         float random = Random.Range(0f, 1f);
         random = Mathf.Round(random * 1000) / 1000;
-        if(random <= chance)
+
+        if (GameSettings.Instance.autoBombAllowed && GameSettings.Instance.colourBombAllowed
+            && GameSettings.Instance.trashAllowed && GameSettings.Instance.columnBombAllowed && GameSettings.Instance.summonBombAllowed)
         {
-            //for now, theres only bombs.
-            random = Random.Range(0f, 1f);
-            if(random <= chanceForDangerBomb)
+            if (random <= chance)
             {
-                int random2 = Random.Range(1, 4);
-                if(random2 == 1)
+                //for now, theres only bombs.
+                random = Random.Range(0f, 1f);
+                if (random <= chanceForDangerBomb)
                 {
-                    return letterPrefab_BombR;
+                    int random2 = Random.Range(1, 6);
+                    if (random2 == 1)
+                    {
+                        return letterPrefab_BombR;
+                    }
+                    else if (random2 == 2)
+                    {
+                        return letterPrefab_BombG;
+                    }
+                    else if (random2 == 3)
+                    {
+                        return letterPrefab_BombB;
+                    }
+                    else
+                    {
+                        return letterPrefab_Bomb;
+                    }
                 }
-                else if (random2 == 2)
+                else if (random > chanceForDangerBomb)
                 {
-                    return letterPrefab_BombG;
+
+                    random = Random.Range(0f, 1f);
+
+                    if (random <= chanceForColumnBomb)
+                    {
+                        //to avoid multiple summon bombs.
+                        return letterPrefab_Column;
+
+                    }
+                    else if (random > chanceForColumnBomb && random <= chanceForSummonBomb)
+                    {
+                        //to avoid multiple summon bombs.
+                        if (allowSummonBombSpawn)
+                        {
+                            return letterPrefab_Summon;
+                        }
+                        else
+                        {
+                            return letterPrefab_Basic;
+                        }
+
+                    }
+                    else if (random > chanceForSummonBomb)
+                    {
+                        //to avoid multiple summon bombs.
+                        return letterPrefab_Trash;
+
+                    }
+                    else
+                    {
+                        return letterPrefab_Basic;
+                    }
+
                 }
+
                 else
                 {
-                    return letterPrefab_BombB;
+                    return letterPrefab_Basic;
                 }
+
+
             }
             else
             {
-                return letterPrefab_Bomb;
+                return letterPrefab_Basic;
             }
-            
-            
         }
         else
         {
+
+            if (GameSettings.Instance.autoBombAllowed && GameSettings.Instance.colourBombAllowed && GameSettings.Instance.columnBombAllowed && GameSettings.Instance.summonBombAllowed)
+            {
+                if (random <= chance)
+                {
+
+                    random = Random.Range(0f, 1f);
+                    if (random <= chanceForDangerBomb)
+                    {
+                        int random2 = Random.Range(1, 6);
+                        if (random2 == 1)
+                        {
+                            return letterPrefab_BombR;
+                        }
+                        else if (random2 == 2)
+                        {
+                            return letterPrefab_BombG;
+                        }
+                        else if (random2 == 3)
+                        {
+                            return letterPrefab_BombB;
+                        }
+                        else
+                        {
+                            return letterPrefab_Bomb;
+                        }
+                    }
+                    else if (random > chanceForDangerBomb)
+                    {
+
+                        random = Random.Range(0f, 1f);
+
+                        if (random <= chanceForColumnBomb)
+                        {
+                            //to avoid multiple summon bombs.
+                            return letterPrefab_Column;
+
+                        }
+                        else if (random > chanceForColumnBomb)
+                        {
+                            //to avoid multiple summon bombs.
+                            if (allowSummonBombSpawn)
+                            {
+                                return letterPrefab_Summon;
+                            }
+                            else
+                            {
+                                return letterPrefab_Basic;
+                            }
+
+                        }
+                        else
+                        {
+                            return letterPrefab_Basic;
+                        }
+
+                    }
+                    else
+                    {
+                        return letterPrefab_Basic;
+                    }
+
+
+                }
+                else
+                {
+                    return letterPrefab_Basic;
+                }
+            }
+            else if (GameSettings.Instance.autoBombAllowed && GameSettings.Instance.colourBombAllowed && GameSettings.Instance.columnBombAllowed)
+            {
+                if (random <= chance)
+                {
+
+                    random = Random.Range(0f, 1f);
+                    if (random <= chanceForDangerBomb)
+                    {
+                        int random2 = Random.Range(1, 6);
+                        if (random2 == 1)
+                        {
+                            return letterPrefab_BombR;
+                        }
+                        else if (random2 == 2)
+                        {
+                            return letterPrefab_BombG;
+                        }
+                        else if (random2 == 3)
+                        {
+                            return letterPrefab_BombB;
+                        }
+                        else
+                        {
+                            return letterPrefab_Bomb;
+                        }
+                    }
+                    else if (random > chanceForDangerBomb)
+                    {
+
+                        return letterPrefab_Column;
+
+                    }
+                    else
+                    {
+                        return letterPrefab_Bomb;
+                    }
+                }
+            }
+            else if (GameSettings.Instance.autoBombAllowed && GameSettings.Instance.colourBombAllowed)
+            {
+                if (random <= chance)
+                {
+
+                    random = Random.Range(0f, 1f);
+                    if (random <= chanceForDangerBomb)
+                    {
+                        int random2 = Random.Range(1, 4);
+                        if (random2 == 1)
+                        {
+                            return letterPrefab_BombR;
+                        }
+                        else if (random2 == 2)
+                        {
+                            return letterPrefab_BombG;
+                        }
+                        else if (random2 == 3)
+                        {
+                            return letterPrefab_BombB;
+                        }
+                        else
+                        {
+                            return letterPrefab_Bomb;
+                        }
+                    }
+                    else
+                    {
+                        return letterPrefab_Bomb;
+                    }
+                }
+            }
+            else if (GameSettings.Instance.autoBombAllowed)
+            {
+                return letterPrefab_Bomb;
+            }
+            else
+            {
+                return letterPrefab_Basic;
+            }
+
             return letterPrefab_Basic;
+            
         }
+        
+    }
+
+    public void SummonBomb()
+    {
+        if (!summoning)
+        {
+            //releases 30 - 60 letters within 5 seconds.
+            summonBombAmount = Random.Range(25, 50);
+            summoning = true;
+            allowSummonBombSpawn = false;
+        }
+        else
+        {
+            summonBombAmount += 10;
+        }
+        
     }
 
     private Transform GetRandomSpawn()
@@ -135,5 +405,10 @@ public class LetterSpawner : MonoBehaviour
         Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + areaToSpawn.bounds.center.y);
 
         return point;
+    }
+
+    private IEnumerator ResetSummonBomb()
+    {
+        yield return new WaitForSeconds(10f);
     }
 }
