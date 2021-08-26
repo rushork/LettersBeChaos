@@ -361,7 +361,11 @@ public class LetterSpawner : MonoBehaviour
             }
             else if (GameSettings.Instance.autoBombAllowed)
             {
-                return letterPrefab_Bomb;
+                if (random <= chance)
+                {
+                    return letterPrefab_Bomb;
+                }
+                    
             }
             else
             {
