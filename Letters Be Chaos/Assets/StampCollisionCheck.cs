@@ -142,7 +142,8 @@ public class StampCollisionCheck : MonoBehaviour
                     letter.usagePenaltyEnabled = true;
                     letter.SendForProcessing();
                 }
-                
+
+                letter.hasBeenSelected = false;
 
             }
         }
