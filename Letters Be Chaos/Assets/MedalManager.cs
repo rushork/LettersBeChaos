@@ -56,13 +56,40 @@ public class MedalManager : MonoBehaviour
     public List<string> bombColors;
 
 
+
+
+
+
+
+
+
+    private void Update()
+    {
+        if(lettersSortedCorrectManually == 200)
+        {
+            //Unlocked "I wont be Replaced!"
+            PlayerPrefs.SetInt("P1", 1);
+
+            if(lettersSortedCorrectManually > 799)
+            {
+
+            }
+        }
+    }
+
+
+
+
+
+
+
     /// <summary>
     /// Count the letter into the medal system. This method will sort the letter and add values where necessary.
     /// </summary>
     /// <param name="letter"> The letter object </param> 
     /// <param name="autoSorted"> Was it processed automatically? </param>
     /// <param name="valid"> Was this letter processing valid, did they sort it correctly? </param>
-    public void CountLetter(InteractableLetter letter, bool autoSorted, bool valid, int pointsFromThisProcess)
+    public void CountLetter(InteractableLetter letter, bool autoSorted,bool autoSortedBySortingBomb, bool valid, int pointsFromThisProcess)
     {
         if (autoSorted)
         {
@@ -80,6 +107,10 @@ public class MedalManager : MonoBehaviour
 
             }
 
+            if (autoSortedBySortingBomb)
+            {
+                lettersSortedByAutoSortCount++;
+            }
 
 
         }
