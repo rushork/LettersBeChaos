@@ -38,8 +38,8 @@ public class GameSettings : MonoBehaviour
     //Counts
     private int letterCount;
     private int tempLetterCount;
-    private float totalLettersProcessed;
-    private float letterCountCorrect;
+    public float totalLettersProcessed;
+    public float letterCountCorrect;
     private float letterCountIncorrect;
 
 
@@ -455,6 +455,25 @@ public class GameSettings : MonoBehaviour
         }
 
 
+
+        bool colorBomb = letter.letterScriptable.nameString == "BombG" || letter.letterScriptable.nameString == "BombB"
+             || letter.letterScriptable.nameString == "BombR";
+        bool autoSortBombAll = letter.letterScriptable.nameString == "Bomb";
+        bool autoSorted = colorBomb || autoSortBombAll;
+
+        //medals
+        MedalManager.Instance.CountLetter(letter, autoSorted, autoSortBombAll,colorBomb, points >= 0, points);
+
+
+
+
+
+
+
+
+
+
+
         Destroy(letter.gameObject);
     }
 
@@ -555,29 +574,7 @@ public class GameSettings : MonoBehaviour
         }
 
         if (victory) {
-            // Give score based medals
-            // Don't change these to else if's otherwise someone can't get multiple score based medals.
-            if (PlayerPrefs.GetInt("Score") > 1000000) {
-                PlayerPrefs.SetInt("1MilMedal", 1);
-            }
-            if (PlayerPrefs.GetInt("Score") > 500000) {
-                PlayerPrefs.SetInt("500kMedal", 1);
-            }
-            if (PlayerPrefs.GetInt("Score") > 100000) {
-                PlayerPrefs.SetInt("100kMedal", 1);
-            }
-            if (PlayerPrefs.GetInt("Score") > 50000) {
-                PlayerPrefs.SetInt("50kMedal", 1);
-            }
-            if (PlayerPrefs.GetInt("Score") > 10000) {
-                PlayerPrefs.SetInt("10kMedal", 1);
-            }
-            if (PlayerPrefs.GetInt("Score") > 5000) {
-                PlayerPrefs.SetInt("5kMedal", 1);
-            }
-            if (PlayerPrefs.GetInt("Score") > 1000) {
-                PlayerPrefs.SetInt("1kMedal", 1);
-            }
+            MedalManager.Instance.SetEndGameMedals();
 
             SceneManager.LoadScene(2); // Victory
         } else {

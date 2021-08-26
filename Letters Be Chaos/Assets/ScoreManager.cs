@@ -69,5 +69,10 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("Score", score);
     }
 
+    public int GetScore()
+    {
+        return score;
+    }
+
    
 }

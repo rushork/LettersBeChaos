@@ -257,6 +257,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13652850}
   m_CullTransparentMesh: 1
+--- !u!1 &17902063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 17902064}
+  - component: {fileID: 17902065}
+  m_Layer: 0
+  m_Name: MedalManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &17902064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17902063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 585.18835, y: 696.2405, z: -710.6215}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &17902065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17902063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 438d4f6e0e558f44ea81e03a0ec9d0c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lettersSortedCorrectAutomatically: 0
+  lettersSortedIncorrectAutomatically: 0
+  lettersSortedAutomaticallyTotal: 0
+  lettersSortedIncorrectManually: 0
+  lettersSortedCorrectManually: 0
+  lettersSortedManuallyTotal: 0
+  lettersSortedCorrectTracked: 0
+  lettersSortedIncorrectTracked: 0
+  lettersSortedTrackedTotal: 0
+  pointsLostByIncorrectTracking: 0
+  trackedLettersMissed: 0
+  lettersDestroyedAutomatically: 0
+  lettersDestroyedCorrect: 0
+  lettersDestroyedCorrectWithoutMissing: 0
+  lettersDestroyedIncorrect: 0
+  lettersDestroyedTotal: 0
+  lettersDestroyedCorrectSequentialCount: 0
+  lettersSortedRed: 0
+  lettersSortedBlue: 0
+  lettersSortedGreen: 0
+  lettersSortedOrange: 0
+  lettersSortedWrongColor: 0
+  lettersSortedWrongColorIncorrectly: 0
+  lettersSortedUpsideStampOnly: 0
+  specialLetters:
+  - letter: {fileID: 2170503785109212147, guid: 756840a29879746449c3a787bbca8b5e, type: 3}
+    hasBeenStamped: 0
+    isBomb: 1
+  - letter: {fileID: 2170503785109212147, guid: 2100bebc51e5f6b41ad467326acf210c, type: 3}
+    hasBeenStamped: 0
+    isBomb: 1
+  - letter: {fileID: 2170503785109212147, guid: c58d49ba6cf26054397dd3713d9264f5, type: 3}
+    hasBeenStamped: 0
+    isBomb: 1
+  - letter: {fileID: 2170503785109212147, guid: 5266ac9936a9d1341a4a56ed9cfd33ee, type: 3}
+    hasBeenStamped: 0
+    isBomb: 1
+  differentBombCheckRunning: 0
+  differentBombCount: 0
+  anySpecialLetterCount: 0
+  tripleBombComboCount: -1
+  lettersSortedByAutoSortCount: 0
+  lettersHighlightedWhenCorrectlyDeletedCount: 0
+  bombLetterTotalCount: 0
+  autoSortBombCount: 0
+  bombColors:
+  - red
+  - blue
+  - green
+  totalLettersSorted: 0
+  measuringLetterWipeSpeed: 0
 --- !u!1 &106508870
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +397,8 @@ MonoBehaviour:
   trackingAllowed: 0
   invalidColorAllowed: 0
   specialLettersAllowed: 0
+  totalLettersProcessed: 0
+  letterCountCorrect: 0
   letterCountText: {fileID: 1040350647}
   letterCountCorrectText: {fileID: 750994582}
   letterCountIncorrectText: {fileID: 13652852}
