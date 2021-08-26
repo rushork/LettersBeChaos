@@ -556,6 +556,7 @@ public class GameSettings : MonoBehaviour
 
         if (victory) {
             // Give score based medals
+            // Don't change these to else if's otherwise someone can't get multiple score based medals.
             if (PlayerPrefs.GetInt("Score") > 1000000) {
                 PlayerPrefs.SetInt("1MilMedal", 1);
             }
