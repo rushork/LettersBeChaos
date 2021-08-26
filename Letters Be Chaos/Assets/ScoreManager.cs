@@ -43,6 +43,11 @@ public class ScoreManager : MonoBehaviour
         {
             AddPoints(10000);
         }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GameSettings.Instance.ExitGame();
+        }
     }
 
     public void AddPoints(int amount)

@@ -566,6 +566,7 @@ public class GameSettings : MonoBehaviour
     // Finishes game once a usage has gone over 100
     public void ExitGame() {
 
+        MedalManager.Instance.SetEndGameMedals();
         bool victory = false;
 
         // If the player has processed atleast 100 letters and their accuracy is above 75%
@@ -574,14 +575,13 @@ public class GameSettings : MonoBehaviour
         }
 
         if (victory) {
-            MedalManager.Instance.SetEndGameMedals();
+            
 
             SceneManager.LoadScene(2); // Victory
         } else {
             SceneManager.LoadScene(3); // Failure
         }
     }
-   
 
 
 
