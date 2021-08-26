@@ -29,6 +29,7 @@ public class Medal : MonoBehaviour
         } else {
             GetComponent<Image>().sprite = lockedSprite;
         }
+        GetComponent<Image>().SetNativeSize();
     }
 
     public void onMouseHover() {
