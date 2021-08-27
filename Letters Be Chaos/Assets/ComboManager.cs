@@ -41,6 +41,11 @@ public class ComboManager : MonoBehaviour
     private bool allColoursStamped;
 
     private int correctSequentialStamps5orMore = 0;
+   
+
+    //delete 5 in a row in under 3 seconds
+    private int deleteSequential3SecondCount = 0;
+    private bool checkingForSequential3SecondDeletion;
 
     private void Awake()
     {
@@ -146,13 +151,23 @@ public class ComboManager : MonoBehaviour
         ResetUniqueStamping();
     }
 
-    public void AddCorrectStamp()
+    public void AddCorrectStamp(InteractableLetter letter)
     {
         correctSequentialStamps10orMore++;
         correctSequentialStamps5orMore++;
+
+        if (!letter.isValidOnArrival)
+        {
+            deleteSequential3SecondCount++;
+            if (!checkingForSequential3SecondDeletion)
+            {
+                StartCoroutine(CheckForSequential3SecondDeletion(deleteSequential3SecondCount));
+            }
+            
+        }
     }
 
-    public void MarkIncorrectStamp()
+    public void MarkIncorrectStamp(InteractableLetter letter)
     {
         ResetMultiplier();
         //If the player stamps something incorrectly, this is called.
@@ -273,5 +288,22 @@ public class ComboManager : MonoBehaviour
         hasStampedGreen = false;
         hasStampedOrange = false;
         hasStampedRed = false;
+    }
+
+    private IEnumerator CheckForSequential3SecondDeletion(int initialVal)
+    {
+        checkingForSequential3SecondDeletion = true;
+        yield return new WaitForSeconds(3f);
+        if(deleteSequential3SecondCount - initialVal >= 5)
+        {
+            AddMultiplier(3);
+            deleteSequential3SecondCount = 0;
+        }
+        else
+        {
+            deleteSequential3SecondCount = 0;
+        }
+
+        checkingForSequential3SecondDeletion = false;
     }
 }

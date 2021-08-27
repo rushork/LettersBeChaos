@@ -196,7 +196,7 @@ public class GameSettings : MonoBehaviour
                         debugMessage += " Unknown Error, no color.";
                     }
 
-                    ComboManager.Instance.AddCorrectStamp();
+                    ComboManager.Instance.AddCorrectStamp(letter);
                     ComboManager.Instance.SetLastCorrectlyStamped(letter.colorStampedWith);
                     AudioManager.Instance.Play("Point");
                 }
@@ -428,7 +428,7 @@ public class GameSettings : MonoBehaviour
                 letterCountIncorrect++;
             }
             
-            ComboManager.Instance.MarkIncorrectStamp();
+            ComboManager.Instance.MarkIncorrectStamp(letter);
             isNegative = true;
         }
         else
