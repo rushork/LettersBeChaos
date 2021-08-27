@@ -63,6 +63,9 @@ public class MedalManager : MonoBehaviour
     public int totalLettersSorted;
     public bool measuringLetterWipeSpeed;
 
+    [Header("DEV TOOLS")]
+    public List<string> medalID;
+
 
 
     public static MedalManager Instance { get; private set; }
@@ -71,10 +74,30 @@ public class MedalManager : MonoBehaviour
     {
         
         Instance = this;
+        
+    }
+
+    //cheats!
+    private void UnlockAllMedals()
+    {
+        foreach(string med in medalID)
+        {
+            PlayerPrefs.SetInt(med, 1);
+        }
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            UnlockAllMedals();
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
+
         if (lettersSortedCorrectManually == 200)
         {
             //Unlocked "I wont be Replaced!"

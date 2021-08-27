@@ -36,6 +36,8 @@ public class Medal : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         GetComponent<Image>().SetNativeSize();
 
         anim = GetComponent<Animator>();
+
+        medalText.gameObject.SetActive(false);
     }
 
     public void onMouseHover() {
@@ -46,7 +48,15 @@ public class Medal : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
-            medalText.SetText("Unknown, Play more to find out!");
+            if (unlocked == 1)
+            {
+                medalText.SetText(info);
+            }
+            else
+            {
+                medalText.SetText("Unknown, Play more to find out!");
+            }
+           
         }
         
 
@@ -57,10 +67,12 @@ public class Medal : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
 
         anim.SetTrigger("Shrink");
+        medalText.gameObject.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        medalText.gameObject.SetActive(true);
         anim.SetTrigger("Grow");
         AudioManager.Instance.Play("Tick");
     }
