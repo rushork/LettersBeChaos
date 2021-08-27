@@ -1167,7 +1167,7 @@ MonoBehaviour:
   info: 'Emerald
 
 
-    Achieved a score of over 50''000.'
+    Achieved a score of over 50,000.'
   unlockedSprite: {fileID: 21300000, guid: a91245f447f6a534fa02e2e3f7e9c418, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -1826,7 +1826,7 @@ MonoBehaviour:
   info: 'Diamond
 
 
-    Achieved a score of over 1''000''000.'
+    Achieved a score of over 1,000,000.'
   unlockedSprite: {fileID: 21300000, guid: c0d5f7c3818567d4284aaf9718887ac5, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -3051,7 +3051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: P5
   unlocked: 0
-  info: 'Or will I?
+  info: 'Who needs automation?
 
 
     Sort 800 letters manually.'
@@ -3210,7 +3210,7 @@ MonoBehaviour:
   info: 'Purple
 
 
-    Achieved a score of over 100''000.'
+    Achieved a score of over 100,000.'
   unlockedSprite: {fileID: 21300000, guid: fea7014259524fd4a8e1dce4a83cf9fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -3357,7 +3357,7 @@ MonoBehaviour:
   info: 'Bronze
 
 
-    Achieved a score of over 5''000.'
+    Achieved a score of over 5,000.'
   unlockedSprite: {fileID: 21300000, guid: 190a99bbb6ecd684b92eed98ba2250d7, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -4844,11 +4844,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   medalName: 1kMedal
-  unlocked: 0
+  unlocked: 1
   info: 'Copper
 
 
-    Achieved a score of over 1''000.'
+    Achieved a score of over 1,000.'
   unlockedSprite: {fileID: 21300000, guid: e7e91c6113e182341ba95512e32fefcc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -5583,7 +5583,7 @@ MonoBehaviour:
   info: 'Gold
 
 
-    Achieved a score of over 10''000.'
+    Achieved a score of over 10,000.'
   unlockedSprite: {fileID: 21300000, guid: f736df282c90f704ca08363b967f93fc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -6646,7 +6646,7 @@ MonoBehaviour:
   info: 'Pink
 
 
-    Achieved a score of over 500''000.'
+    Achieved a score of over 500,000.'
   unlockedSprite: {fileID: 21300000, guid: d11744f4d82741741bf5c2cc2dce6d4b, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -6781,7 +6781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: P6
   unlocked: 0
-  info: 'No I don''t think I will
+  info: 'No, I don''t think I will
 
 
     Sort 1500 letters manually.'

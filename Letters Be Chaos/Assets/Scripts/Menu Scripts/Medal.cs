@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using UnityEngine.EventSystems;
 
-public class Medal : MonoBehaviour
+public class Medal : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
     [Header("Info")]
     public string medalName;
     public int unlocked;
+    public bool hiddenUntilUnlocked;
     [TextArea(5, 10)]
     public string info;
 
@@ -20,6 +23,7 @@ public class Medal : MonoBehaviour
 
     [Space(1)]
     public TextMeshProUGUI medalText;
+    private Animator anim;
 
     void Start() {
         unlocked = PlayerPrefs.GetInt(medalName);
@@ -30,16 +34,34 @@ public class Medal : MonoBehaviour
             GetComponent<Image>().sprite = lockedSprite;
         }
         GetComponent<Image>().SetNativeSize();
+
+        anim = GetComponent<Animator>();
     }
 
     public void onMouseHover() {
-        if (unlocked == 1) {
-            medalText.SetText(info);
-        } else {
-            medalText.SetText("???");
-        }
 
-        AudioManager.Instance.Play("Tick");
+        if (!hiddenUntilUnlocked)
+        {
+            medalText.SetText(info);
+        }
+        else
+        {
+            medalText.SetText("Unknown, Play more to find out!");
+        }
+        
+
     }
 
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+
+        anim.SetTrigger("Shrink");
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        anim.SetTrigger("Grow");
+        AudioManager.Instance.Play("Tick");
+    }
 }
