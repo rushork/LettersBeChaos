@@ -3348,6 +3348,18 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9f12fee2cc1d0f6429b285d3c579e88b, type: 3}
     volume: 1
     source: {fileID: 0}
+  - name: MedalUnlocked
+    clip: {fileID: 8300000, guid: 06b2b120f59e518429cf0567b1b362db, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: MultiplierGain
+    clip: {fileID: 8300000, guid: 1fc10ea85f9032948bcb4c673a3b625f, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Multiplier
+    clip: {fileID: 8300000, guid: 11375d75797c2d841ae1108e77c38894, type: 3}
+    volume: 1
+    source: {fileID: 0}
 --- !u!82 &1415757791
 AudioSource:
   m_ObjectHideFlags: 0

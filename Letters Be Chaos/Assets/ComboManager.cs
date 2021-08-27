@@ -172,6 +172,13 @@ public class ComboManager : MonoBehaviour
 
     public void AddMultiplier(float value)
     {
+
+        if (comboMultiplier == 0) {
+            AudioManager.Instance.Play("Multiplier");
+        } else {
+            AudioManager.Instance.Play("MultiplierGain");
+        }
+
         comboMultiplier += value;
         ComboPoints.Create(comboSpawn.position, comboMultiplier);
         comboExpireTimer = comboExpireTimerMax;
