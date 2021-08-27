@@ -6,8 +6,17 @@ using UnityEngine.SceneManagement;
 public class MainMenuScript : MonoBehaviour
 {
 
+    public DisclaimerScript disclaimer;
+
+    private bool disclaimerShown;
+
     public void PlayGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (PlayerPrefs.GetInt("Highscore") != 0 || disclaimerShown) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        } else if (!disclaimerShown) {
+            disclaimerShown = true;
+            disclaimer.Disclaimer();
+        }
     }
 
     public void MainMenu() {
