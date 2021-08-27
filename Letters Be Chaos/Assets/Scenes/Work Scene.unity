@@ -3344,6 +3344,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2b59e40f4dcf8ca43be75cffb4f9fc58, type: 3}
     volume: 1
     source: {fileID: 0}
+  - name: BarAppear
+    clip: {fileID: 8300000, guid: 9f12fee2cc1d0f6429b285d3c579e88b, type: 3}
+    volume: 1
+    source: {fileID: 0}
 --- !u!82 &1415757791
 AudioSource:
   m_ObjectHideFlags: 0

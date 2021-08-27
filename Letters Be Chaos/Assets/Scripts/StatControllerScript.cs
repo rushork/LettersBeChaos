@@ -31,6 +31,9 @@ public class StatControllerScript : MonoBehaviour
         // Renders either no sprite or a full bar sprite depending on how many bars are active
         for (int i = 0; i < numOfBars; i++) {
             if (i < barsActive) {
+                if (bars[i].GetComponent<SpriteRenderer>().sprite != barSprite) {
+                    AudioManager.Instance.Play("BarAppear");
+                }
                 bars[i].GetComponent<SpriteRenderer>().sprite = barSprite;
             } else {
                 bars[i].GetComponent<SpriteRenderer>().sprite = emptyBarSprite;
