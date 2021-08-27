@@ -35,7 +35,7 @@ public class StampCollisionCheck : MonoBehaviour
                 {
                     if (arm.GetColor().Equals(GameSettings.Instance.red))
                     {
-                        AudioManager.Instance.Play("Explosion");
+                        AudioManager.Instance.Play("SuctionBomb");
                         ExplodeAtRandom("red");
                         avoidStandardProcessing = true;
                     }
@@ -53,7 +53,7 @@ public class StampCollisionCheck : MonoBehaviour
                 {
                     if (arm.GetColor().Equals(GameSettings.Instance.blue))
                     {
-                        AudioManager.Instance.Play("Explosion");
+                        AudioManager.Instance.Play("SuctionBomb");
                         ExplodeAtRandom("blue");
                         avoidStandardProcessing = true;
                     }
@@ -70,7 +70,7 @@ public class StampCollisionCheck : MonoBehaviour
                 {
                     if (arm.GetColor().Equals(GameSettings.Instance.green))
                     {
-                        AudioManager.Instance.Play("Explosion");
+                        AudioManager.Instance.Play("SuctionBomb");
                         ExplodeAtRandom("green");
                         avoidStandardProcessing = true;
                     }
@@ -85,18 +85,19 @@ public class StampCollisionCheck : MonoBehaviour
                 }
                 else if (letter.letterScriptable.nameString == "Summon")
                 {
-                    AudioManager.Instance.Play("Explosion");
+                    AudioManager.Instance.Play("SummonBomb");
                     spawner.SummonBomb();
                 }
                 else if (letter.letterScriptable.nameString == "Trash")
                 {
-                    AudioManager.Instance.Play("Explosion");
+                    AudioManager.Instance.Play("TrashFilter");
                     EnableDeleteHighlights();
                     letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
                 }
                 else if (letter.letterScriptable.nameString == "Column")
                 {
-                    AudioManager.Instance.Play("Explosion");
+
+                    AudioManager.Instance.Play("ColumnSort");
                     ColumnSort();
                     letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
                 }

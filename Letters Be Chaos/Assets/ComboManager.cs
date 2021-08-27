@@ -52,46 +52,39 @@ public class ComboManager : MonoBehaviour
 
     private void Update()
     {
-        
 
 
-        //Only fires once, and thats if 10 were stamped.
-        if(checkingForSequentialStampCombo)
+        if (correctSequentialStamps10orMore == 10)
         {
-            
-            if (correctSequentialStamps10orMore == 10)
-            {
-                correctSequentialStamps10orMore = 0;
-                checkingForSequentialStampCombo = false;
+            correctSequentialStamps10orMore = 0;
+          
 
-                //every 5 letters, add another combo.
-                if (correctSequentialStamps5orMore == 5)
-                {
-                    correctSequentialStamps5orMore = 0;
-                    AddMultiplier(2f);
-                }
-                else
-                {
-                    AddMultiplier(1.5f);
-                }
-
-            }
-            else if(correctSequentialStamps5orMore == 5)
+            //every 5 letters, add another combo.
+            if (correctSequentialStamps5orMore == 5)
             {
                 correctSequentialStamps5orMore = 0;
-                AddMultiplier(0.2f);
-            }
-        }
-
-        if (checkingForSequentialIdenticalStampCombo)
-        {
-            if(correctSequentialStampsWithSameColor == 10)
-            {
-                correctSequentialStampsWithSameColor = 0;
-                checkingForSequentialIdenticalStampCombo = false;
                 AddMultiplier(2f);
             }
+            else
+            {
+                AddMultiplier(1.5f);
+            }
+
         }
+        else if (correctSequentialStamps5orMore == 5)
+        {
+            correctSequentialStamps5orMore = 0;
+            AddMultiplier(0.2f);
+        }
+
+
+
+        if (correctSequentialStampsWithSameColor == 10)
+        {
+            correctSequentialStampsWithSameColor = 0;
+            AddMultiplier(2f);
+        }
+
 
 
         if (allColoursStamped)
@@ -173,7 +166,7 @@ public class ComboManager : MonoBehaviour
     public void AddMultiplier(float value)
     {
 
-        if (comboMultiplier == 0) {
+        if (comboMultiplier == 1) {
             AudioManager.Instance.Play("Multiplier");
         } else {
             AudioManager.Instance.Play("MultiplierGain");
@@ -184,6 +177,8 @@ public class ComboManager : MonoBehaviour
         comboExpireTimer = comboExpireTimerMax;
         comboTextDebug.text = comboMultiplier + "x Multiplier";
         comboAnimator.SetTrigger("MultiplierModified");
+
+        
     }
 
     public float GetMultiplier()
