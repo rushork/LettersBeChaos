@@ -52,10 +52,11 @@ public class MedalManager : MonoBehaviour
     public bool differentBombCheckRunning;
     public int differentBombCount;
     public int anySpecialLetterCount;
+    public int totalSpecialLetterCount;
     public int tripleBombComboCount = -1; //-1 because we need to advance the counter so we dont start the coroutine every frame
     public int lettersSortedByAutoSortCount;
     public int lettersHighlightedWhenCorrectlyDeletedCount;
-    public int bombLetterTotalCount;
+    public int specialLetterTotalCount;
     public int autoSortBombCount;
     public List<string> bombColors;
 
@@ -96,6 +97,11 @@ public class MedalManager : MonoBehaviour
         {
             PlayerPrefs.DeleteAll();
         }
+
+        //if(totalSpecialLetterCount == 30)
+        //{
+        //    PlayerPrefs.SetInt("S4", 1);
+        //}
 
 
         if (lettersSortedCorrectManually == 200)
@@ -140,7 +146,7 @@ public class MedalManager : MonoBehaviour
         }
 
 
-        if (bombLetterTotalCount == 30)
+        if (specialLetterTotalCount == 30)
         {
             PlayerPrefs.SetInt("S4", 1);
         }
@@ -448,10 +454,10 @@ public class MedalManager : MonoBehaviour
             // CheckToStampSpecialLetter(letter, colourBomb);
 
 
-            if (autoSortedBySortingBomb || colourBomb)
+            if (autoSortedBySortingBomb || colourBomb )
             {
-                bombLetterTotalCount++;
-                CheckToStampSpecialLetter(letter, colourBomb); //you've processed a bomb 
+                
+                
                 tripleBombComboCount++;
                 //it would equal zero after the first bomb of any type, because it starts at -1
                 if (tripleBombComboCount == 0)
@@ -459,6 +465,13 @@ public class MedalManager : MonoBehaviour
                     tripleBombComboCount = 1; //now its set to 1, because we have 1 bomb, but it no longer satisfies the condition for the coroutine to be called.
                     StartCoroutine(CompareBombCountAfterTime(5f));
                 }
+            }
+
+            if((colourBomb || autoSortedBySortingBomb || letter.letterScriptable.nameString == "Summon"
+             || letter.letterScriptable.nameString == "Trash" || letter.letterScriptable.nameString == "Column"))
+            {
+                CheckToStampSpecialLetter(letter, colourBomb); //you've processed a special letter 
+                specialLetterTotalCount++;
             }
         }
 
@@ -500,7 +513,8 @@ public class MedalManager : MonoBehaviour
         }
 
         //If its a bomb. This needs to run after the previous code which is why it isnt in the above if statement
-        if (letter.letterScriptable.isSpecial && (colourBomb || autoSortedBySortingBomb))
+        if (letter.letterScriptable.isSpecial && (colourBomb || autoSortedBySortingBomb || letter.letterScriptable.nameString == "Summon"
+             || letter.letterScriptable.nameString == "Trash" || letter.letterScriptable.nameString == "Column") )
         {
             if (PlayerPrefs.GetInt("S3") == 0)
                 //if its a bomb and the coroutine isnt running, we need to track if they blow up and more bombs in this timeframe.

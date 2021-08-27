@@ -11,7 +11,8 @@ public class MainMenuScript : MonoBehaviour
     private bool disclaimerShown;
 
     public void PlayGame() {
-        if (PlayerPrefs.GetInt("Highscore") != 0 || disclaimerShown) {
+       
+        if (PlayerPrefs.GetInt("Highscore") > 0 || disclaimerShown) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         } else if (!disclaimerShown) {
             disclaimerShown = true;

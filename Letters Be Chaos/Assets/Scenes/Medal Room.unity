@@ -207,10 +207,11 @@ MonoBehaviour:
   medalName: S7
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Janitor
+  info: '<b>Janitor</b>
 
-
-    Clear 80 letters from the table in under 6 seconds.'
+    Clear 80 letters from the table using any means in under
+    6 seconds.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 9796f44113b69b9479d7524c88634c45, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -355,10 +356,11 @@ MonoBehaviour:
   medalName: S2
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Cluster
+  info: '<b>Cluster</b>
 
-
-    Stamp 3 bombs sequentially in under 5 seconds '
+    Stamp 3 bombs of any colour (including auto-sort) in
+    under 5 seconds.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: e4118b9f952334c42bcebf72011c17d2, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -503,10 +505,11 @@ MonoBehaviour:
   medalName: S6
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Radioactive Waste
+  info: '<b>Radioactive Waste</b>
 
-
-    Highlight and sort 100 letters in one sitting.'
+    Using the trash filter, highlight and sort
+    100 invalid letters in one sitting.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 33c375c3ca264294289d2854a06c0e09, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -785,11 +788,11 @@ MonoBehaviour:
   medalName: E3
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Mimic a fraction of my power
+  info: '<b>Mimic a fraction of my power</b>
 
-
-    Survive with a score of over 50000 with
-    an accuracy of 70% or higher.'
+    Survive with a score of over 50,000
+    with an accuracy of 70% or higher.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: ad1810ef645b2164f8135b5f1d4b1aa3, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -907,10 +910,11 @@ MonoBehaviour:
   differentBombCheckRunning: 0
   differentBombCount: 0
   anySpecialLetterCount: 0
+  totalSpecialLetterCount: 0
   tripleBombComboCount: -1
   lettersSortedByAutoSortCount: 0
   lettersHighlightedWhenCorrectlyDeletedCount: 0
-  bombLetterTotalCount: 0
+  specialLetterTotalCount: 0
   autoSortBombCount: 0
   bombColors: []
   totalLettersSorted: 0
@@ -1014,10 +1018,10 @@ MonoBehaviour:
   medalName: S3
   unlocked: 0
   hiddenUntilUnlocked: 1
-  info: 'Fragmentation
+  info: '<b>Fragmentation</b>
 
-
-    Stamp 3 unique bombs in under 5 seconds'
+    Stamp 3 unique special letters in under 5 seconds'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 2b68c0d32a1b9624bbd34cff5a04d11c, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -1115,7 +1119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 72, y: -162.55}
+  m_AnchoredPosition: {x: 2.2, y: -162.55}
   m_SizeDelta: {x: 32, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &413573091
@@ -1171,10 +1175,10 @@ MonoBehaviour:
   medalName: 50kMedal
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Emerald
-
+  info: '<b>Gold</b>
 
     Achieved a score of over 50,000.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 9023e02b3a3a1964592a0807804e68ec, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -1376,11 +1380,11 @@ MonoBehaviour:
   medalName: E2
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'But I know my way around a post office
+  info: '<b>Knowledge is power, or is it just memory?</b>
 
-
-    Survive with a score of over
-    10000 with an accuracy of 60% or higher.'
+    Survive with a score
+    of over 10,000 with an accuracy of 60% or higher.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: e26a8e212ef66584ba9e0a077110fb2e, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -1524,12 +1528,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: E4
   unlocked: 0
-  hiddenUntilUnlocked: 0
-  info: 'Unbeatable
+  hiddenUntilUnlocked: 1
+  info: '<b>Unbeatable</b>
 
-
-    Survive with a score of over 1000000 with an accuracy of
-    85% or higher.'
+    Survive with a score of over 1,000,000 with an accuracy
+    of 85% or higher.'
+  hint: You must be extremely accurate with an astonishing score to unlock this medal.
   unlockedSprite: {fileID: 21300000, guid: 29d2447c0329d9443b3f412abe4aa3e5, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -1673,14 +1677,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: N1
   unlocked: 0
-  hiddenUntilUnlocked: 0
-  info: 'Cautious Deletion
+  hiddenUntilUnlocked: 1
+  info: '<b>Cautious Deletion</b>
 
-
-    Correctly delete 20 invalid letters without missing
-    one.
+    Correctly delete 20 invalid letters without
+    missing one in a single sitting.
 
 '
+  hint: Try to efficiently pluck invalid letters from the table without letting one
+    slip through.
   unlockedSprite: {fileID: 21300000, guid: 5fae0fa7cb2b05c4f8a06f6365e82810, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -1778,7 +1783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1.97, y: -161.68001}
+  m_AnchoredPosition: {x: 211.12, y: -162.6}
   m_SizeDelta: {x: 32, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &593893415
@@ -1833,11 +1838,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: 1MilMedal
   unlocked: 0
-  hiddenUntilUnlocked: 0
-  info: 'Diamond
-
+  hiddenUntilUnlocked: 1
+  info: '<b>Unstoppable</b>
 
     Achieved a score of over 1,000,000.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: ec83fc00b659e4c438eb2c407b194db6, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -1973,10 +1978,11 @@ MonoBehaviour:
   medalName: S1
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Skipping letter day
+  info: '<b>Skipping letter day</b>
 
-
-    Stamp one of each special letter in a single sitting.'
+    Stamp one of each special letter in a single
+    sitting.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 9dc9eb3f786b06049a179aa7f3c742fd, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -2120,11 +2126,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: E8
   unlocked: 0
-  hiddenUntilUnlocked: 0
-  info: 'Fire me
-
+  hiddenUntilUnlocked: 1
+  info: '<b>Fire me</b>
 
     Survive with an accuracy of 10% or lower.'
+  hint: Terribly Inefficient robots are sometimes rewarded.
   unlockedSprite: {fileID: 21300000, guid: 8b545609a5339b14a90cdb971c65f684, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -2268,11 +2274,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: S4
   unlocked: 0
-  hiddenUntilUnlocked: 0
-  info: 'TNT
+  hiddenUntilUnlocked: 1
+  info: '<b>TNT</b>
 
-
-    Stamp 30 bombs of any kind in one sitting'
+    Stamp 30 special letters of any kind in one sitting'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: ab26828c15d5b80478ca22a1ebf39301, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -2435,11 +2441,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: A1
   unlocked: 0
-  hiddenUntilUnlocked: 0
-  info: 'The King
-
+  hiddenUntilUnlocked: 1
+  info: '<b><color=yellow>The King</color></b>
 
     Unlock all medals'
+  hint: Not all postmen wear sachels.
   unlockedSprite: {fileID: 21300000, guid: 7f2ca3be21ecd784db44397e0da5bb31, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -2698,12 +2704,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: E9
   unlocked: 0
-  hiddenUntilUnlocked: 0
-  info: 'I hate this game
+  hiddenUntilUnlocked: 1
+  info: '<b>I hate this game</b>
 
-
-    Reach maximum usage after scoring 99000 points but
-    less than 100000 points.'
+    Reach maximum usage after scoring 99,000 points
+    but less than 100,000 points.'
+  hint: Get close to 100,000 points with high resource usage to unlock this medal.
   unlockedSprite: {fileID: 21300000, guid: 8fecf945626916449abb06ac2c0872bc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -2848,11 +2854,11 @@ MonoBehaviour:
   medalName: N2
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Tracking comes with insurance.
+  info: '<b>Tracking comes with insurance.</b>
 
-
-    Lose 10000 points by accidently tracking
-    the wrong letters.'
+    Lose 10,000 points by accidently
+    tracking untracked or invalid letters in one sitting.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: c44162bc1efabc64d8cd8abe9a587522, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -3070,10 +3076,10 @@ MonoBehaviour:
   medalName: P2
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Read the guidelines
+  info: '<b>They should''ve read the guidelines.</b>
 
-
-    Destroy 1000 invalid letters.'
+    Destroy 1,000 invalid letters.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 0532befaf4645b641a0e0470f5e65f40, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -3218,10 +3224,10 @@ MonoBehaviour:
   medalName: P5
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Who needs automation?
-
+  info: '<b>Who needs automation?</b>
 
     Sort 800 letters manually.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 256eda9c83bf3cc488303189907b134c, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -3319,7 +3325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 142, y: -162.53336}
+  m_AnchoredPosition: {x: 72.19999, y: -162.53336}
   m_SizeDelta: {x: 32, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007274536
@@ -3375,10 +3381,10 @@ MonoBehaviour:
   medalName: 100kMedal
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Purple
-
+  info: '<b>Platinum</b>
 
     Achieved a score of over 100,000.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: dd761f0824f38824fab8e8fe30275c00, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -3523,10 +3529,10 @@ MonoBehaviour:
   medalName: 5kMedal
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Bronze
-
+  info: '<b>Bronze</b>
 
     Achieved a score of over 5,000.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 90876967292c57c40acd557352fc040d, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -3662,10 +3668,10 @@ MonoBehaviour:
   medalName: P1
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'I wont be replaced
+  info: '<b>I wont be replaced</b>
 
-
-    Sort 200 letters manually.'
+    Correctly sort 200 letters manually.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 8f273776472c0104a8b1059fc199f527, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -3810,11 +3816,11 @@ MonoBehaviour:
   medalName: P7
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Why do it yourself, when robots do it better?
+  info: '<b>Why do it yourself, when robots do it better?</b>
 
-
-    Auto-sort 1000 invalid
-    letters.'
+    Auto-sort 1,000
+    invalid letters.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 254bd736208c6f3488f7145184597efc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -3958,12 +3964,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: N5
   unlocked: 0
-  hiddenUntilUnlocked: 0
-  info: 'IT WAS THE SAME COLOUR I SWEAR!
+  hiddenUntilUnlocked: 1
+  info: '<b>IT WAS THE SAME COLOUR I SWEAR!</b>
 
-
-    Incorrectly process 5 letters which
-    are correct apart from having an incorrect seal colour.'
+    Incorrectly process 5 letters
+    which are correct apart from having an incorrect seal colour.'
+  hint: Was that the wrong colour? Oh no, anyway.
   unlockedSprite: {fileID: 21300000, guid: 8b1ea746eb219a5468b472f5a9842f0d, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -4108,10 +4114,11 @@ MonoBehaviour:
   medalName: S8
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Why even click?
+  info: '<b>Hacking</b>
 
-
-    Clear 500 letters from the table in under 20 seconds.'
+    Clear 500 letters from the table using any means in
+    under 20 seconds.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: d36824fae296da54db894639b754e64c, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -4247,6 +4254,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329947167}
   m_CullTransparentMesh: 1
+--- !u!1 &1350072647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1350072648}
+  - component: {fileID: 1350072650}
+  - component: {fileID: 1350072649}
+  m_Layer: 5
+  m_Name: MedalTextBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1350072648
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350072647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2061783634}
+  m_Father: {fileID: 1423858524}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.122, y: -139.56909}
+  m_SizeDelta: {x: 524.041, y: 80.8618}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1350072649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350072647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6862745}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1350072650
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350072647}
+  m_CullTransparentMesh: 1
 --- !u!1 &1423858520
 GameObject:
   m_ObjectHideFlags: 0
@@ -4339,6 +4422,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1539946339}
+  - {fileID: 1350072648}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4430,12 +4514,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: N4
   unlocked: 0
-  hiddenUntilUnlocked: 0
-  info: 'Oh, I didnt see that.
+  hiddenUntilUnlocked: 1
+  info: '<b>Oh, I didnt see that.</b>
 
-
-    Incorrectly process 20 letters which are correct
-    apart from having upside-down stamps.'
+    Incorrectly process 20 letters which are
+    correct apart from having upside-down postage stamps.'
+  hint: Turn a blind eye to upside down stamps? Blasphemy.
   unlockedSprite: {fileID: 21300000, guid: bf7c62bf6da7d9040a68312fbf1130f3, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -4580,11 +4664,11 @@ MonoBehaviour:
   medalName: E7
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Efficiency isn''t my forte
+  info: '<b>Efficiency isn''t my forte</b>
 
-
-    Survive with a score of over 70000 with
-    an accuracy of 20% or lower.'
+    Survive with a score of over 70,000
+    with an accuracy of 20% or lower.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 2073e90cf421fce4e8d9375a44251e03, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -4729,10 +4813,11 @@ MonoBehaviour:
   medalName: S5
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Going Nuclear
+  info: '<b>Going Nuclear</b>
 
-
-    Sort 500 letters with the sorting bomb in one sitting.'
+    Sort 500 letters with the sorting bomb in one
+    sitting.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 8c2f4254cf920c44b839cbcc5bd4afa2, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -4825,7 +4910,6 @@ RectTransform:
   - {fileID: 1895617029}
   - {fileID: 941379907}
   - {fileID: 192754148}
-  - {fileID: 2061783634}
   m_Father: {fileID: 1423858524}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5023,10 +5107,10 @@ MonoBehaviour:
   medalName: 1kMedal
   unlocked: 1
   hiddenUntilUnlocked: 0
-  info: 'Copper
-
+  info: '<b>Copper</b>
 
     Achieved a score of over 1,000.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 1d2b1fb76e952ee478acd173768cf9df, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -5162,10 +5246,10 @@ MonoBehaviour:
   medalName: P3
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Read them again
+  info: '<b>They never learn.</b>
 
-
-    Destroy 2000 invalid letters.'
+    Destroy 2,000 invalid letters.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: ccb5867f42ce0324bbe629ea3b07109b, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -5310,11 +5394,11 @@ MonoBehaviour:
   medalName: E5
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Quitting Efficiently
+  info: '<b>Quitting Efficiently</b>
 
-
-    Survive with a score of under 5000 with an accuracy
-    of 98% or higher.'
+    Survive with a score of under 5,000 with
+    an accuracy of 98% or higher.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: c0e6e01342f97e742a24e71d9802d0b2, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -5604,11 +5688,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medalName: N3
   unlocked: 0
-  hiddenUntilUnlocked: 0
-  info: 'It''s for my grandson
+  hiddenUntilUnlocked: 1
+  info: '<b>It''s for my grandson</b>
 
-
-    Successfuly sort and track 100 letters.'
+    Successfuly sort and track 100 letters
+    in one sitting.'
+  hint: Keep tracking letters until you unlock this medal.
   unlockedSprite: {fileID: 21300000, guid: 39559fb65cc7a144da51dbbb12802f74, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -5762,10 +5847,10 @@ MonoBehaviour:
   medalName: 10kMedal
   unlocked: 1
   hiddenUntilUnlocked: 0
-  info: 'Gold
-
+  info: '<b>Silver</b>
 
     Achieved a score of over 10,000.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 4c1b13c5e9ec24640b66dceb29ff9339, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -6093,10 +6178,10 @@ MonoBehaviour:
   medalName: P4
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Impressing the boss
+  info: '<b>Discrepancy annihilation machine</b>
 
-
-    Destroy 5000 letters.'
+    Destroy 5,000 letters.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 87ae46b93576074498eb61981bcebecf, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -6241,10 +6326,10 @@ MonoBehaviour:
   medalName: P8
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'No letter untracked
+  info: '<b>No letter untracked</b>
 
-
-    Successfully sort and track 1000 letters.'
+    Successfully sort and track 1,000 letters.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 4609ce51cf9d49f4eb9e552d94d7bb0c, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -6389,11 +6474,11 @@ MonoBehaviour:
   medalName: E6
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'I missed the part where that''s my letter
+  info: '<b>I missed the part where that''s my letter</b>
 
-
-    Survive with a score of
-    under 30000 with an accuracy of 80% or higher.'
+    Survive with a score
+    of under 30,000 with an accuracy of 80% or higher.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: bf126da6b2557f14b95434527311f8cc, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -6483,12 +6568,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1539946339}
-  m_RootOrder: 4
+  m_Father: {fileID: 1350072648}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 56.9727}
+  m_AnchoredPosition: {x: 0.12200928, y: 57.7}
   m_SizeDelta: {x: 499.6311, y: 29.9123}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061783635
@@ -6672,11 +6757,11 @@ MonoBehaviour:
   medalName: E1
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'I''m new
+  info: '<b>I''m new</b>
 
-
-    Survive with a score of over 5000, with an accuracy of 40%
-    or higher.'
+    Survive with a score of over 5,000 with an accuracy
+    of 40% or higher.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: eef979d10bda7d3439a5c2f12128a403, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -6774,7 +6859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 210.98, y: -162.53001}
+  m_AnchoredPosition: {x: 142.12, y: -162.53001}
   m_SizeDelta: {x: 32, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2121093515
@@ -6830,10 +6915,10 @@ MonoBehaviour:
   medalName: 500kMedal
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'Pink
-
+  info: '<b>Diamond</b>
 
     Achieved a score of over 500,000.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 08304cacc9844f74391857d2ef5d45b0, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
@@ -6969,10 +7054,10 @@ MonoBehaviour:
   medalName: P6
   unlocked: 0
   hiddenUntilUnlocked: 0
-  info: 'No, I don''t think I will
+  info: '<b>Automation is for nerds</b>
 
-
-    Sort 1500 letters manually.'
+    Sort 1,500 letters manually.'
+  hint: 
   unlockedSprite: {fileID: 21300000, guid: 3c2f3479270a49240a8029205a6dc4af, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
   medalText: {fileID: 2061783635}
