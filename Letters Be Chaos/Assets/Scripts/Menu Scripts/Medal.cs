@@ -38,6 +38,8 @@ public class Medal : MonoBehaviour
         } else {
             medalText.SetText("???");
         }
+
+        AudioManager.Instance.Play("Tick");
     }
 
 }
