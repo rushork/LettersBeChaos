@@ -109,6 +109,7 @@ public class StampingArm : MonoBehaviour
             mouseTarget = new Vector2(art.transform.position.x, target.position.y - 0.7f);
             originalPos = art.transform.position;
             armStatus = ArmStatus.extending;
+            AudioManager.Instance.Play("Extend");
         }
 
         if (armStatus == ArmStatus.extending)

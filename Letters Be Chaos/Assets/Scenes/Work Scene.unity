@@ -3360,6 +3360,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 11375d75797c2d841ae1108e77c38894, type: 3}
     volume: 1
     source: {fileID: 0}
+  - name: Extend
+    clip: {fileID: 8300000, guid: ff753c1bb57742841bba42ebb432dcaf, type: 3}
+    volume: 1
+    source: {fileID: 0}
 --- !u!82 &1415757791
 AudioSource:
   m_ObjectHideFlags: 0
