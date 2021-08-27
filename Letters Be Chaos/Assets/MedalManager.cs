@@ -258,6 +258,23 @@ public class MedalManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("1kMedal", 1);
         }
+
+
+        int count = 0;
+        foreach (string str in medalID)
+        {
+            
+            if(PlayerPrefs.GetInt(str) == 1)
+            {
+                count++;
+            }
+        }
+        if(count >= 37)
+        {
+            PlayerPrefs.SetInt("A1", 1);
+        }
+
+
     }
 
 

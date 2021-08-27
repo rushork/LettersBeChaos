@@ -351,6 +351,45 @@ MonoBehaviour:
   - green
   totalLettersSorted: 0
   measuringLetterWipeSpeed: 0
+  medalID:
+  - S1
+  - S2
+  - S3
+  - S4
+  - S5
+  - S6
+  - S7
+  - S8
+  - P1
+  - P2
+  - P3
+  - P4
+  - P5
+  - P6
+  - P7
+  - P8
+  - E1
+  - E2
+  - E3
+  - E4
+  - E5
+  - E6
+  - E7
+  - E8
+  - E9
+  - N1
+  - N2
+  - N3
+  - N4
+  - N5
+  - 1kMedal
+  - 5kMedal
+  - 10kMedal
+  - 50kMedal
+  - 100kMedal
+  - 500kMedal
+  - 1MilMedal
+  - A1
 --- !u!1 &86946963
 GameObject:
   m_ObjectHideFlags: 0
