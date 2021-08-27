@@ -151,6 +151,11 @@ public class MedalManager : MonoBehaviour
             PlayerPrefs.SetInt("N5", 1);
         }
 
+        if(lettersHighlightedWhenCorrectlyDeletedCount == 100)
+        {
+            PlayerPrefs.SetInt("S6", 1);
+        }
+
     }
 
 

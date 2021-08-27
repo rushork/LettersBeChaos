@@ -249,6 +249,8 @@ public class GameSettings : MonoBehaviour
                  
                     points += 100; //100 points for correctly discarding the letter
                     tempLetterCount--;
+
+
                 }
                 //if it wasnt orange, and it was invalid, take these.
                 else
@@ -474,6 +476,20 @@ public class GameSettings : MonoBehaviour
         bool autoSorted = colorBomb || autoSortBombAll;
 
         //medals
+
+
+        if(!letter.isValidOnArrival && letter.colorStampedWith.Equals(delete))
+        {
+            Transform highlight = letter.transform.Find("deleteHighlight");
+            if (highlight != null)
+            {
+                if (highlight.gameObject.activeSelf)
+                {
+                    MedalManager.Instance.lettersHighlightedWhenCorrectlyDeletedCount++;
+                }
+            }
+        }
+
         MedalManager.Instance.CountLetter(letter, autoSorted, autoSortBombAll,colorBomb, points >= 0, points);
 
 
