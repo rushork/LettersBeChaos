@@ -46,6 +46,8 @@ public class ComboManager : MonoBehaviour
     //delete 5 in a row in under 3 seconds
     private int deleteSequential3SecondCount = 0;
     private bool checkingForSequential3SecondDeletion;
+    private int tempValue; //stores the difference between the two.
+    private float deleteSequentialTimerDuration = 3f;
 
     private void Awake()
     {
@@ -104,6 +106,40 @@ public class ComboManager : MonoBehaviour
             comboExpireTimer += 5f;
         }
 
+
+        if (checkingForSequential3SecondDeletion)
+        {
+            deleteSequentialTimerDuration -= Time.deltaTime;
+            if(deleteSequentialTimerDuration <= 0)
+            {
+                if(deleteSequential3SecondCount - tempValue >= 5)
+                {
+                    AddMultiplier(3);
+                }
+                tempValue = 0;
+                deleteSequential3SecondCount = 0;
+                checkingForSequential3SecondDeletion = false;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if (comboMultiplier > 1)
         {
             comboActive = true;
@@ -116,14 +152,9 @@ public class ComboManager : MonoBehaviour
         }
 
 
+
+
         comboAnimator.SetBool("Active", comboActive);
-
-
-
-
-
-
-
 
         //disappear over time
         if (comboActive)
@@ -161,7 +192,8 @@ public class ComboManager : MonoBehaviour
             deleteSequential3SecondCount++;
             if (!checkingForSequential3SecondDeletion)
             {
-                StartCoroutine(CheckForSequential3SecondDeletion(deleteSequential3SecondCount));
+                checkingForSequential3SecondDeletion = true;
+                tempValue = deleteSequential3SecondCount;
             }
             
         }
@@ -290,20 +322,5 @@ public class ComboManager : MonoBehaviour
         hasStampedRed = false;
     }
 
-    private IEnumerator CheckForSequential3SecondDeletion(int initialVal)
-    {
-        checkingForSequential3SecondDeletion = true;
-        yield return new WaitForSeconds(3f);
-        if(deleteSequential3SecondCount - initialVal >= 5)
-        {
-            AddMultiplier(3);
-            deleteSequential3SecondCount = 0;
-        }
-        else
-        {
-            deleteSequential3SecondCount = 0;
-        }
-
-        checkingForSequential3SecondDeletion = false;
-    }
+   
 }
