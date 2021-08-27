@@ -597,14 +597,16 @@ public class GameSettings : MonoBehaviour
         MedalManager.Instance.SetEndGameMedals();
         bool victory = false;
 
+        if (PlayerPrefs.GetInt("Highscore") < PlayerPrefs.GetInt("Score")) {
+            PlayerPrefs.SetInt("Highscore", PlayerPrefs.GetInt("Score"));
+        }
+
         // If the player has processed atleast 100 letters and their accuracy is above 75%
         if (letterCountCorrect > 99 &&  letterCountCorrect/totalLettersProcessed >= 0.75) {
             victory = true;
         }
 
         if (victory) {
-            
-
             SceneManager.LoadScene(2); // Victory
         } else {
             SceneManager.LoadScene(3); // Failure

@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8afd14ab4826f479e5d87ebaf0f556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp: {fileID: 1920616778}
+  score: {fileID: 1920616778}
 --- !u!1 &694940106
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +875,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -80}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1320803183
 MonoBehaviour:
@@ -1163,8 +1163,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 100}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 400, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1701035805
 MonoBehaviour:
@@ -1315,7 +1315,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 60}
-  m_SizeDelta: {x: 170, y: 45}
+  m_SizeDelta: {x: 400, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1920616778
 MonoBehaviour:
@@ -1337,7 +1337,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: xxx'
+  m_text: 'Score: xxx
+
+    Highscore: xxx'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 004c40540fc65a8459a1609617fe6048, type: 2}
   m_sharedMaterial: {fileID: 7898051951576004044, guid: 004c40540fc65a8459a1609617fe6048, type: 2}

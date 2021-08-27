@@ -6,12 +6,12 @@ using TMPro;
 public class ScoreScript : MonoBehaviour
 {
 
-    public TextMeshProUGUI tmp;
+    public TextMeshProUGUI score;
 
 
     // Self explanatory
     void Start() {
-        tmp.SetText("Score: " + PlayerPrefs.GetInt("Score"));
+        score.SetText("Score: " + PlayerPrefs.GetInt("Score") + "\nHighscore: " + PlayerPrefs.GetInt("Highscore"));
         PlayerPrefs.SetInt("Score", 0);
     }
 }
