@@ -155,7 +155,7 @@ public class GameSettings : MonoBehaviour
                     //incorrect stamped with tracking info, wasting company money.
                     AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     points -= 400;
-                    IncreaseRandomCheckPenaltyStatus(letter,25);
+                    IncreaseRandomCheckPenaltyStatus(letter,20);
                 }
 
                 //if the letter was correctly stamped by the player
@@ -206,15 +206,15 @@ public class GameSettings : MonoBehaviour
                     if (letter.GetSealColor().Equals(red))
                     {
                         debugMessage += " Was incorrect color: red";
-                        points -= 150;
+                        points -= 200;
 
-                        IncreaseRandomCheckPenaltyStatus(letter, 10);
+                        IncreaseRandomCheckPenaltyStatus(letter, 15);
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     }
                     else if (letter.GetSealColor().Equals(blue))
                     {
                         debugMessage += " Was incorrect color: blue";
-                        points -= 80;
+                        points -= 130;
 
                         IncreaseRandomCheckPenaltyStatus(letter, 10);
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
@@ -222,9 +222,9 @@ public class GameSettings : MonoBehaviour
                     else if (letter.GetSealColor().Equals(green))
                     {
                         debugMessage += " Was incorrect color: green";
-                        points -= 50;
+                        points -= 80;
 
-                        IncreaseRandomCheckPenaltyStatus(letter, 10);
+                        IncreaseRandomCheckPenaltyStatus(letter, 5);
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                     }
                     else if (letter.GetSealColor().Equals(delete))
@@ -233,7 +233,7 @@ public class GameSettings : MonoBehaviour
                         //if the player marks a valid letter for deletion
                         debugMessage += " Was incorrectly marked for deletion.";
                      
-                        points -= 500; //lose a lot of points
+                        points -= 1000; //lose a lot of points
                         IncreaseRandomCheckPenaltyStatus(letter, 25);
                     }
                 }
@@ -260,23 +260,23 @@ public class GameSettings : MonoBehaviour
                     if (letter.GetSealColor().Equals(red))
                     {
                         //sending a high priority letter which is invalid loses more points than a low priority letter.
-                        points -= 150;
+                        points -= 200;
 
-                        IncreaseRandomCheckPenaltyStatus(letter, 15);
+                        IncreaseRandomCheckPenaltyStatus(letter, 25);
                     }
                     //if the seal is blue:
                     else if (letter.GetSealColor().Equals(blue))
                     {
-                        points -= 80;
+                        points -= 130;
 
                         IncreaseRandomCheckPenaltyStatus(letter, 15);
                     }
                     //if the seal is green:
                     else if (letter.GetSealColor().Equals(green))
                     {
-                        points -= 50;
+                        points -= 80;
 
-                        IncreaseRandomCheckPenaltyStatus(letter, 15);
+                        IncreaseRandomCheckPenaltyStatus(letter, 10);
                     }
 
 
@@ -284,8 +284,8 @@ public class GameSettings : MonoBehaviour
                     {
                         AudioManager.Instance.Play(AudioManager.Instance.returnIncorrect(5));
                         //you missed a high priority letter.
-                        points -= 150;
-                        IncreaseRandomCheckPenaltyStatus(letter, 20);
+                        points -= 250;
+                        IncreaseRandomCheckPenaltyStatus(letter, 15);
                     }
 
                     
@@ -469,14 +469,14 @@ public class GameSettings : MonoBehaviour
         }
 
 
+        bool colorBomb = letter.wasSortedByColourBomb;
+        bool autoSortedBombAll = letter.wasSortedByAutoSort;
 
-        bool colorBomb = letter.letterScriptable.nameString == "BombG" || letter.letterScriptable.nameString == "BombB"
-             || letter.letterScriptable.nameString == "BombR";
-        bool autoSortBombAll = letter.letterScriptable.nameString == "Bomb";
-        bool autoSorted = colorBomb || autoSortBombAll;
+      
+        bool autoSorted = (colorBomb || autoSortedBombAll);
 
         //medals
-
+       
 
         if(!letter.isValidOnArrival && letter.colorStampedWith.Equals(delete))
         {
@@ -490,7 +490,8 @@ public class GameSettings : MonoBehaviour
             }
         }
 
-        MedalManager.Instance.CountLetter(letter, autoSorted, autoSortBombAll,colorBomb, points >= 0, points);
+        
+        MedalManager.Instance.CountLetter(letter, autoSorted, autoSortedBombAll, colorBomb, points >= 0, points);
 
 
 
@@ -540,7 +541,7 @@ public class GameSettings : MonoBehaviour
         tempLetterCount++;
         if (tempLetterCount > 5)
         {
-            IncreaseRandom(8);
+            IncreaseRandom(1);
             
             tempLetterCount = 0;
         }
@@ -565,13 +566,13 @@ public class GameSettings : MonoBehaviour
 
         switch (r) {
             case 0:
-                GameSettings.Instance.CPU.setUsage(GameSettings.Instance.CPU.getUsage() + usageIncrease);
+                CPU.setUsage(CPU.getUsage() + usageIncrease);
                 break;
             case 1:
-                GameSettings.Instance.RAM.setUsage(GameSettings.Instance.HYDRAULIC.getUsage() + usageIncrease);
+                RAM.setUsage(HYDRAULIC.getUsage() + usageIncrease);
                 break;
             case 2:
-                GameSettings.Instance.HYDRAULIC.setUsage(GameSettings.Instance.HYDRAULIC.getUsage() + usageIncrease);
+                HYDRAULIC.setUsage(HYDRAULIC.getUsage() + usageIncrease);
                 break;
             default:
                 break;

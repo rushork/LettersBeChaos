@@ -42,6 +42,7 @@ public class InteractableLetter : MonoBehaviour
     [HideInInspector] public bool usagePenaltyEnabled;
     [HideInInspector] public bool hasBeenSelected;
 
+
     //these values are decided after spawning
     public bool hasTrackingInfo;
     public bool hasBeenTrackStamped;
@@ -51,7 +52,9 @@ public class InteractableLetter : MonoBehaviour
     public bool isPostageStamped;
     public bool hasInvalidColor;
     public bool isValidOnArrival; // letters are only valid if they have an upright stamp, a valid coloured seal and no defects
-    
+
+    public bool wasSortedByAutoSort;
+    public bool wasSortedByColourBomb;
 
     //for spawning
     private Vector3 targetLocationToMoveTo;

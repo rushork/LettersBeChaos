@@ -62,7 +62,8 @@ public class MedalManager : MonoBehaviour
 
     [Header("Other")]
     public int totalLettersSorted;
-    public bool measuringLetterWipeSpeed;
+    public bool measuringLetterWipeSpeedS8;
+    public bool measuringLetterWipeSpeedS7;
 
     [Header("DEV TOOLS")]
     public List<string> medalID;
@@ -107,15 +108,15 @@ public class MedalManager : MonoBehaviour
         if(PlayerPrefs.GetInt(code) == default)
         {
 
-
-            medalQueue.EnqueueAction(MedalUnlockCoroutine(code, am));
+            PlayerPrefs.SetInt(code, am);
+            medalQueue.EnqueueAction(MedalUnlockCoroutine(code));
 
 
         }
         
     }
 
-    private IEnumerator MedalUnlockCoroutine(string code, int am)
+    private IEnumerator MedalUnlockCoroutine(string code)
     {
         Sprite sprite = medalSpriteIndices.Find(x => x.code == code).sprite;
 
@@ -130,7 +131,7 @@ public class MedalManager : MonoBehaviour
 
         
 
-        PlayerPrefs.SetInt(code, am);
+        
     }
 
     private void Update()
@@ -344,11 +345,22 @@ public class MedalManager : MonoBehaviour
 
         //A letter has been processed, we need to count how many they process since the first.
 
+        if (!measuringLetterWipeSpeedS8)
+        {
+            
+            StartCoroutine(LetterWipeMeasurement(totalLettersSorted, 60));
+        }
+        if (!measuringLetterWipeSpeedS7)
+        {
+            StartCoroutine(LetterWipeMeasurement(totalLettersSorted, 6));
+           
+        }
+        //figure out why this coroutine isnt running
 
-
-        if (autoSorted)
+        if (autoSorted || autoSortedBySortingBomb || colourBomb)
         {
             lettersSortedAutomaticallyTotal++;
+            
             if (valid)
             {
                 lettersSortedCorrectAutomatically++;
@@ -515,19 +527,17 @@ public class MedalManager : MonoBehaviour
                 }
             }
 
-            if((colourBomb || autoSortedBySortingBomb || letter.letterScriptable.nameString == "Summon"
-             || letter.letterScriptable.nameString == "Trash" || letter.letterScriptable.nameString == "Column"))
-            {
-                CheckToStampSpecialLetter(letter, colourBomb); //you've processed a special letter 
-                specialLetterTotalCount++;
-            }
+
+            CheckToStampSpecialLetter(letter, colourBomb); //you've processed a special letter 
+            specialLetterTotalCount++;
+
         }
 
 
 
 
-        //for medal unlocking
-        if (anySpecialLetterCount == specialLetters.Count)
+        //if we have stamped more or equal to the amount of special letter types
+        if ((PlayerPrefs.GetInt("S1") == default || PlayerPrefs.GetInt("S1") == 0) && (anySpecialLetterCount >= specialLetters.Count))
         {
             int count = 0;
             foreach (SpecialLetterStamped letterSpecial in specialLetters)
@@ -569,7 +579,7 @@ public class MedalManager : MonoBehaviour
                 if (!differentBombCheckRunning)
                 {
                     //should check as long as the medal isnt already unlocked.
-                    StartCoroutine(CompareDifferentBombCountAfterTime(specialLetters.Find(x => x.letter == letter), 5f));
+                    StartCoroutine(CompareDifferentBombCountAfterTime(specialLetters.Find(x => x.letter.letterScriptable == letter.letterScriptable), 5f));
                 }
         }
     }
@@ -577,7 +587,7 @@ public class MedalManager : MonoBehaviour
 
     private void CheckToStampSpecialLetter(InteractableLetter letter, bool colourBomb)
     {
-        SpecialLetterStamped stampedLetter = specialLetters.Find(x => x.letter == letter);
+        SpecialLetterStamped stampedLetter = specialLetters.Find(x => x.letter.letterScriptable == letter.letterScriptable);
 
         if (stampedLetter != null)
         {
@@ -587,7 +597,7 @@ public class MedalManager : MonoBehaviour
             {
                 //find it in the list
                 //"find x, where x.letter is the same as this letter ^"
-                specialLetters.Find(x => x.letter == letter).hasBeenStamped = true;
+                specialLetters.Find(x => x.letter.letterScriptable == letter.letterScriptable).hasBeenStamped = true;
 
 
             }
@@ -666,26 +676,42 @@ public class MedalManager : MonoBehaviour
 
     private IEnumerator LetterWipeMeasurement(int initialValue, float time)
     {
-        measuringLetterWipeSpeed = true;
-        int count = 0;
+        
+
+        if(time == 6)
+        {
+            measuringLetterWipeSpeedS7 = true;
+        }
+        else if(time == 60)
+        {
+            measuringLetterWipeSpeedS8 = true;
+        }
+
+        
         yield return new WaitForSeconds(time);
         if (totalLettersSorted - initialValue >= 80)
         {
             //unlocks "Janitor"
             UnlockMedal("S7", 1);
-            count++;
+            
             if (totalLettersSorted - initialValue >= 500)
             {
-                count++;
+                
                 //unlocks "why even click?"
                 UnlockMedal("S8", 1);
             }
         }
 
-        if (count < 2)
+        if (PlayerPrefs.GetInt("S7") == default || PlayerPrefs.GetInt("S7") == 0)
         {
             //we still havent unlocked S8, so allow it to run again.
-            measuringLetterWipeSpeed = false;
+            measuringLetterWipeSpeedS7 = false;
+
+        }
+        if (PlayerPrefs.GetInt("S8") == default || PlayerPrefs.GetInt("S8") == 0)
+        {
+            //we still havent unlocked S8, so allow it to run again.
+            measuringLetterWipeSpeedS8 = false;
 
         }
         //we've unlocked all the medals for this area, dont bother running the coroutine again.

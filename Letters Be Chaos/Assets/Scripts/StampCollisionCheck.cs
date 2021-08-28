@@ -92,14 +92,14 @@ public class StampCollisionCheck : MonoBehaviour
                 {
                     AudioManager.Instance.Play("TrashFilter");
                     EnableDeleteHighlights();
-                    letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
+                    //letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
                 }
                 else if (letter.letterScriptable.nameString == "Column")
                 {
 
                     AudioManager.Instance.Play("ColumnSort");
                     ColumnSort();
-                    letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
+                    //letter.gameObject.GetComponent<LetterSelfDestruct>().DestructionTimerMax = 0.1f;
                 }
 
 
@@ -136,13 +136,17 @@ public class StampCollisionCheck : MonoBehaviour
                 if (avoidStandardProcessing)
                 {
                     letter.usagePenaltyEnabled = false;
-                    letter.SendForProcessing();
+                    letter.wasSortedByColourBomb = true;
                 }
                 else
                 {
                     letter.usagePenaltyEnabled = true;
                     letter.SendForProcessing();
+
                 }
+
+                
+               
 
                 letter.hasBeenSelected = false;
 
@@ -152,7 +156,7 @@ public class StampCollisionCheck : MonoBehaviour
 
     private void ColumnSort()
     {
-        Collider2D[] letters = Physics2D.OverlapCircleAll(transform.position, 5f, 1 << LayerMask.NameToLayer("Letters"));
+        Collider2D[] letters = Physics2D.OverlapCircleAll(transform.position, 5f, 1 << LayerMask.NameToLayer("Letters") | 1 << LayerMask.NameToLayer("Ignore Raycast"));
 
         foreach (Collider2D letter in letters)
         {
@@ -160,35 +164,35 @@ public class StampCollisionCheck : MonoBehaviour
             if (letterScript != null)
             {
 
-                if (letterScript.isValidOnArrival)
+
+                if (letterScript.GetSealColor().Equals(GameSettings.Instance.red))
                 {
-                    if (letterScript.GetSealColor().Equals(GameSettings.Instance.red))
-                    {
-                        Vector2 extents = redZone.size / 2f;
-                        Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + redZone.bounds.center.y);
-                        point += (Vector2)redZone.transform.position;
-                        letterScript.SetTarget(new Vector3(point.x, point.y, letterScript.transform.position.z));
+                    Vector2 extents = redZone.size / 2f;
+                    Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + redZone.bounds.center.y);
+                    point += (Vector2)redZone.transform.position;
+                    letterScript.SetTarget(new Vector3(point.x, point.y, letterScript.transform.position.z));
 
-                    }
-                    else if (letterScript.GetSealColor().Equals(GameSettings.Instance.green))
-                    {
-                        Vector2 extents = greenZone.size / 2f;
-                        Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + greenZone.bounds.center.y);
-                        point += (Vector2)greenZone.transform.position;
-                        letterScript.SetTarget(new Vector3(point.x, point.y, letterScript.transform.position.z));
-                    }
-                    else if (letterScript.GetSealColor().Equals(GameSettings.Instance.blue))
-                    {
-                        Vector2 extents = blueZone.size / 2f;
-                        Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + blueZone.bounds.center.y);
-                        point += (Vector2)blueZone.transform.position;
-                        letterScript.SetTarget(new Vector3(point.x, point.y, letterScript.transform.position.z));
-                    }
-
-                    letterScript.InitiateColumnSort();
                 }
-                
-               
+                else if (letterScript.GetSealColor().Equals(GameSettings.Instance.green))
+                {
+                    Vector2 extents = greenZone.size / 2f;
+                    Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + greenZone.bounds.center.y);
+                    point += (Vector2)greenZone.transform.position;
+                    letterScript.SetTarget(new Vector3(point.x, point.y, letterScript.transform.position.z));
+                }
+                else if (letterScript.GetSealColor().Equals(GameSettings.Instance.blue))
+                {
+                    Vector2 extents = blueZone.size / 2f;
+                    Vector2 point = new Vector2(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y) + blueZone.bounds.center.y);
+                    point += (Vector2)blueZone.transform.position;
+                    letterScript.SetTarget(new Vector3(point.x, point.y, letterScript.transform.position.z));
+                }
+
+
+                letterScript.InitiateColumnSort();
+
+
+
             }
         }
     }
@@ -327,7 +331,8 @@ public class StampCollisionCheck : MonoBehaviour
             body.velocity = Vector2.zero;
             body.angularVelocity = 0;
         }
-        
+
+        letterScript.wasSortedByAutoSort = true;
         letterScript.SendForProcessing();
     }
 

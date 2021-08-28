@@ -42,7 +42,7 @@ public class ComboPoints : MonoBehaviour
 
         headerText.SetText(message);
 
-        text.SetText(pointsValue.ToString() + "x");
+        text.SetText(pointsValue.ToString("F1") + "x");
 
         text.color = textColor;
         disappearTimer = DISAPPEAR_TIMER_MAX;

@@ -104,7 +104,7 @@ public class LetterSpawner : MonoBehaviour
         //5% chance of a special letter.
         if (GameSettings.Instance.specialLettersAllowed)
         {
-            InteractableLetter letter = InteractableLetter.CreateLetter(RollForSpecialLetter(0.05f), GetRandomSpawn(), GetRandomTarget(), currentZ);
+            InteractableLetter letter = InteractableLetter.CreateLetter(RollForSpecialLetter(0.07f), GetRandomSpawn(), GetRandomTarget(), currentZ);
 
             //dont add letters if they're special, they dont count.
             if (!letter.letterScriptable.isSpecial)
