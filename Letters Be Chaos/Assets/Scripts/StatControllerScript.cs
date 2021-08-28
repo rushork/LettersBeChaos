@@ -49,9 +49,17 @@ public class StatControllerScript : MonoBehaviour
                 if (bars[i].sprite != barSprite) {
                     sync = true;
                     AudioManager.Instance.Play("BarAppear");
-                    animators[i].SetBool("Flashing", true);
                 }
                 bars[i].sprite = barSprite;
+
+                if (i == (barsActive - 1))
+                {
+                    animators[i].SetBool("Flashing", true);
+                }
+                else
+                {
+                    animators[i].SetBool("Flashing", false);
+                }
             } else {
                 bars[i].sprite = emptyBarSprite;
                 animators[i].SetBool("Flashing", false);
