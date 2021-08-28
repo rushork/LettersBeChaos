@@ -109,7 +109,7 @@ public class ComboManager : MonoBehaviour
         {
             if(correctSequentialStamps5orMore == 10)
             {
-                AddMultiplier(0.7f, "10 in a row");
+                AddMultiplier(0.5f, "10 in a row");
                 correctSequentialStamps5orMore = 0;
             }
             else if (correctSequentialStamps5orMore == 5)
@@ -132,10 +132,10 @@ public class ComboManager : MonoBehaviour
 
 
 
-        if (correctSequentialStampsWithSameColor == 10)
+        if (correctSequentialStampsWithSameColor == 20)
         {
             correctSequentialStampsWithSameColor = 0;
-            AddMultiplier(0.7f,"10 Identical Colours!");
+            AddMultiplier(0.7f,"20 Identical Colours!");
         }
 
 
@@ -147,7 +147,7 @@ public class ComboManager : MonoBehaviour
             hasStampedGreen = false;
             hasStampedOrange = false;
             hasStampedRed = false;
-            AddMultiplier(8f, "Stamped all the colours!");
+            AddMultiplier(4f, "Stamped all the colours!");
             //slightly longer to play with it.
             comboExpireTimer += 5f;
         }
@@ -160,7 +160,7 @@ public class ComboManager : MonoBehaviour
             {
                 if(deleteSequential3SecondCount - tempValue >= 5)
                 {
-                    AddMultiplier(1.5f, "Delete 5 in under 3 seconds");
+                    AddMultiplier(1.2f, "Delete 5 in under 3 seconds");
                 }
                 tempValue = 0;
                 deleteSequential3SecondCount = 0;
@@ -262,35 +262,42 @@ public class ComboManager : MonoBehaviour
 
     public void AddMultiplier(float value, string message)
     {
-
-        if (comboMultiplier == 1) {
-            AudioManager.Instance.Play("Multiplier");
-        } else {
-            AudioManager.Instance.Play("MultiplierGain");
-        }
-
-        comboMultiplier += value;
-
-
-
-        if(timeSinceLastMultiplier < 2f)
+        if(comboMultiplier + value <= 30)
         {
-            ComboPoints.Create(comboSpawns[1].position, comboMultiplier, message);
-            timeSinceLastMultiplier = 0;
-        }
-        else
-        {
-            ComboPoints.Create(comboSpawns[0].position, comboMultiplier, message);
+            if (comboMultiplier == 1)
+            {
+                AudioManager.Instance.Play("Multiplier");
+            }
+            else
+            {
+                AudioManager.Instance.Play("MultiplierGain");
+            }
 
-            timeSinceLastMultiplier = 0;
-        }
+            comboMultiplier += value;
 
+
+
+            if (timeSinceLastMultiplier < 2f)
+            {
+                ComboPoints.Create(comboSpawns[1].position, comboMultiplier, message);
+                timeSinceLastMultiplier = 0;
+            }
+            else
+            {
+                ComboPoints.Create(comboSpawns[0].position, comboMultiplier, message);
+
+                timeSinceLastMultiplier = 0;
+            }
+
+
+            
+        }
         
+
         comboExpireTimer = comboExpireTimerMax;
         comboTextDebug.text = comboMultiplier + "x Multiplier";
         comboAnimator.SetTrigger("MultiplierModified");
 
-        
     }
 
     public float GetMultiplier()
@@ -305,15 +312,16 @@ public class ComboManager : MonoBehaviour
 
         if(timerCount == 60)
         {
-            AddMultiplier(5,"60 seconds without failure");
+            AddMultiplier(1.5f,"60 seconds without failure");
         }
         else if (timerCount == 120)
         {
-            AddMultiplier(8, "2 minutes without failure");
+            AddMultiplier(3, "2 minutes without failure");
         }
         else if (timerCount == 240)
         {
-            AddMultiplier(15, "4 minutes without failure");
+            AddMultiplier(5, "4 minutes without failure");
+            timerCount = 0;
         }
     }
 

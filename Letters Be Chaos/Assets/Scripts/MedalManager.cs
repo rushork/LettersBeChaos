@@ -503,6 +503,8 @@ public class MedalManager : MonoBehaviour
         if (valid)
         {
             totalLettersSorted++;
+
+
         }
 
 
@@ -510,11 +512,10 @@ public class MedalManager : MonoBehaviour
         {
             // CheckToStampSpecialLetter(letter, colourBomb);
 
-
-            if (autoSortedBySortingBomb || colourBomb )
+            if (letter.letterScriptable.nameString == "Bomb" || colourBomb)
             {
-                
-                
+
+
                 tripleBombComboCount++;
                 //it would equal zero after the first bomb of any type, because it starts at -1
                 if (tripleBombComboCount == 0)
@@ -523,6 +524,7 @@ public class MedalManager : MonoBehaviour
                     StartCoroutine(CompareBombCountAfterTime(5f));
                 }
             }
+
 
 
             CheckToStampSpecialLetter(letter, colourBomb); //you've processed a special letter 
