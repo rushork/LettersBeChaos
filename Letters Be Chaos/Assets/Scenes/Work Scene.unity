@@ -390,6 +390,84 @@ MonoBehaviour:
   - 100kMedal
   - 500kMedal
   - 1MilMedal
+  trayScript: {fileID: 1213448941}
+  medalSpriteIndices:
+  - code: S1
+    sprite: {fileID: 21300000, guid: 9dc9eb3f786b06049a179aa7f3c742fd, type: 3}
+  - code: S2
+    sprite: {fileID: 21300000, guid: e4118b9f952334c42bcebf72011c17d2, type: 3}
+  - code: S3
+    sprite: {fileID: 21300000, guid: 2b68c0d32a1b9624bbd34cff5a04d11c, type: 3}
+  - code: S4
+    sprite: {fileID: 21300000, guid: ab26828c15d5b80478ca22a1ebf39301, type: 3}
+  - code: S5
+    sprite: {fileID: 21300000, guid: 8c2f4254cf920c44b839cbcc5bd4afa2, type: 3}
+  - code: S6
+    sprite: {fileID: 21300000, guid: 33c375c3ca264294289d2854a06c0e09, type: 3}
+  - code: S7
+    sprite: {fileID: 21300000, guid: 9796f44113b69b9479d7524c88634c45, type: 3}
+  - code: S8
+    sprite: {fileID: 21300000, guid: d36824fae296da54db894639b754e64c, type: 3}
+  - code: P1
+    sprite: {fileID: 21300000, guid: 8f273776472c0104a8b1059fc199f527, type: 3}
+  - code: P2
+    sprite: {fileID: 21300000, guid: 0532befaf4645b641a0e0470f5e65f40, type: 3}
+  - code: P3
+    sprite: {fileID: 21300000, guid: ccb5867f42ce0324bbe629ea3b07109b, type: 3}
+  - code: P4
+    sprite: {fileID: 21300000, guid: 87ae46b93576074498eb61981bcebecf, type: 3}
+  - code: P5
+    sprite: {fileID: 21300000, guid: 256eda9c83bf3cc488303189907b134c, type: 3}
+  - code: P6
+    sprite: {fileID: 21300000, guid: 3c2f3479270a49240a8029205a6dc4af, type: 3}
+  - code: P7
+    sprite: {fileID: 21300000, guid: 254bd736208c6f3488f7145184597efc, type: 3}
+  - code: P8
+    sprite: {fileID: 21300000, guid: 4609ce51cf9d49f4eb9e552d94d7bb0c, type: 3}
+  - code: E1
+    sprite: {fileID: 21300000, guid: eef979d10bda7d3439a5c2f12128a403, type: 3}
+  - code: E2
+    sprite: {fileID: 21300000, guid: e26a8e212ef66584ba9e0a077110fb2e, type: 3}
+  - code: E3
+    sprite: {fileID: 21300000, guid: ad1810ef645b2164f8135b5f1d4b1aa3, type: 3}
+  - code: E4
+    sprite: {fileID: 21300000, guid: 29d2447c0329d9443b3f412abe4aa3e5, type: 3}
+  - code: E5
+    sprite: {fileID: 21300000, guid: c0e6e01342f97e742a24e71d9802d0b2, type: 3}
+  - code: E6
+    sprite: {fileID: 21300000, guid: bf126da6b2557f14b95434527311f8cc, type: 3}
+  - code: E7
+    sprite: {fileID: 21300000, guid: 2073e90cf421fce4e8d9375a44251e03, type: 3}
+  - code: E8
+    sprite: {fileID: 21300000, guid: 8b545609a5339b14a90cdb971c65f684, type: 3}
+  - code: E9
+    sprite: {fileID: 21300000, guid: 8fecf945626916449abb06ac2c0872bc, type: 3}
+  - code: N1
+    sprite: {fileID: 21300000, guid: 5fae0fa7cb2b05c4f8a06f6365e82810, type: 3}
+  - code: N2
+    sprite: {fileID: 21300000, guid: c44162bc1efabc64d8cd8abe9a587522, type: 3}
+  - code: N3
+    sprite: {fileID: 21300000, guid: 39559fb65cc7a144da51dbbb12802f74, type: 3}
+  - code: N4
+    sprite: {fileID: 21300000, guid: bf7c62bf6da7d9040a68312fbf1130f3, type: 3}
+  - code: N5
+    sprite: {fileID: 21300000, guid: 8b1ea746eb219a5468b472f5a9842f0d, type: 3}
+  - code: 1kMedal
+    sprite: {fileID: 21300000, guid: 1d2b1fb76e952ee478acd173768cf9df, type: 3}
+  - code: 5kMedal
+    sprite: {fileID: 21300000, guid: 90876967292c57c40acd557352fc040d, type: 3}
+  - code: 10kMedal
+    sprite: {fileID: 21300000, guid: 4c1b13c5e9ec24640b66dceb29ff9339, type: 3}
+  - code: 50kMedal
+    sprite: {fileID: 21300000, guid: 9023e02b3a3a1964592a0807804e68ec, type: 3}
+  - code: 100kMedal
+    sprite: {fileID: 21300000, guid: dd761f0824f38824fab8e8fe30275c00, type: 3}
+  - code: 500kMedal
+    sprite: {fileID: 21300000, guid: 08304cacc9844f74391857d2ef5d45b0, type: 3}
+  - code: 1MilMedal
+    sprite: {fileID: 21300000, guid: ec83fc00b659e4c438eb2c407b194db6, type: 3}
+  - code: A1
+    sprite: {fileID: 21300000, guid: 7f2ca3be21ecd784db44397e0da5bb31, type: 3}
 --- !u!1 &86946963
 GameObject:
   m_ObjectHideFlags: 0
@@ -2784,6 +2862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213448939}
   - component: {fileID: 1213448940}
+  - component: {fileID: 1213448941}
   m_Layer: 0
   m_Name: MedalTray
   m_TagString: Untagged
@@ -2857,6 +2936,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1213448941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213448938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83902886b438bc645af1d63b1051302a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1214396100
 GameObject:
   m_ObjectHideFlags: 0
@@ -3603,7 +3694,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9f12fee2cc1d0f6429b285d3c579e88b, type: 3}
     volume: 1
     source: {fileID: 0}
-  - name: MedalUnlocked
+  - name: MedalUnlock
     clip: {fileID: 8300000, guid: 06b2b120f59e518429cf0567b1b362db, type: 3}
     volume: 1
     source: {fileID: 0}

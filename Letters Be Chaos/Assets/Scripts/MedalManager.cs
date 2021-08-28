@@ -66,6 +66,17 @@ public class MedalManager : MonoBehaviour
 
     [Header("DEV TOOLS")]
     public List<string> medalID;
+    public MedalTray trayScript;
+    CoroutineQueue medalQueue;
+    public List<MedalSpriteIndex> medalSpriteIndices;
+
+    [System.Serializable]
+    public class MedalSpriteIndex
+    {
+        public string code;
+        public Sprite sprite;
+        
+    }
 
 
 
@@ -75,7 +86,9 @@ public class MedalManager : MonoBehaviour
     {
         
         Instance = this;
-        
+        medalQueue = new CoroutineQueue(this);
+        medalQueue.StartLoop();
+    
     }
 
     //cheats!
@@ -84,7 +97,39 @@ public class MedalManager : MonoBehaviour
         foreach(string med in medalID)
         {
             PlayerPrefs.SetInt(med, 1);
+            
         }
+    }
+
+    //manages medal queue system
+    private void UnlockMedal(string code, int am)
+    {
+        if(PlayerPrefs.GetInt(code) == default)
+        {
+
+
+            medalQueue.EnqueueAction(MedalUnlockCoroutine(code, am));
+
+
+        }
+        
+    }
+
+    private IEnumerator MedalUnlockCoroutine(string code, int am)
+    {
+        Sprite sprite = medalSpriteIndices.Find(x => x.code == code).sprite;
+
+        if (sprite != null)
+        {
+            AudioManager.Instance.Play("MedalUnlock");
+            trayScript.OpenTray(sprite);
+        }
+
+        yield return new WaitForSeconds(4.5f);
+
+        
+
+        PlayerPrefs.SetInt(code, am);
     }
 
     private void Update()
@@ -92,6 +137,7 @@ public class MedalManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             UnlockAllMedals();
+            
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
@@ -107,82 +153,82 @@ public class MedalManager : MonoBehaviour
         if (lettersSortedCorrectManually == 200)
         {
             //Unlocked "I wont be Replaced!"
-            PlayerPrefs.SetInt("P1", 1);
+            UnlockMedal("P1",1);
         }
         else if (lettersSortedCorrectManually == 800)
         {
             //Unlocked "Or will i?"
-            PlayerPrefs.SetInt("P5", 1);
+            UnlockMedal("P5",1);
         }
         else if (lettersSortedCorrectManually == 1500)
         {
             //Unlocked "no, i dont think i will"
-            PlayerPrefs.SetInt("P6", 1);
+            UnlockMedal("P6", 1);
         }
 
         if (lettersDestroyedCorrect == 1000)
         {
-            PlayerPrefs.SetInt("P2", 1);
+            UnlockMedal("P2", 1);
         }
         else if (lettersDestroyedCorrect == 2000)
         {
-            PlayerPrefs.SetInt("P3", 1);
+            UnlockMedal("P3", 1);
         }
         else if (lettersDestroyedCorrect == 5000)
         {
-            PlayerPrefs.SetInt("P4", 1);
+            UnlockMedal("P4", 1);
         }
 
         if (lettersDestroyedAutomatically == 1000)
         {
-            PlayerPrefs.SetInt("P7", 1);
+            UnlockMedal("P7", 1);
         }
 
 
         //tracking
         if (lettersSortedCorrectTracked == 1000)
         {
-            PlayerPrefs.SetInt("P8", 1);
+            UnlockMedal("P8", 1);
         }
 
 
         if (specialLetterTotalCount == 30)
         {
-            PlayerPrefs.SetInt("S4", 1);
+            UnlockMedal("S4", 1);
         }
 
 
         if(lettersDestroyedCorrectWithoutMissing == 20)
         {
             //unlocks "Cautious deletion"
-            PlayerPrefs.SetInt("N1", 1);
+            UnlockMedal("N1", 1);
         }
 
         if(pointsLostByIncorrectTracking >= 10000 && PlayerPrefs.GetInt("N2") == 0)
         {
             //if N2 is not yet unlocked
-            PlayerPrefs.SetInt("N2", 1);
+            UnlockMedal("N2", 1);
         } 
 
 
         if(lettersSortedCorrectTracked == 100)
         {
-            PlayerPrefs.SetInt("N3", 1);
+            UnlockMedal("N3", 1);
         }
 
         if(lettersSortedUpsideStampOnly == 20)
         {
-            PlayerPrefs.SetInt("N4", 1);
+            UnlockMedal("N4", 1);
         }
 
         if(lettersSortedWrongColorIncorrectly == 5)
         {
-            PlayerPrefs.SetInt("N5", 1);
+            UnlockMedal("N5", 1);
         }
 
         if(lettersHighlightedWhenCorrectlyDeletedCount == 100)
         {
-            PlayerPrefs.SetInt("S6", 1);
+            UnlockMedal("S6", 1);
         }
 
     }
@@ -197,40 +243,40 @@ public class MedalManager : MonoBehaviour
 
         if (score > 5000 && accuracy >= 0.4f)
         {
-            PlayerPrefs.SetInt("E1", 1);
+            UnlockMedal("E1", 1);
         }
         if (score > 10000 && accuracy >= 0.6f)
         {
-            PlayerPrefs.SetInt("E2", 1);
+            UnlockMedal("E2", 1);
         }
         if (score > 50000 && accuracy >= 0.7f)
         {
-            PlayerPrefs.SetInt("E3", 1);
+            UnlockMedal("E3", 1);
         }
         if (score > 1000000 && accuracy >= 0.85f)
         {
-            PlayerPrefs.SetInt("E4", 1);
+            UnlockMedal("E4", 1);
         }
 
         if(score < 5000 && accuracy >= 0.98f)
         {
-            PlayerPrefs.SetInt("E5", 1);
+            UnlockMedal("E5", 1);
         }
         if (score < 30000 && accuracy >= 0.8f)
         {
-            PlayerPrefs.SetInt("E6", 1);
+            UnlockMedal("E6", 1);
         }
         if (score > 70000 && accuracy <= 0.2f)
         {
-            PlayerPrefs.SetInt("E7", 1);
+            UnlockMedal("E7", 1);
         }
         if (accuracy <= 0.1f)
         {
-            PlayerPrefs.SetInt("E8", 1);
+            UnlockMedal("E8", 1);
         }
         if (score >= 99000 && score <= 100000)
         {
-            PlayerPrefs.SetInt("E9",1);
+            UnlockMedal("E9",1);
         }
 
 
@@ -238,31 +284,31 @@ public class MedalManager : MonoBehaviour
         // Don't change these to else if's otherwise someone can't get multiple score based medals.
         if (score > 1000000)
         {
-            PlayerPrefs.SetInt("1MilMedal", 1);
+            UnlockMedal("1MilMedal", 1);
         }
         if (score > 500000)
         {
-            PlayerPrefs.SetInt("500kMedal", 1);
+            UnlockMedal("500kMedal", 1);
         }
         if (score > 100000)
         {
-            PlayerPrefs.SetInt("100kMedal", 1);
+            UnlockMedal("100kMedal", 1);
         }
         if (score > 50000)
         {
-            PlayerPrefs.SetInt("50kMedal", 1);
+            UnlockMedal("50kMedal", 1);
         }
         if (score > 10000)
         {
-            PlayerPrefs.SetInt("10kMedal", 1);
+            UnlockMedal("10kMedal", 1);
         }
         if (score > 5000)
         {
-            PlayerPrefs.SetInt("5kMedal", 1);
+            UnlockMedal("5kMedal", 1);
         }
         if (score > 1000)
         {
-            PlayerPrefs.SetInt("1kMedal", 1);
+            UnlockMedal("1kMedal", 1);
         }
 
 
@@ -277,7 +323,7 @@ public class MedalManager : MonoBehaviour
         }
         if(count >= 37)
         {
-            PlayerPrefs.SetInt("A1", 1);
+            UnlockMedal("A1", 1);
         }
 
 
@@ -497,7 +543,7 @@ public class MedalManager : MonoBehaviour
             if (count >= specialLetters.Count)
             {
                 //Unlocks "Skipping Letter Day"
-                PlayerPrefs.SetInt("S1", 1);
+                UnlockMedal("S1", 1);
                 //we have stamped at least one of each of the special letters.
 
                 if (!differentBombCheckRunning)
@@ -564,7 +610,7 @@ public class MedalManager : MonoBehaviour
         if (tripleBombComboCount >= 3)
         {
             //Unlocks "Cluster"
-            PlayerPrefs.SetInt("S2", 1);
+            UnlockMedal("S2", 1);
         }
     }
 
@@ -607,7 +653,7 @@ public class MedalManager : MonoBehaviour
         if (count >= 2)
         {
             //Unlocks "Fragmentation"
-            PlayerPrefs.SetInt("S3", 1);
+            UnlockMedal("S3", 1);
         }
 
         //the different bomb count is reset.
@@ -624,13 +670,13 @@ public class MedalManager : MonoBehaviour
         if (totalLettersSorted - initialValue >= 80)
         {
             //unlocks "Janitor"
-            PlayerPrefs.SetFloat("S7", 1);
+            UnlockMedal("S7", 1);
             count++;
             if (totalLettersSorted - initialValue >= 500)
             {
                 count++;
                 //unlocks "why even click?"
-                PlayerPrefs.SetFloat("S8", 1);
+                UnlockMedal("S8", 1);
             }
         }
 
