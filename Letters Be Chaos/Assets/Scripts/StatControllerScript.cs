@@ -10,9 +10,23 @@ public class StatControllerScript : MonoBehaviour
 
     public int usage;
     public int barsActive;
-    public GameObject[] bars;
+    public SpriteRenderer[] bars;
     public Sprite barSprite;
     public Sprite emptyBarSprite;
+    private Animator[] animators;
+    public Animator b1;
+    public Animator b2;
+    public Animator b3;
+
+    private void Start()
+    {
+        //im lazy
+        animators = new Animator[3];
+
+        animators[0] = b1;
+        animators[1] = b2;
+        animators[2] = b3;
+    }
 
     // Update is called once per frame
     void Update() {
@@ -20,9 +34,9 @@ public class StatControllerScript : MonoBehaviour
         // Updates the status bars
         if (usage <= 25) {
             barsActive = 0;
-        } else if (usage > 75) {
+        } else if (usage >= 75) {
             barsActive = 3;
-        } else if (usage > 50) {
+        } else if (usage >= 50) {
             barsActive = 2;
         } else {
             barsActive = 1;
@@ -31,12 +45,14 @@ public class StatControllerScript : MonoBehaviour
         // Renders either no sprite or a full bar sprite depending on how many bars are active
         for (int i = 0; i < numOfBars; i++) {
             if (i < barsActive) {
-                if (bars[i].GetComponent<SpriteRenderer>().sprite != barSprite) {
+                if (bars[i].sprite != barSprite) {
                     AudioManager.Instance.Play("BarAppear");
+                    animators[i].SetBool("Flashing", true);
                 }
-                bars[i].GetComponent<SpriteRenderer>().sprite = barSprite;
+                bars[i].sprite = barSprite;
             } else {
-                bars[i].GetComponent<SpriteRenderer>().sprite = emptyBarSprite;
+                bars[i].sprite = emptyBarSprite;
+                animators[i].SetBool("Flashing", false);
             }
         }  
     }

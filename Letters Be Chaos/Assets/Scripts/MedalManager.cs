@@ -122,6 +122,7 @@ public class MedalManager : MonoBehaviour
         if (sprite != null)
         {
             AudioManager.Instance.Play("MedalUnlock");
+            
             trayScript.OpenTray(sprite);
         }
 
@@ -136,8 +137,9 @@ public class MedalManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            UnlockAllMedals();
-            
+            //UnlockAllMedals();
+            UnlockMedal("S4", 1);
+
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
@@ -204,7 +206,7 @@ public class MedalManager : MonoBehaviour
             UnlockMedal("N1", 1);
         }
 
-        if(pointsLostByIncorrectTracking >= 10000 && PlayerPrefs.GetInt("N2") == 0)
+        if(pointsLostByIncorrectTracking >= 10000 && (PlayerPrefs.GetInt("N2") == 0 || PlayerPrefs.GetInt("N2") == default))
         {
             //if N2 is not yet unlocked
             UnlockMedal("N2", 1);
@@ -562,7 +564,7 @@ public class MedalManager : MonoBehaviour
         if (letter.letterScriptable.isSpecial && (colourBomb || autoSortedBySortingBomb || letter.letterScriptable.nameString == "Summon"
              || letter.letterScriptable.nameString == "Trash" || letter.letterScriptable.nameString == "Column") )
         {
-            if (PlayerPrefs.GetInt("S3") == 0)
+            if (PlayerPrefs.GetInt("S3") == 0 || PlayerPrefs.GetInt("S3") == default)
                 //if its a bomb and the coroutine isnt running, we need to track if they blow up and more bombs in this timeframe.
                 if (!differentBombCheckRunning)
                 {

@@ -540,7 +540,8 @@ public class GameSettings : MonoBehaviour
         tempLetterCount++;
         if (tempLetterCount > 5)
         {
-            IncreaseRandom(10);
+            IncreaseRandom(8);
+            
             tempLetterCount = 0;
         }
 
