@@ -17,6 +17,7 @@ public class StatControllerScript : MonoBehaviour
     public Animator b1;
     public Animator b2;
     public Animator b3;
+    private bool sync;
 
     private void Start()
     {
@@ -46,6 +47,7 @@ public class StatControllerScript : MonoBehaviour
         for (int i = 0; i < numOfBars; i++) {
             if (i < barsActive) {
                 if (bars[i].sprite != barSprite) {
+                    sync = true;
                     AudioManager.Instance.Play("BarAppear");
                     animators[i].SetBool("Flashing", true);
                 }
@@ -54,7 +56,24 @@ public class StatControllerScript : MonoBehaviour
                 bars[i].sprite = emptyBarSprite;
                 animators[i].SetBool("Flashing", false);
             }
-        }  
+        }
+
+        if (sync)
+        {
+            for (int i = 0; i < numOfBars; i++)
+            {
+                if (i < barsActive)
+                {
+                    if (animators[i].GetBool("Flashing"))
+                    {
+                        animators[i].SetTrigger("Reset");
+                    }
+                }
+                
+            }
+
+            sync = false;
+        }
     }
 
     public int getUsage() {
