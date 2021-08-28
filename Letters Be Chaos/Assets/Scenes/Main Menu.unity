@@ -562,8 +562,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.1895, y: 0.6263}
-  m_SizeDelta: {x: 359.5089, y: 59.3735}
+  m_AnchoredPosition: {x: 5.1895, y: -0.8892}
+  m_SizeDelta: {x: 359.5089, y: 56.3425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632928891
 MonoBehaviour:
@@ -613,8 +613,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4284647072
+  m_fontColor: {r: 0.627451, g: 0.5254902, b: 0.38431376, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -631,7 +631,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.3
+  m_fontSize: 9.75
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2214,7 +2214,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Highscore: xxx'
+  m_text: Highscore
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 004c40540fc65a8459a1609617fe6048, type: 2}
   m_sharedMaterial: {fileID: 7898051951576004044, guid: 004c40540fc65a8459a1609617fe6048, type: 2}

@@ -13,7 +13,7 @@ public class HighScore : MonoBehaviour
         if (PlayerPrefs.GetInt("Highscore") > 0) {
             highscore.SetText("Highscore: " + PlayerPrefs.GetInt("Highscore"));
         } else {
-            highscore.SetText("");
+            highscore.SetText("Highscore: 0");
         }
     }
 
