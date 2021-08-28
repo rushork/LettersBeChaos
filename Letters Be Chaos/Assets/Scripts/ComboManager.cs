@@ -12,7 +12,7 @@ public class ComboManager : MonoBehaviour
 {
     public static ComboManager Instance { get; private set; }
 
-    public Transform comboSpawn;
+    public List<Transform> comboSpawns;
     public TextMeshProUGUI comboTextDebug;
     private Animator comboAnimator;
 
@@ -49,6 +49,16 @@ public class ComboManager : MonoBehaviour
     private int tempValue; //stores the difference between the two.
     private float deleteSequentialTimerDuration = 3f;
 
+    //time without failure
+    private float totalTimeWithoutFailure = 0;
+    private int totalCorrect;
+    private float timeToCheckIfStillStamping = 15f;
+    private bool isStillStamping = true;
+    private float timerCount;
+
+    private float timeSinceLastMultiplier;
+    private bool checkingInterval;
+
     private void Awake()
     {
         Instance = this;
@@ -57,39 +67,75 @@ public class ComboManager : MonoBehaviour
         comboAnimator = comboTextDebug.GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        StartCoroutine(CheckIfStamping());
+    }
+
+
+    private IEnumerator CheckIfStamping()
+    {
+        int temp = totalCorrect;
+        yield return new WaitForSeconds(timeToCheckIfStillStamping);
+        if(totalCorrect > temp)
+        {
+            isStillStamping = true;
+        }
+        else
+        {
+            isStillStamping = false;
+        }
+    }
+
     private void Update()
     {
 
+        timeSinceLastMultiplier += Time.deltaTime;
 
-        if (correctSequentialStamps10orMore == 10)
+
+        if (isStillStamping)
         {
-            correctSequentialStamps10orMore = 0;
-          
-
-            //every 5 letters, add another combo.
-            if (correctSequentialStamps5orMore == 5)
+            totalTimeWithoutFailure += Time.deltaTime;
+            if (totalTimeWithoutFailure >= 60)
             {
+                AddTimerValueCount(60f);
+                totalTimeWithoutFailure = 0;
+
+            }
+        }
+        
+
+        if (correctSequentialStamps5orMore >= 5)
+        {
+            if(correctSequentialStamps5orMore == 10)
+            {
+                AddMultiplier(0.7f, "10 in a row");
                 correctSequentialStamps5orMore = 0;
-                AddMultiplier(2f);
             }
-            else
+            else if (correctSequentialStamps5orMore == 5)
             {
-                AddMultiplier(1.5f);
+                AddMultiplier(0.2f, "5 in a row");
+                correctSequentialStamps5orMore = 0;
             }
+            
+            
+        }
 
-        }
-        else if (correctSequentialStamps5orMore == 5)
-        {
-            correctSequentialStamps5orMore = 0;
-            AddMultiplier(0.2f);
-        }
+        //if (correctSequentialStamps10orMore == 10)
+        //{
+            
+        //    correctSequentialStamps10orMore = 0;
+            
+
+        //}
+        
 
 
 
         if (correctSequentialStampsWithSameColor == 10)
         {
             correctSequentialStampsWithSameColor = 0;
-            AddMultiplier(2f);
+            AddMultiplier(0.7f,"10 Identical Colours!");
         }
 
 
@@ -101,7 +147,7 @@ public class ComboManager : MonoBehaviour
             hasStampedGreen = false;
             hasStampedOrange = false;
             hasStampedRed = false;
-            AddMultiplier(10f);
+            AddMultiplier(8f, "Stamped all the colours!");
             //slightly longer to play with it.
             comboExpireTimer += 5f;
         }
@@ -114,7 +160,7 @@ public class ComboManager : MonoBehaviour
             {
                 if(deleteSequential3SecondCount - tempValue >= 5)
                 {
-                    AddMultiplier(3);
+                    AddMultiplier(1.5f, "Delete 5 in under 3 seconds");
                 }
                 tempValue = 0;
                 deleteSequential3SecondCount = 0;
@@ -184,6 +230,7 @@ public class ComboManager : MonoBehaviour
 
     public void AddCorrectStamp(InteractableLetter letter)
     {
+        totalCorrect++;
         correctSequentialStamps10orMore++;
         correctSequentialStamps5orMore++;
 
@@ -201,6 +248,9 @@ public class ComboManager : MonoBehaviour
 
     public void MarkIncorrectStamp(InteractableLetter letter)
     {
+        totalCorrect--;
+        //you failed, reset the timer and the counter.
+        totalTimeWithoutFailure = 0;
         ResetMultiplier();
         //If the player stamps something incorrectly, this is called.
         correctSequentialStamps10orMore = 0;
@@ -210,7 +260,7 @@ public class ComboManager : MonoBehaviour
     }
 
 
-    public void AddMultiplier(float value)
+    public void AddMultiplier(float value, string message)
     {
 
         if (comboMultiplier == 1) {
@@ -220,7 +270,22 @@ public class ComboManager : MonoBehaviour
         }
 
         comboMultiplier += value;
-        ComboPoints.Create(comboSpawn.position, comboMultiplier);
+
+
+
+        if(timeSinceLastMultiplier < 2f)
+        {
+            ComboPoints.Create(comboSpawns[1].position, comboMultiplier, message);
+            timeSinceLastMultiplier = 0;
+        }
+        else
+        {
+            ComboPoints.Create(comboSpawns[0].position, comboMultiplier, message);
+
+            timeSinceLastMultiplier = 0;
+        }
+
+        
         comboExpireTimer = comboExpireTimerMax;
         comboTextDebug.text = comboMultiplier + "x Multiplier";
         comboAnimator.SetTrigger("MultiplierModified");
@@ -234,7 +299,23 @@ public class ComboManager : MonoBehaviour
     }
 
     
+    public void AddTimerValueCount(float timePassed)
+    {
+        timerCount += timePassed;
 
+        if(timerCount == 60)
+        {
+            AddMultiplier(5,"60 seconds without failure");
+        }
+        else if (timerCount == 120)
+        {
+            AddMultiplier(8, "2 minutes without failure");
+        }
+        else if (timerCount == 240)
+        {
+            AddMultiplier(15, "4 minutes without failure");
+        }
+    }
 
     public void SetLastCorrectlyStamped(Color32 colorStamped)
     {

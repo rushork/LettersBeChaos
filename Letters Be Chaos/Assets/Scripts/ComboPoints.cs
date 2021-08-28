@@ -9,27 +9,29 @@ using TMPro;
 public class ComboPoints : MonoBehaviour
 {
 
-    public static ComboPoints Create(Vector3 pos, float pointAmount)
+    public static ComboPoints Create(Vector3 pos, float pointAmount, string message)
     {
         Transform textTransform = Instantiate(GameSettings.Instance.pfComboPoints, pos, Quaternion.identity);
         ComboPoints pointsText = textTransform.GetComponent<ComboPoints>();
-        pointsText.Setup(pointAmount);
+        pointsText.Setup(pointAmount, message);
 
         return pointsText;
     }
 
 
     [SerializeField] private TextMeshPro text;
+    [SerializeField] private TextMeshPro headerText;
 
     private float disappearTimer;
     private Color textColor;
 
     private Color originalTextColor;
     private float originalFontSize;
-    private const float DISAPPEAR_TIMER_MAX = 0.6f;
+    private const float DISAPPEAR_TIMER_MAX = 0.9f;
+    
 
 
-    public void Setup(float pointsValue)
+    public void Setup(float pointsValue, string message)
     {
         originalFontSize = text.fontSize;
         originalTextColor = text.color;
@@ -38,7 +40,7 @@ public class ComboPoints : MonoBehaviour
         text.fontSize = originalFontSize;
         textColor = originalTextColor;
 
-
+        headerText.SetText(message);
 
         text.SetText(pointsValue.ToString() + "x");
 
@@ -49,6 +51,7 @@ public class ComboPoints : MonoBehaviour
 
     private void Update()
     {
+
         float moveYSpeed = 0.2f;
         transform.position += new Vector3(0, moveYSpeed) * Time.deltaTime;
 

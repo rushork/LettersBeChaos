@@ -110,7 +110,7 @@ public class GameSettings : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 165;
+        Application.targetFrameRate = 500;
         //this
         //now you can use "GameSettings.Instance.(insert method name)" anywhere. 
         //Why use this instead of static classes? static classes are a pain in the ass.
@@ -406,17 +406,17 @@ public class GameSettings : MonoBehaviour
             }
             else if (letter.letterScriptable.nameString == "BombR")
             {
-                ComboManager.Instance.AddMultiplier(4);
+                ComboManager.Instance.AddMultiplier(4, "RED BOMB");
                 points += 100;
             }
             else if (letter.letterScriptable.nameString == "BombB")
             {
-                ComboManager.Instance.AddMultiplier(6);
+                ComboManager.Instance.AddMultiplier(6, "BLUE BOMB");
                 points += 100;
             }
             else if (letter.letterScriptable.nameString == "BombG")
             {
-                ComboManager.Instance.AddMultiplier(8);
+                ComboManager.Instance.AddMultiplier(8, "GREEN BOMB");
                 points += 100;
             }
         }
@@ -440,7 +440,7 @@ public class GameSettings : MonoBehaviour
                 letterCountCorrect++;
             }
         }
-        if (points > 0 && ComboManager.Instance.comboActive)
+        if (points > 0)
         {
 
             points = Mathf.RoundToInt(points * ComboManager.Instance.GetMultiplier());
