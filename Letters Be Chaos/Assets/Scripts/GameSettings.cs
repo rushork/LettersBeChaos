@@ -541,7 +541,7 @@ public class GameSettings : MonoBehaviour
         tempLetterCount++;
         if (tempLetterCount > 5)
         {
-            IncreaseRandom(1);
+            IncreaseRandom(5);
             
             tempLetterCount = 0;
         }

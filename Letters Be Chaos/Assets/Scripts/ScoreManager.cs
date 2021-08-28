@@ -18,37 +18,6 @@ public class ScoreManager : MonoBehaviour
         textAnim = textTemp.GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        //remove
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Time.timeScale = 3f;
-        }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            Time.timeScale = 1f;
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            AddPoints(500);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            AddPoints(1000);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            AddPoints(10000);
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            GameSettings.Instance.ExitGame();
-        }
-    }
 
     public void AddPoints(int amount)
     {

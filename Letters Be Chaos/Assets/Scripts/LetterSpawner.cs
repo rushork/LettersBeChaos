@@ -383,7 +383,7 @@ public class LetterSpawner : MonoBehaviour
         if (!summoning)
         {
             //releases 30 - 60 letters within 5 seconds.
-            summonBombAmount = Random.Range(25, 50);
+            summonBombAmount = Random.Range(25, 60);
             summoning = true;
             allowSummonBombSpawn = false;
         }

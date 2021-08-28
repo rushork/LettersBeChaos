@@ -141,12 +141,12 @@ public class StampCollisionCheck : MonoBehaviour
                 else
                 {
                     letter.usagePenaltyEnabled = true;
-                    letter.SendForProcessing();
+                    
 
                 }
 
-                
-               
+                letter.SendForProcessing();
+
 
                 letter.hasBeenSelected = false;
 

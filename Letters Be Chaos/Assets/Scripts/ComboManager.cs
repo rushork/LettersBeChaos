@@ -343,7 +343,7 @@ public class ComboManager : MonoBehaviour
            
             if(!hasStampedRed)
             {
-                Debug.Log("red");
+                
                 hasStampedRed = true;
             }
             else
@@ -355,7 +355,7 @@ public class ComboManager : MonoBehaviour
         {
             if (!hasStampedBlue)
             {
-                Debug.Log("blue");
+                
                 hasStampedBlue = true;
             }
             else

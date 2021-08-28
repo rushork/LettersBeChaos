@@ -155,6 +155,9 @@ public class InteractableLetter : MonoBehaviour
                 stampRenderer.gameObject.SetActive(true);
                 isPostageStamped = true;
             }
+
+
+
         }
         else
         {
@@ -266,6 +269,7 @@ public class InteractableLetter : MonoBehaviour
                 stampRenderer.flipY = true;
                 isUpsideDown = true;
             }
+
         }
         
 

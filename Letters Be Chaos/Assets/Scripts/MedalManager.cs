@@ -42,10 +42,11 @@ public class MedalManager : MonoBehaviour
     public int lettersSortedGreen;
     public int lettersSortedOrange;
     public int lettersSortedWrongColor;
-    public int lettersSortedWrongColorIncorrectly;
+   
 
     [Header("Feature Sorting")]
     public int lettersSortedUpsideStampOnly;
+    public int lettersSortedIncorrectColourOnly;
 
     [Header("Special Sorting")]
     public List<SpecialLetterStamped> specialLetters;
@@ -92,16 +93,7 @@ public class MedalManager : MonoBehaviour
     
     }
 
-    //cheats!
-    private void UnlockAllMedals()
-    {
-        foreach(string med in medalID)
-        {
-            PlayerPrefs.SetInt(med, 1);
-            
-        }
-    }
-
+ 
     //manages medal queue system
     private void UnlockMedal(string code, int am)
     {
@@ -136,102 +128,93 @@ public class MedalManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            //UnlockAllMedals();
-            UnlockMedal("S4", 1);
+       
+     
 
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            PlayerPrefs.DeleteAll();
-        }
-
-        //if(totalSpecialLetterCount == 30)
-        //{
-        //    PlayerPrefs.SetInt("S4", 1);
-        //}
-
-
-        if (lettersSortedCorrectManually == 200)
+        if (lettersSortedCorrectManually >= 200 && (PlayerPrefs.GetInt("P1") == 0 || PlayerPrefs.GetInt("P1") == default))
         {
             //Unlocked "I wont be Replaced!"
             UnlockMedal("P1",1);
         }
-        else if (lettersSortedCorrectManually == 800)
+        if (lettersSortedCorrectManually >= 800 && (PlayerPrefs.GetInt("P5") == 0 || PlayerPrefs.GetInt("P5") == default))
         {
             //Unlocked "Or will i?"
             UnlockMedal("P5",1);
         }
-        else if (lettersSortedCorrectManually == 1500)
+        if (lettersSortedCorrectManually >= 1500 && (PlayerPrefs.GetInt("P6") == 0 || PlayerPrefs.GetInt("P6") == default))
         {
             //Unlocked "no, i dont think i will"
             UnlockMedal("P6", 1);
         }
 
-        if (lettersDestroyedCorrect == 1000)
+        if (lettersDestroyedCorrect >= 1000 && (PlayerPrefs.GetInt("P2") == 0 || PlayerPrefs.GetInt("P2") == default))
         {
             UnlockMedal("P2", 1);
         }
-        else if (lettersDestroyedCorrect == 2000)
+        if (lettersDestroyedCorrect >= 2000 && (PlayerPrefs.GetInt("P3") == 0 || PlayerPrefs.GetInt("P3") == default))
         {
             UnlockMedal("P3", 1);
         }
-        else if (lettersDestroyedCorrect == 5000)
+        if (lettersDestroyedCorrect >= 5000 && (PlayerPrefs.GetInt("P4") == 0 || PlayerPrefs.GetInt("P4") == default))
         {
             UnlockMedal("P4", 1);
         }
 
-        if (lettersDestroyedAutomatically == 1000)
+        if (lettersDestroyedAutomatically >= 1000 && (PlayerPrefs.GetInt("P7") == 0 || PlayerPrefs.GetInt("P7") == default))
         {
             UnlockMedal("P7", 1);
         }
 
 
         //tracking
-        if (lettersSortedCorrectTracked == 1000)
+        if (lettersSortedCorrectTracked >= 1000 && (PlayerPrefs.GetInt("P8") == 0 || PlayerPrefs.GetInt("P8") == default))
         {
             UnlockMedal("P8", 1);
         }
 
 
-        if (specialLetterTotalCount == 30)
+        if (specialLetterTotalCount >= 30 && (PlayerPrefs.GetInt("S4") == 0 || PlayerPrefs.GetInt("S4") == default))
         {
             UnlockMedal("S4", 1);
         }
 
 
-        if(lettersDestroyedCorrectWithoutMissing == 20)
+        if(lettersDestroyedCorrectWithoutMissing >= 20 && (PlayerPrefs.GetInt("N1") == 0 || PlayerPrefs.GetInt("N1") == default))
         {
             //unlocks "Cautious deletion"
             UnlockMedal("N1", 1);
         }
 
-        if(pointsLostByIncorrectTracking >= 10000 && (PlayerPrefs.GetInt("N2") == 0 || PlayerPrefs.GetInt("N2") == default))
+        if((pointsLostByIncorrectTracking >= 10000) && (PlayerPrefs.GetInt("N2") == 0 || PlayerPrefs.GetInt("N2") == default))
         {
             //if N2 is not yet unlocked
             UnlockMedal("N2", 1);
         } 
 
 
-        if(lettersSortedCorrectTracked == 100)
+        if(lettersSortedCorrectTracked >= 100 && (PlayerPrefs.GetInt("N3") == default || PlayerPrefs.GetInt("N3") == 0))
         {
             UnlockMedal("N3", 1);
         }
 
-        if(lettersSortedUpsideStampOnly == 20)
+        if(lettersSortedUpsideStampOnly >= 20 && (PlayerPrefs.GetInt("N4") == default || PlayerPrefs.GetInt("N4") == 0))
         {
             UnlockMedal("N4", 1);
         }
 
-        if(lettersSortedWrongColorIncorrectly == 5)
+        if(lettersSortedIncorrectColourOnly >= 5 && (PlayerPrefs.GetInt("N5") == default || PlayerPrefs.GetInt("N5") == 0))
         {
             UnlockMedal("N5", 1);
         }
 
-        if(lettersHighlightedWhenCorrectlyDeletedCount == 100)
+        if(lettersHighlightedWhenCorrectlyDeletedCount >= 100 && (PlayerPrefs.GetInt("S6") == default || PlayerPrefs.GetInt("S6") == 0))
         {
             UnlockMedal("S6", 1);
+        }
+
+        if(lettersSortedByAutoSortCount >= 500 && (PlayerPrefs.GetInt("S5") == default || PlayerPrefs.GetInt("S5") == 0))
+        {
+            UnlockMedal("S5",1);
         }
 
     }
@@ -342,6 +325,12 @@ public class MedalManager : MonoBehaviour
     /// <param name="valid"> Was this letter processing valid, did they sort it correctly? </param>
     public void CountLetter(InteractableLetter letter, bool autoSorted, bool autoSortedBySortingBomb, bool colourBomb, bool valid, int pointsFromThisProcess)
     {
+        
+        if (!letter.hasTrackingInfo && letter.hasBeenTrackStamped)
+        {
+            
+            pointsLostByIncorrectTracking -= pointsFromThisProcess;
+        }
 
         //A letter has been processed, we need to count how many they process since the first.
 
@@ -422,7 +411,7 @@ public class MedalManager : MonoBehaviour
                 {
                     //if the letter shouldnt be tracked, but was:
                     lettersSortedIncorrectTracked++;
-                    pointsLostByIncorrectTracking += pointsFromThisProcess;
+                    
                 }
 
 
@@ -461,6 +450,14 @@ public class MedalManager : MonoBehaviour
                 lettersSortedIncorrectManually++;
 
 
+                //for n5
+                if (letter.hasInvalidColor && letter.isPostageStamped && !letter.isUpsideDown && letter.colorStampedWith.Equals(letter.GetSealColor()))
+                {
+                    
+                    lettersSortedIncorrectColourOnly++;
+                }
+
+
                 if (letter.isValidOnArrival)
                 {
                     //this letter was valid, and was sorted incorrectly. A letter was "missed".
@@ -470,15 +467,8 @@ public class MedalManager : MonoBehaviour
                 //for "upside down and nothing else" medal. In the "invalid" section as they must be *incorrectly* processed.
                 if (letter.isPostageStamped && letter.isUpsideDown && letter.isSealed && letter.colorStampedWith.Equals(letter.GetSealColor()))
                 {
-                    if (letter.hasTrackingInfo && letter.hasBeenTrackStamped)
-                    {
-                        
-                        lettersSortedUpsideStampOnly++;
-                    }
-                    else if (!letter.hasTrackingInfo && !letter.hasBeenTrackStamped)
-                    {
-                        lettersSortedUpsideStampOnly++;
-                    }
+                    lettersSortedUpsideStampOnly++;
+                    
                 }
 
                 //for "5 letters and nothing wrong with them"
@@ -501,11 +491,18 @@ public class MedalManager : MonoBehaviour
                     lettersDestroyedTotal++;
                 }
 
+               
+
             }
 
 
 
 
+        }
+
+        if (valid)
+        {
+            totalLettersSorted++;
         }
 
 
@@ -532,6 +529,9 @@ public class MedalManager : MonoBehaviour
             specialLetterTotalCount++;
 
         }
+
+
+        
 
 
 

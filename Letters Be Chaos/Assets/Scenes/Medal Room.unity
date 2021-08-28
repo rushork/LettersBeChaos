@@ -904,8 +904,8 @@ MonoBehaviour:
   lettersSortedGreen: 0
   lettersSortedOrange: 0
   lettersSortedWrongColor: 0
-  lettersSortedWrongColorIncorrectly: 0
   lettersSortedUpsideStampOnly: 0
+  lettersSortedIncorrectColourOnly: 0
   specialLetters: []
   differentBombCheckRunning: 0
   differentBombCount: 0
@@ -918,8 +918,11 @@ MonoBehaviour:
   autoSortBombCount: 0
   bombColors: []
   totalLettersSorted: 0
-  measuringLetterWipeSpeed: 0
+  measuringLetterWipeSpeedS8: 0
+  measuringLetterWipeSpeedS7: 0
   medalID: []
+  trayScript: {fileID: 0}
+  medalSpriteIndices: []
 --- !u!4 &391154655
 Transform:
   m_ObjectHideFlags: 0
@@ -3983,7 +3986,7 @@ MonoBehaviour:
   info: '<b>Hacking</b>
 
     Clear 500 letters from the table using any means in
-    under 20 seconds.'
+    under 60 seconds.'
   hint: 
   unlockedSprite: {fileID: 21300000, guid: d36824fae296da54db894639b754e64c, type: 3}
   lockedSprite: {fileID: 21300000, guid: ba3d7b5338aea284180f423a5bf20792, type: 3}
@@ -5477,6 +5480,7 @@ MonoBehaviour:
   - name: Tick
     clip: {fileID: 8300000, guid: c65ef32bf1fb77e4b9edd6425b5ab66f, type: 3}
     volume: 1
+    speed: 1
     source: {fileID: 0}
 --- !u!4 &1690047532
 Transform:
